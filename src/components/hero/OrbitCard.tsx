@@ -21,15 +21,15 @@ export const OrbitCard: React.FC<OrbitCardProps> = ({
     <div
       style={style}
       onClick={onClick}
-      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] sm:w-[155px] sm:h-[155px] md:w-[180px] md:h-[180px] rounded-[22px] sm:rounded-[28px] bg-[#f5f2e9]/95 backdrop-blur-[2px] shadow-matcha-card flex flex-col items-center justify-between p-2.5 sm:p-3.5 cursor-pointer transform-gpu transition-shadow duration-300 hover:shadow-card-hover group border border-black/5 ${
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115px] h-[115px] sm:w-[145px] sm:h-[145px] md:w-[165px] md:h-[165px] lg:w-[178px] lg:h-[178px] rounded-[20px] sm:rounded-[24px] bg-[#EFEDE3] shadow-[0_12px_30px_rgba(0,0,0,0.35)] flex flex-col items-center justify-between p-2.5 sm:p-3 cursor-pointer transform-gpu transition-all duration-300 group border border-black/5 ${
         isActive
-          ? 'ring-2 ring-white/90 shadow-[0_20px_35px_rgba(0,0,0,0.35)]'
+          ? 'ring-2 ring-white/80 shadow-[0_20px_40px_rgba(0,0,0,0.45)]'
           : 'hover:brightness-105'
       }`}
     >
       {/* Top Small Category / Price Indicator */}
-      <div className="w-full flex items-center justify-between text-[10px] sm:text-[11px] text-[#122416]/75 font-mono">
-        <span className="truncate max-w-[75px] sm:max-w-[100px] font-medium tracking-tight">
+      <div className="w-full flex items-center justify-between text-[9.5px] sm:text-[11px] text-[#122416]/75 font-mono">
+        <span className="truncate max-w-[70px] sm:max-w-[95px] font-medium tracking-tight">
           {locale === 'ar' ? flavor.nameAr : flavor.nameEn}
         </span>
         <span className="font-bold text-[#29482a]">
@@ -37,19 +37,19 @@ export const OrbitCard: React.FC<OrbitCardProps> = ({
         </span>
       </div>
 
-      {/* Centered Isolated Fruit Asset */}
+      {/* Centered Isolated Fruit / Botanical Asset */}
       <div className="w-full flex-1 flex items-center justify-center relative pointer-events-none my-1">
         <img
           src={flavor.fruitImage}
           alt={flavor.fruitAlt}
-          className="max-w-[76%] max-h-[76%] object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-300 rounded-lg"
+          className="max-w-[74%] max-h-[74%] object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)] group-hover:scale-105 transition-transform duration-300 rounded-lg"
           loading="eager"
           draggable={false}
         />
       </div>
 
-      {/* Bottom Mini Japanese Flavor Note */}
-      <div className="w-full text-center text-[10px] sm:text-xs font-japanese text-[#122416]/60 truncate font-medium">
+      {/* Bottom Mini Japanese Botanical Note */}
+      <div className="w-full text-center text-[9.5px] sm:text-[11px] font-japanese text-[#122416]/60 truncate font-medium">
         {flavor.nameJa || '茶道研究所'}
       </div>
     </div>
