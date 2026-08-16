@@ -28,24 +28,26 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMe
           : 'bg-transparent py-3 sm:py-4'
       }`}
     >
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14 flex items-center justify-between">
+      <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 flex items-center justify-between">
         {/* Left: Brand Lockup */}
         <a
           href="#home"
-          className="flex flex-col items-start group select-none transition-transform active:scale-95"
+          className="flex items-center gap-2.5 group select-none transition-transform active:scale-95 cursor-pointer"
           aria-label="Ueno Saryo - Home"
         >
-          <div className="flex items-center gap-2">
-            <span className="font-headline text-lg sm:text-2xl font-bold tracking-tight text-[#f8f7f1] group-hover:text-white transition-colors">
-              {locale === 'ar' ? 'مختبرات الشاي' : 'UENO SARYO'}
-            </span>
-            <span className="font-japanese text-[11px] sm:text-xs text-[#939458] font-bold tracking-wider px-2 py-0.5 rounded-full bg-white/10 border border-white/15">
-              茶道研究所
+          <div className="flex flex-col items-start">
+            <div className="flex items-center gap-2">
+              <span className="font-headline text-lg sm:text-2xl font-bold tracking-tight text-[#f8f7f1] group-hover:text-white transition-colors">
+                {locale === 'ar' ? 'مختبرات الشاي' : 'UENO SARYO'}
+              </span>
+              <span className="font-japanese text-[11px] sm:text-xs text-[#939458] font-bold tracking-wider px-2 py-0.5 rounded-full bg-white/10 border border-white/15">
+                茶道研究所
+              </span>
+            </div>
+            <span className="text-[10px] sm:text-xs text-[#f8f7f1]/60 tracking-wider uppercase mt-0.5 font-mono">
+              {locale === 'ar' ? 'UENO SARYO · تجربة الشاي' : 'Tea Experience · Ar Rawdah'}
             </span>
           </div>
-          <span className="text-[10px] sm:text-xs text-[#f8f7f1]/60 tracking-wider uppercase mt-0.5">
-            {locale === 'ar' ? 'UENO SARYO · تجربة الشاي' : 'Tea Experience · Ar Rawdah'}
-          </span>
         </a>
 
         {/* Center: Desktop Navigation Links */}

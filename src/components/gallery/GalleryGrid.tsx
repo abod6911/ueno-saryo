@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { GALLERY_ITEMS } from '../../data/gallery';
 import { LightboxModal } from './LightboxModal';
 import { useLanguage } from '../../i18n/context';
-import { Sparkles, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import { MatchaContour } from '../ui/MatchaContour';
+import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
+import { JapaneseSeal } from '../ui/JapaneseSeal';
 
 export const GalleryGrid: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -31,22 +33,22 @@ export const GalleryGrid: React.FC = () => {
       <MatchaContour variant="hero-flow" fill="#122416" className="w-full -mt-1 transform-gpu" />
 
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 py-16 sm:py-24 relative z-10">
-        {/* Section Header */}
+        {/* Section Header with Specimen Index */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-[11px] font-mono text-[#939458] font-bold tracking-wider">
-              06 / {locale === 'ar' ? 'المعرض' : 'GALLERY'}
-            </span>
-            <span className="w-1 h-1 rounded-full bg-[#939458]/50" />
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 text-xs font-mono uppercase tracking-widest text-[#939458] border border-white/10">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{t.gallery.badge}</span>
-            </div>
-          </div>
+          <TeaLabAnnotation
+            index="LAB / 06"
+            label={locale === 'ar' ? 'معرض الأجواء والسكينة' : 'ATMOSPHERE & VISUAL ESSENCE'}
+            kanji="空間 · 喫茶"
+            variant="minimal"
+            className="mb-3"
+          />
 
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-            {t.gallery.heading}
-          </h2>
+          <div className="flex items-center gap-3 mb-3">
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              {t.gallery.heading}
+            </h2>
+            <JapaneseSeal char="景" size={24} variant="square" />
+          </div>
 
           <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-2xl">
             {t.gallery.subheading}
@@ -74,7 +76,7 @@ export const GalleryGrid: React.FC = () => {
                   src={photo.image}
                   alt={title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                 />
 

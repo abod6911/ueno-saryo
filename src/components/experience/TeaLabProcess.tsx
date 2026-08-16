@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TEA_LAB_STEPS } from '../../data/teaExperience';
 import { useLanguage } from '../../i18n/context';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
+import { JapaneseSeal } from '../ui/JapaneseSeal';
 
 export const TeaLabProcess: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -17,22 +19,22 @@ export const TeaLabProcess: React.FC = () => {
       </div>
 
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
-        {/* Section Header */}
+        {/* Section Header with Specimen Index */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-[11px] font-mono text-[#939458] font-bold tracking-wider">
-              02 / {locale === 'ar' ? 'التجربة' : 'EXPERIENCE'}
-            </span>
-            <span className="w-1 h-1 rounded-full bg-[#939458]/50" />
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 text-xs font-mono uppercase tracking-widest text-[#939458] border border-white/10">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{t.teaExperience.badge}</span>
-            </div>
-          </div>
+          <TeaLabAnnotation
+            index="LAB / 02"
+            label={locale === 'ar' ? 'مراحل وفلسفة التحضير' : 'TEA EXTRACTION CEREMONY'}
+            kanji="点前 · 精密抽出"
+            variant="minimal"
+            className="mb-3"
+          />
 
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-            {t.teaExperience.heading}
-          </h2>
+          <div className="flex items-center gap-3 mb-3">
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              {t.teaExperience.heading}
+            </h2>
+            <JapaneseSeal char="道" size={24} variant="square" />
+          </div>
 
           <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-2xl">
             {t.teaExperience.subheading}
@@ -125,7 +127,7 @@ export const TeaLabProcess: React.FC = () => {
               src={activeStep.image}
               alt={activeStep.nameEn}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-              loading="lazy"
+              loading="eager"
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />

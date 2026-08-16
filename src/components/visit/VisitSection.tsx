@@ -2,8 +2,10 @@ import React from 'react';
 import { BUSINESS_DATA } from '../../data/business';
 import { OpeningHoursCard } from './OpeningHoursCard';
 import { useLanguage } from '../../i18n/context';
-import { Phone, ShoppingBag, Navigation, Sparkles } from 'lucide-react';
+import { Phone, ShoppingBag, Navigation } from 'lucide-react';
 import { MatchaContour } from '../ui/MatchaContour';
+import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
+import { JapaneseSeal } from '../ui/JapaneseSeal';
 
 export const VisitSection: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -16,20 +18,20 @@ export const VisitSection: React.FC = () => {
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 py-16 sm:py-24 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-[11px] font-mono text-[#939458] font-bold tracking-wider">
-              08 / {locale === 'ar' ? 'الزيارة' : 'VISIT'}
-            </span>
-            <span className="w-1 h-1 rounded-full bg-[#939458]/50" />
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 text-xs font-mono uppercase tracking-widest text-[#939458] border border-white/10">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{t.visit.badge}</span>
-            </div>
-          </div>
+          <TeaLabAnnotation
+            index="LAB / 08"
+            label={locale === 'ar' ? 'ملاذ الشاي بجدة' : 'JEDDAH SANCTUARY & VISITING'}
+            kanji="訪茶 · 茶道研究所"
+            variant="minimal"
+            className="mb-3"
+          />
 
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
-            {t.visit.heading}
-          </h2>
+          <div className="flex items-center gap-3 mb-3">
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              {t.visit.heading}
+            </h2>
+            <JapaneseSeal char="館" size={24} variant="square" />
+          </div>
 
           <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-2xl">
             {t.visit.subheading}
@@ -38,7 +40,7 @@ export const VisitSection: React.FC = () => {
 
         {/* 2-Column Grid: Location Details & Map + Opening Hours */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
-          {/* Col 1: Store Location Details & Actions */}
+          {/* Col 1: Store Location Details & Actions as Japanese Address Card */}
           <div className="lg:col-span-7 bg-[#122416] rounded-[24px] sm:rounded-[28px] p-6 sm:p-10 border border-white/12 shadow-2xl flex flex-col justify-between">
             <div className="flex flex-col gap-6">
               {/* Brand & Address Lockup */}
@@ -60,7 +62,7 @@ export const VisitSection: React.FC = () => {
                   href={BUSINESS_DATA.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[48px] px-4 rounded-2xl bg-[#29482a] hover:bg-[#365c3b] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-md border border-white/15 cursor-pointer"
+                  className="min-h-[48px] px-4 rounded-full bg-[#29482a] hover:bg-[#365c3b] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-md border border-white/15 cursor-pointer"
                 >
                   <Navigation className="w-4 h-4 text-[#939458]" />
                   <span>{t.visit.getDirectionsBtn}</span>
@@ -68,7 +70,7 @@ export const VisitSection: React.FC = () => {
 
                 <a
                   href={`tel:${BUSINESS_DATA.phone}`}
-                  className="min-h-[48px] px-4 rounded-2xl bg-white/5 hover:bg-white/10 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 border border-white/10 cursor-pointer"
+                  className="min-h-[48px] px-4 rounded-full bg-white/5 hover:bg-white/10 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 border border-white/10 cursor-pointer"
                 >
                   <Phone className="w-4 h-4 text-[#939458]" />
                   <span>{t.visit.callBtn}</span>
@@ -78,7 +80,7 @@ export const VisitSection: React.FC = () => {
                   href={BUSINESS_DATA.hungerStationUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[48px] px-4 rounded-2xl bg-white/5 hover:bg-white/10 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 border border-white/10 cursor-pointer"
+                  className="min-h-[48px] px-4 rounded-full bg-white/5 hover:bg-white/10 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all active:scale-95 border border-white/10 cursor-pointer"
                 >
                   <ShoppingBag className="w-4 h-4 text-[#939458]" />
                   <span>{t.visit.orderHungerStation}</span>
@@ -101,8 +103,8 @@ export const VisitSection: React.FC = () => {
             </div>
 
             <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-xs text-[#f8f7f1]/60">
-              <span className="font-mono">Ar Rawdah, Jeddah 23432</span>
-              <span className="text-[#939458] font-japanese font-medium">茶道研究所</span>
+              <span className="font-mono text-[11px]">7140 Prince Saud Al Faisal, Ar Rawdah 23432</span>
+              <span className="text-[#939458] font-japanese font-medium">茶道研究所 · 喫茶</span>
             </div>
           </div>
 

@@ -1,8 +1,10 @@
 import React from 'react';
 import { MENU_ITEMS } from '../../data/menu';
 import { useLanguage } from '../../i18n/context';
-import { Sparkles, Flame, Plus } from 'lucide-react';
+import { Flame, Plus } from 'lucide-react';
 import type { MenuItem } from '../../types/menu';
+import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
+import { JapaneseSeal } from '../ui/JapaneseSeal';
 
 interface DessertShowcaseProps {
   onSelectItem: (item: MenuItem) => void;
@@ -18,22 +20,22 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
       <div className="absolute inset-0 bg-paper-texture opacity-50 pointer-events-none" />
 
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
-        {/* Section Header */}
+        {/* Section Header with Specimen Index */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-[11px] font-mono text-[#29482a] font-bold tracking-wider">
-              05 / {locale === 'ar' ? 'الحلويات' : 'SWEETS'}
-            </span>
-            <span className="w-1 h-1 rounded-full bg-[#29482a]/50" />
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#122416]/10 text-xs font-mono uppercase tracking-widest text-[#122416]">
-              <Sparkles className="w-3.5 h-3.5 text-[#939458]" />
-              <span>{t.desserts.badge}</span>
-            </div>
-          </div>
+          <TeaLabAnnotation
+            index="LAB / 05"
+            label={locale === 'ar' ? 'الحلويات والمخبوزات اليابانية' : 'JAPANESE SWEETS & WAGASHI'}
+            kanji="甘味 · 和菓子"
+            variant="minimal"
+            className="mb-3"
+          />
 
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight mb-3">
-            {t.desserts.heading}
-          </h2>
+          <div className="flex items-center gap-3 mb-3">
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight">
+              {t.desserts.heading}
+            </h2>
+            <JapaneseSeal char="菓" size={24} variant="square" />
+          </div>
 
           <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl">
             {t.desserts.subheading}
@@ -50,11 +52,11 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
               <div
                 key={item.id}
                 onClick={() => onSelectItem(item)}
-                className="bg-white rounded-[22px] sm:rounded-[24px] p-5 sm:p-6 border border-black/5 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer group hover:-translate-y-1 select-none"
+                className="bg-white rounded-[20px] sm:rounded-[22px] p-5 sm:p-6 border border-black/[0.06] shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer group hover:-translate-y-1 select-none"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-[#122416]/10 text-[#122416]">
+                    <span className="text-[9.5px] font-mono font-semibold uppercase px-2 py-0.5 rounded-[6px] bg-[#122416]/10 text-[#122416]">
                       {locale === 'ar' ? 'حلى ياباني' : 'Japanese Sweet'}
                     </span>
                     {item.name.ja && (
@@ -69,7 +71,7 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
                       src={item.image}
                       alt={name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                      loading="lazy"
+                      loading="eager"
                       decoding="async"
                     />
                   </div>
@@ -83,21 +85,24 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between mt-5 pt-3 border-t border-black/5">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-base text-[#29482a]">
-                      {item.priceSAR} {locale === 'ar' ? 'ر.س' : 'SAR'}
+                <div className="flex items-center justify-between mt-5 pt-3 border-t border-black/[0.05]">
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-mono font-extrabold text-base text-[#29482a]">
+                      {item.priceSAR}
+                    </span>
+                    <span className="text-[10px] font-mono text-[#181813]/60">
+                      {locale === 'ar' ? 'ر.س' : 'SAR'}
                     </span>
                     {item.calories && (
-                      <span className="text-[11px] font-mono text-[#181813]/50 flex items-center gap-0.5">
-                        <Flame className="w-3 h-3" />
+                      <span className="text-[10.5px] font-mono text-[#181813]/50 ms-2 flex items-center gap-0.5">
+                        <Flame className="w-3 h-3 text-[#939458]" />
                         {item.calories}
                       </span>
                     )}
                   </div>
 
-                  <div className="w-8 h-8 rounded-full bg-[#122416] text-white flex items-center justify-center group-hover:bg-[#29482a] transition-colors shadow-sm">
-                    <Plus className="w-4 h-4" />
+                  <div className="w-7 h-7 rounded-full bg-[#122416] text-white flex items-center justify-center group-hover:bg-[#29482a] transition-colors shadow-sm">
+                    <Plus className="w-3.5 h-3.5" />
                   </div>
                 </div>
               </div>
