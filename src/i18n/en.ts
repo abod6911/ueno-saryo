@@ -32,6 +32,18 @@ export const en = {
     calories: 'kcal',
     addToCart: 'Order Item',
   },
+  teaRitual: {
+    eyebrow: 'THE TEA RITUAL · 茶の時間',
+    headlinePart1: 'Crafted slowly.',
+    headlinePart2: 'Experienced fully.',
+    description: 'From temperature and timing to texture and aroma, every cup is prepared as a small ritual.',
+    exploreMenu: 'Explore the menu',
+    visitUs: 'Visit us',
+    steps: ['01 · Select', '02 · Whisk', '03 · Pour', '04 · Serve'],
+  },
+  marquee: {
+    eyebrow: 'SIGNATURE SELECTION · 厳選銘茶',
+  },
   quickInfo: {
     title: 'Ueno Saryo Tea Experience',
     subtitle: 'Ar Rawdah, Jeddah',

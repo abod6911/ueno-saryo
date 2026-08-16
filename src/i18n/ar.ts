@@ -32,6 +32,18 @@ export const ar = {
     calories: 'سعرة حرارية',
     addToCart: 'طلب الصنف',
   },
+  teaRitual: {
+    eyebrow: 'طقوس الشاي · 茶の時間',
+    headlinePart1: 'يُحضّر بهدوء،',
+    headlinePart2: 'ويُعاش بكل تفاصيله.',
+    description: 'من درجة الحرارة والوقت إلى القوام والرائحة، كل كوب يُحضّر كطقس صغير له تفاصيله الخاصة.',
+    exploreMenu: 'اكتشف القائمة',
+    visitUs: 'زرنا',
+    steps: ['01 · الاختيار', '02 · الخفق', '03 · التحضير', '04 · التقديم'],
+  },
+  marquee: {
+    eyebrow: 'اختياراتنا المميزة · 厳選銘茶',
+  },
   quickInfo: {
     title: 'مختبرات الشاي | Ueno Saryo',
     subtitle: 'حي الروضة، جدة',

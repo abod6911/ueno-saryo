@@ -116,3 +116,32 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(41, 72, 42, 0.5);
 }
+
+/* Seamless Signature Tea Marquee */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    overflow-x: auto;
+    width: 100%;
+  }
+}
