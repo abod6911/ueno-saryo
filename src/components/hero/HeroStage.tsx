@@ -6,6 +6,7 @@ import { CenterDrink } from './CenterDrink';
 import { HeroHeadline } from './HeroHeadline';
 import { useLanguage } from '../../i18n/context';
 import { Sparkles } from 'lucide-react';
+import { getAssetUrl } from '../../lib/assetUrl';
 
 interface HeroStageProps {
   onOrderDrink: (flavorId: string) => void;
@@ -183,7 +184,7 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
           ref={bgRef}
           className="absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-95 scale-[1.03]"
           style={{
-            backgroundImage: `url('/assets/environment/hero_stage_clean.jpg')`,
+            backgroundImage: `url('${getAssetUrl('assets/environment/hero_stage_clean.jpg')}')`,
           }}
         />
 

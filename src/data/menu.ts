@@ -1,4 +1,5 @@
 import type { MenuItem } from '../types/menu';
+import { getAssetUrl } from '../lib/assetUrl';
 
 export const MENU_CATEGORIES = [
   { id: 'all', slug: 'all', order: 0, name: { en: 'All Items', ar: 'الكل', ja: '全メニュー' } },
@@ -11,7 +12,7 @@ export const MENU_CATEGORIES = [
   { id: 'exclusive', slug: 'exclusive', order: 7, name: { en: 'Limited & Exclusive', ar: 'إصدارات حصرية', ja: '限定' } },
 ];
 
-export const MENU_ITEMS: MenuItem[] = [
+const RAW_MENU_ITEMS: MenuItem[] = [
   // FEATURED & MATCHA
   {
     id: 'matcha-latte',
@@ -642,3 +643,8 @@ export const MENU_ITEMS: MenuItem[] = [
     },
   },
 ];
+
+export const MENU_ITEMS: MenuItem[] = RAW_MENU_ITEMS.map((item) => ({
+  ...item,
+  image: getAssetUrl(item.image),
+}));

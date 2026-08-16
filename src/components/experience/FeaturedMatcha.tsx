@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../../i18n/context';
 import { Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { getAssetUrl } from '../../lib/assetUrl';
 
 export const FeaturedMatcha: React.FC = () => {
   const { t } = useLanguage();
@@ -83,7 +84,7 @@ export const FeaturedMatcha: React.FC = () => {
             <div className="relative w-full aspect-[4/3] max-w-[540px] rounded-[36px] bg-[#19321d] border border-white/15 overflow-hidden shadow-2xl group">
               {/* Product Photo */}
               <img
-                src="/assets/products/menu_matcha_latte.jpg"
+                src={getAssetUrl('assets/products/menu_matcha_latte.jpg')}
                 alt="Ceremonial Matcha Preparation"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />

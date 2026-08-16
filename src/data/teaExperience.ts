@@ -1,4 +1,5 @@
 import type { ProcessStep, TeaVariety } from '../types/teaExperience';
+import { getAssetUrl } from '../lib/assetUrl';
 
 export const TEA_LAB_STEPS: ProcessStep[] = [
   {
@@ -8,7 +9,7 @@ export const TEA_LAB_STEPS: ProcessStep[] = [
     nameJa: '厳選 · 茶葉の選定',
     descriptionEn: 'Hand-plucked first flush spring leaves from shaded organic farms in Uji and Kagoshima.',
     descriptionAr: 'نقطف براعم الربيع الأولى يدوياً بعد تظليل الشجيرات لـ 21 يوماً لحفظ الأحماض الأمينية والكلوروفيل واللون الزمردي الخلاب.',
-    image: '/assets/experience/step1_harvest.jpg',
+    image: getAssetUrl('assets/experience/step1_harvest.jpg'),
     scientificNoteEn: 'Shading boosts L-theanine and amino acid concentration by 34%, yielding rich natural umami with zero bitterness.',
     scientificNoteAr: 'يزيد التظليل من نسبة الثيانين والأحماض الأمينية بنسبة 34%، مما يمنح الشاي طعماً أومامياً عميقاً بدون أي مرارة.',
   },
@@ -19,7 +20,7 @@ export const TEA_LAB_STEPS: ProcessStep[] = [
     nameJa: '計量 · 比率の精密測定',
     descriptionEn: 'Micro-gram precision scales balance the leaf-to-water ratio for optimal balance.',
     descriptionAr: 'وزن بالغ الدقة (0.01 غرام) لضبط معادلة استخلاص أوراق الشاي وبودرة الماتشا لتوازن كيميائي مثالي في كل رشفة.',
-    image: '/assets/experience/step2_measure.jpg',
+    image: getAssetUrl('assets/experience/step2_measure.jpg'),
     scientificNoteEn: 'Exact leaf-to-water ratios prevent over-extraction of bitter tannins while releasing delicate floral polyphenols.',
     scientificNoteAr: 'المعايرة الدقيقة تمنع استخلاص العفص المر (Tannins) وتطلق البوليفينولات العطرية العذبة.',
   },
@@ -30,7 +31,7 @@ export const TEA_LAB_STEPS: ProcessStep[] = [
     nameJa: '湯温 · 軟水の温度管理',
     descriptionEn: 'Soft mineral water heated to exact extraction temperatures (60°C to 80°C depending on tea cultivar).',
     descriptionAr: 'مياه منخفضة الأملاح بدرجة حموضة متوازنة، تُسخن لحرارة دقيقة (60° إلى 80° مئوية) بحسب نوع الشاي وسلالته.',
-    image: '/assets/experience/step3_heat.jpg',
+    image: getAssetUrl('assets/experience/step3_heat.jpg'),
     scientificNoteEn: 'Water above 80°C scorches delicate amino acids; precise low temperatures extract pure sweetness.',
     scientificNoteAr: 'الحرارة الأعلى من 80° مئوية تحرق الأحماض الأمينية؛ ضبط الحرارة المنخفضة يستخرج حلاوة الشاي الطبيعية.',
   },
@@ -41,7 +42,7 @@ export const TEA_LAB_STEPS: ProcessStep[] = [
     nameJa: '点前 · 茶筅による点茶',
     descriptionEn: 'W-motion hand whisking with a 100-prong bamboo Chasen to incorporate micro-air bubbles into a jade foam.',
     descriptionAr: 'خفق يدوي بحركة متناغمة باستخدام مضرب خيزران ذي 100 سن لدمج الهواء وتشكيل رغوة ياقوتية كريمية.',
-    image: '/assets/experience/step4_whisk.jpg',
+    image: getAssetUrl('assets/experience/step4_whisk.jpg'),
     scientificNoteEn: 'Aeration creates microfoam with velvety mouthfeel and enhances aroma volatilization.',
     scientificNoteAr: 'التهوية السريعة تنتج رغوة ميكروية ناعمة تحرر المركبات العطرية المتطايرة في الفم.',
   },
@@ -52,7 +53,7 @@ export const TEA_LAB_STEPS: ProcessStep[] = [
     nameJa: '提供 · 茶碗の温もり',
     descriptionEn: 'Served in handcrafted Japanese stoneware bowls that preserve thermal warmth and tactile serenity.',
     descriptionAr: 'يُقدم في أوعية فخارية يابانية مصنوعة يدوياً تحتفظ بالحرارة وتمنح شعوراً بالسكينة والاتصال بالأرض.',
-    image: '/assets/experience/step5_serve.jpg',
+    image: getAssetUrl('assets/experience/step5_serve.jpg'),
     scientificNoteEn: 'Tactile textured ceramics stimulate multisensory flavor perception, elevating the overall tasting journey.',
     scientificNoteAr: 'ملمس الفخار الطبيعي يعزز إدراك الحواس للنكهة ويمنح تجربة تذوق شاملة لا تُنسى.',
   },

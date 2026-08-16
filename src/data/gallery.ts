@@ -1,4 +1,5 @@
 import type { GalleryItem } from '../types/teaExperience';
+import { getAssetUrl } from '../lib/assetUrl';
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
@@ -6,7 +7,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     titleEn: 'Zen Architectural Tea Bar',
     titleAr: 'بار الشاي المستوحى من فلسفة الزن اليابانية',
     category: 'atmosphere',
-    image: '/assets/gallery/gallery_interior_zen.jpg',
+    image: getAssetUrl('assets/gallery/gallery_interior_zen.jpg'),
     aspectRatio: 'landscape',
   },
   {
@@ -14,7 +15,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     titleEn: 'Ceremonial Whisking Craft',
     titleAr: 'طقوس خفق الماتشا بالمضرب التقليدي (Chasen)',
     category: 'craft',
-    image: '/assets/gallery/gallery_tea_master.jpg',
+    image: getAssetUrl('assets/gallery/gallery_tea_master.jpg'),
     aspectRatio: 'portrait',
   },
   {
@@ -22,7 +23,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     titleEn: 'Misty Uji Tea Gardens',
     titleAr: 'مزارع الشاي الضبابية في أوجي، كيوتو',
     category: 'origin',
-    image: '/assets/gallery/gallery_uji_harvest.jpg',
+    image: getAssetUrl('assets/gallery/gallery_uji_harvest.jpg'),
     aspectRatio: 'landscape',
   },
   {
@@ -30,7 +31,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     titleEn: 'Artisanal Ceramic Chawan Vessels',
     titleAr: 'أواني الشاي الفخارية المصنوعة يدوياً',
     category: 'craft',
-    image: '/assets/gallery/gallery_chawan_collection.jpg',
+    image: getAssetUrl('assets/gallery/gallery_chawan_collection.jpg'),
     aspectRatio: 'landscape',
   },
   {
@@ -38,7 +39,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     titleEn: 'Artisanal Japanese Sweets & Wagashi',
     titleAr: 'تشكيلة الحلويات اليابانية الطازجة والموتشي',
     category: 'dessert',
-    image: '/assets/gallery/gallery_dessert_spread.jpg',
+    image: getAssetUrl('assets/gallery/gallery_dessert_spread.jpg'),
     aspectRatio: 'portrait',
   },
   {
@@ -46,7 +47,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     titleEn: 'Single-Origin Tea Pour',
     titleAr: 'انسياب الشاي الياباني الصافي في إبريق الكيوسو',
     category: 'craft',
-    image: '/assets/gallery/gallery_tea_pour.jpg',
+    image: getAssetUrl('assets/gallery/gallery_tea_pour.jpg'),
     aspectRatio: 'landscape',
   },
 ];
