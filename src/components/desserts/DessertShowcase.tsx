@@ -13,29 +13,35 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
   const desserts = MENU_ITEMS.filter((item) => item.categoryId === 'desserts');
 
   return (
-    <section id="desserts" className="w-full bg-[#f0ede1] text-[#181813] py-20 sm:py-32 relative overflow-hidden">
+    <section id="desserts" className="w-full bg-[#f0ede1] text-[#181813] py-16 sm:py-24 relative overflow-hidden border-t border-black/5">
       {/* Background Texture */}
       <div className="absolute inset-0 bg-paper-texture opacity-50 pointer-events-none" />
 
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
+      <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#122416]/10 text-xs font-mono uppercase tracking-widest text-[#122416] mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#939458]" />
-            <span>{t.desserts.badge}</span>
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-[11px] font-mono text-[#29482a] font-bold tracking-wider">
+              05 / {locale === 'ar' ? 'الحلويات' : 'SWEETS'}
+            </span>
+            <span className="w-1 h-1 rounded-full bg-[#29482a]/50" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#122416]/10 text-xs font-mono uppercase tracking-widest text-[#122416]">
+              <Sparkles className="w-3.5 h-3.5 text-[#939458]" />
+              <span>{t.desserts.badge}</span>
+            </div>
           </div>
 
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight mb-4">
+          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight mb-3">
             {t.desserts.heading}
           </h2>
 
-          <p className="text-xs sm:text-base text-[#181813]/70 leading-relaxed font-sans">
+          <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl">
             {t.desserts.subheading}
           </p>
         </div>
 
         {/* Desserts Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {desserts.map((item) => {
             const name = locale === 'ar' ? item.name.ar : item.name.en;
             const description = locale === 'ar' ? item.description.ar : item.description.en;
@@ -44,7 +50,7 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
               <div
                 key={item.id}
                 onClick={() => onSelectItem(item)}
-                className="bg-white rounded-3xl p-5 sm:p-6 border border-black/5 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer group hover:-translate-y-1"
+                className="bg-white rounded-[22px] sm:rounded-[24px] p-5 sm:p-6 border border-black/5 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer group hover:-translate-y-1 select-none"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -58,38 +64,40 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
                     )}
                   </div>
 
-                  <div className="w-full aspect-[4/3] bg-[#f8f7f1] rounded-2xl overflow-hidden my-3 shadow-inner">
+                  <div className="w-full aspect-[4/3] rounded-[16px] overflow-hidden bg-[#f8f7f1] mb-4 relative shadow-inner">
                     <img
                       src={item.image}
                       alt={name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
 
-                  <h3 className="font-headline text-lg font-bold text-[#181813] group-hover:text-[#29482a] transition-colors mb-1.5 line-clamp-1">
+                  <h3 className="font-headline text-lg sm:text-xl font-bold text-[#122416] mb-1.5 leading-snug group-hover:text-[#29482a] transition-colors">
                     {name}
                   </h3>
 
-                  <p className="text-xs text-[#181813]/65 line-clamp-2 leading-relaxed h-8 mb-4">
+                  <p className="text-xs text-[#181813]/70 line-clamp-2 font-sans leading-relaxed">
                     {description}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between pt-3 border-t border-black/5">
-                  <span className="font-headline font-bold text-base text-[#122416]">
-                    {item.priceSAR} {t.menu.sar}
-                  </span>
-
+                <div className="flex items-center justify-between mt-5 pt-3 border-t border-black/5">
                   <div className="flex items-center gap-2">
+                    <span className="font-mono font-bold text-base text-[#29482a]">
+                      {item.priceSAR} {locale === 'ar' ? 'ر.س' : 'SAR'}
+                    </span>
                     {item.calories && (
-                      <span className="flex items-center gap-1 text-[11px] text-[#181813]/50 font-mono">
-                        <Flame className="w-3 h-3 text-[#939458]" />
-                        {item.calories} {t.menu.calories}
+                      <span className="text-[11px] font-mono text-[#181813]/50 flex items-center gap-0.5">
+                        <Flame className="w-3 h-3" />
+                        {item.calories}
                       </span>
                     )}
-                    <div className="w-7 h-7 rounded-full bg-[#122416]/5 group-hover:bg-[#122416] group-hover:text-white text-[#122416] flex items-center justify-center transition-colors">
-                      <Plus className="w-3.5 h-3.5" />
-                    </div>
+                  </div>
+
+                  <div className="w-8 h-8 rounded-full bg-[#122416] text-white flex items-center justify-center group-hover:bg-[#29482a] transition-colors shadow-sm">
+                    <Plus className="w-4 h-4" />
                   </div>
                 </div>
               </div>

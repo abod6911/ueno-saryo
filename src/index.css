@@ -116,3 +116,18 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(41, 72, 42, 0.5);
 }
+
+/* Organic Matcha Powder Terrain Clip Shapes */
+.matcha-organic-crop {
+  border-radius: 24px 28px 48px 24px;
+}
+
+.matcha-organic-crop-alt {
+  border-radius: 28px 48px 24px 32px;
+}
+
+/* Vertical Japanese Editorial Text */
+.writing-vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}

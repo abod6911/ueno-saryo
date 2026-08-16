@@ -8,27 +8,33 @@ export const ReviewsSection: React.FC = () => {
   const { locale, t } = useLanguage();
 
   return (
-    <section id="reviews" className="w-full bg-[#162c19] text-[#f8f7f1] py-20 sm:py-32 relative overflow-hidden border-t border-white/10">
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
+    <section id="reviews" className="w-full bg-[#162c19] text-[#f8f7f1] py-16 sm:py-24 relative overflow-hidden border-t border-white/10">
+      <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header with Overall Rating Badge */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-16 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 sm:mb-14 pb-8 sm:pb-10 border-b border-white/10">
           <div className="lg:col-span-8 flex flex-col items-start gap-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-xs font-mono uppercase tracking-widest text-[#939458] border border-white/10">
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>{t.reviews.badge}</span>
+            <div className="flex items-center gap-3">
+              <span className="text-[11px] font-mono text-[#939458] font-bold tracking-wider">
+                07 / {locale === 'ar' ? 'التقييمات' : 'REVIEWS'}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-[#939458]/50" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 text-xs font-mono uppercase tracking-widest text-[#939458] border border-white/10">
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>{t.reviews.badge}</span>
+              </div>
             </div>
 
             <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
               {t.reviews.heading}
             </h2>
 
-            <p className="text-xs sm:text-base text-[#f8f7f1]/70 leading-relaxed font-sans max-w-xl">
+            <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-xl">
               {t.reviews.subheading}
             </p>
           </div>
 
           {/* Google Score Pill */}
-          <div className="lg:col-span-4 flex flex-col sm:flex-row items-start sm:items-center justify-between lg:justify-end gap-6 bg-[#122416] p-6 rounded-3xl border border-white/10 shadow-lg">
+          <div className="lg:col-span-4 flex flex-col sm:flex-row items-start sm:items-center justify-between lg:justify-end gap-5 bg-[#122416] p-5 sm:p-6 rounded-[22px] sm:rounded-[26px] border border-white/10 shadow-lg">
             <div className="flex flex-col">
               <div className="flex items-baseline gap-2">
                 <span className="font-headline text-4xl sm:text-5xl font-extrabold text-white">
@@ -57,7 +63,7 @@ export const ReviewsSection: React.FC = () => {
               href={BUSINESS_DATA.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-[44px] px-4 py-2 rounded-2xl bg-[#29482a] hover:bg-[#365c3b] text-white text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm shrink-0 border border-white/15"
+              className="min-h-[44px] px-4 py-2 rounded-2xl bg-[#29482a] hover:bg-[#365c3b] text-white text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm shrink-0 border border-white/15 cursor-pointer"
             >
               <span>{t.reviews.googleBtn}</span>
               <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
@@ -66,7 +72,7 @@ export const ReviewsSection: React.FC = () => {
         </div>
 
         {/* Reviews Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           {REVIEWS_DATA.map((rev) => {
             const comment = locale === 'ar' ? rev.commentAr : rev.commentEn;
             const highlight = locale === 'ar' ? rev.highlightAr : rev.highlightEn;
@@ -74,7 +80,7 @@ export const ReviewsSection: React.FC = () => {
             return (
               <div
                 key={rev.id}
-                className="bg-[#122416]/90 rounded-3xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between hover:border-[#939458]/40 transition-all duration-300 shadow-md group"
+                className="bg-[#122416]/90 rounded-[22px] sm:rounded-[24px] p-6 sm:p-7 border border-white/10 flex flex-col justify-between hover:border-[#939458]/40 transition-all duration-300 shadow-md group"
               >
                 <div className="flex flex-col gap-3">
                   {/* Top Bar: Author, Stars & Date */}
@@ -106,7 +112,7 @@ export const ReviewsSection: React.FC = () => {
 
                   {/* Highlight statement */}
                   {highlight && (
-                    <h3 className="font-headline text-base font-bold text-[#939458] pt-2">
+                    <h3 className="font-headline text-base font-bold text-[#939458] pt-1">
                       «{highlight}»
                     </h3>
                   )}

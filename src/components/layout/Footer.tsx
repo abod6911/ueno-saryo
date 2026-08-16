@@ -2,6 +2,7 @@ import React from 'react';
 import { useLanguage } from '../../i18n/context';
 import { BUSINESS_DATA } from '../../data/business';
 import { MapPin, Phone, Globe, ArrowUp } from 'lucide-react';
+import { MatchaContour } from '../ui/MatchaContour';
 
 interface FooterProps {
   onOpenMenu: () => void;
@@ -15,14 +16,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
   };
 
   return (
-    <footer className="w-full bg-[#122416] text-[#f8f7f1] border-t border-white/10 pt-16 pb-24 sm:pb-16 relative overflow-hidden">
+    <footer className="w-full bg-[#122416] text-[#f8f7f1] border-t border-white/10 relative overflow-hidden">
+      {/* Top Organic Contour Transition */}
+      <MatchaContour variant="divider-shallow" fill="#122416" className="w-full -mt-1 transform-gpu" />
+
       {/* Background Decorative Kanji */}
       <div className="absolute -bottom-10 right-4 sm:right-16 text-[140px] sm:text-[220px] font-japanese font-black text-white/[0.02] pointer-events-none select-none">
         茶道
       </div>
 
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-14 border-b border-white/10">
+      <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 pt-14 pb-24 sm:pb-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-white/10">
           {/* Col 1: Brand & Bio */}
           <div className="flex flex-col items-start gap-4">
             <div className="flex flex-col">
@@ -30,11 +34,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                 <span className="font-headline text-2xl font-bold tracking-tight text-white">
                   {locale === 'ar' ? 'مختبرات الشاي' : 'UENO SARYO'}
                 </span>
-                <span className="font-japanese text-sm text-[#939458] tracking-widest">
+                <span className="font-japanese text-sm text-[#939458] tracking-widest font-medium">
                   茶道研究所
                 </span>
               </div>
-              <span className="text-xs text-[#939458] uppercase tracking-wider font-mono pt-0.5">
+              <span className="text-xs text-[#939458] uppercase tracking-wider font-mono pt-0.5 font-semibold">
                 JEDDAH · SAUDI ARABIA
               </span>
             </div>
@@ -48,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all cursor-pointer"
                 >
                   <svg className="w-4 h-4 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
@@ -60,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
               <button
                 type="button"
                 onClick={toggleLocale}
-                className="h-8 px-3 rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold flex items-center gap-1.5 transition-all text-white"
+                className="h-8 px-3 rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold flex items-center gap-1.5 transition-all text-white cursor-pointer"
               >
                 <Globe className="w-3.5 h-3.5 text-[#939458]" />
                 <span>{t.nav.langToggle}</span>
@@ -83,7 +87,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                 <button
                   type="button"
                   onClick={onOpenMenu}
-                  className="hover:text-white transition-colors text-start"
+                  className="hover:text-white transition-colors text-start cursor-pointer"
                 >
                   {t.nav.menu}
                 </button>
@@ -146,7 +150,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                   href={BUSINESS_DATA.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-medium text-white transition-all"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-medium text-white transition-all cursor-pointer"
                 >
                   <MapPin className="w-3 h-3 text-[#939458]" />
                   <span>{t.visit.getDirectionsBtn}</span>
@@ -165,12 +169,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                 ? '«إيتشي-غو إيتشي-إي» — نقاء اللحظة الواحدة التي لا تتكرر أبداً في وعاء من الشاي المصنوع بحب وسكينة.'
                 : '"Ichi-go ichi-e" — Treasure every encounter, for it will never recur in the exact same way.'}
             </p>
-            <div className="pt-4 w-full">
+            <div className="pt-3 w-full">
               <button
                 type="button"
                 onClick={scrollToTop}
                 aria-label="Scroll to top"
-                className="w-full h-10 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center gap-2 text-xs text-white/80 hover:text-white transition-all active:scale-95"
+                className="w-full h-10 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center gap-2 text-xs text-white/80 hover:text-white transition-all active:scale-95 cursor-pointer"
               >
                 <ArrowUp className="w-3.5 h-3.5" />
                 <span>{locale === 'ar' ? 'العودة للأعلى' : 'Back to Top'}</span>

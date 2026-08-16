@@ -13,8 +13,8 @@ export const QuickInfoBanner: React.FC<QuickInfoBannerProps> = ({ onOpenMenu }) 
   const openStatus = useMemo(() => getJeddahOpenStatus(BUSINESS_DATA), []);
 
   return (
-    <section className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14 py-4 relative z-20">
-      <div className="w-full bg-[#122416]/90 backdrop-blur-xl border border-white/12 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-frame flex flex-col md:flex-row items-center justify-between gap-6 text-[#f8f7f1]">
+    <section className="w-full max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 py-3 relative z-20">
+      <div className="w-full bg-[#122416]/90 backdrop-blur-xl border border-white/12 rounded-[20px] sm:rounded-[26px] p-4 sm:p-5 shadow-frame flex flex-col md:flex-row items-center justify-between gap-6 text-[#f8f7f1]">
         {/* Left: Brand Identity & Location */}
         <div className="flex items-center gap-4 w-full md:w-auto">
           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#29482a] border border-white/10 flex items-center justify-center shrink-0 shadow-inner">
