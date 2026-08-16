@@ -46,7 +46,7 @@ export default {
         serif: ['"DM Serif Display"', '"Instrument Serif"', 'Georgia', 'serif'],
         headline: ['"DM Serif Display"', '"Playfair Display"', 'Georgia', 'serif'],
         display: ['"Instrument Serif"', '"DM Serif Display"', 'serif'],
-        japanese: ['"Noto Serif JP"', '"Hiragino Mincho ProN"', 'serif'],
+        japanese: ['"Noto Sans JP"', '"Noto Serif JP"', '"Hiragino Mincho ProN"', 'sans-serif'],
       },
       borderRadius: {
         'frame': '32px',

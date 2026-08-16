@@ -6,8 +6,6 @@ import { MobileActionDock } from './components/layout/MobileActionDock';
 import { Footer } from './components/layout/Footer';
 import { HeroStage } from './components/hero/HeroStage';
 import { QuickInfoBanner } from './components/business/QuickInfoBanner';
-import { TeaRitualSection } from './components/experience/TeaRitualSection';
-import { SignatureMarquee } from './components/experience/SignatureMarquee';
 import { MenuSection } from './components/menu/MenuSection';
 import { FeaturedMatcha } from './components/experience/FeaturedMatcha';
 import { TeaLabProcess } from './components/experience/TeaLabProcess';
@@ -65,34 +63,28 @@ const MainExperience: React.FC = () => {
         {/* 2. Restaurant Snapshot Info Banner */}
         <QuickInfoBanner onOpenMenu={handleOpenMenuSection} />
 
-        {/* 3. The Tea Ritual — Cinematic Video Section */}
-        <TeaRitualSection onOpenMenu={handleOpenMenuSection} />
-
-        {/* 4. Signature Selection — Seamless Product Marquee */}
-        <SignatureMarquee onSelectItem={(item) => setSelectedProduct(item)} />
-
-        {/* 5. Featured Matcha Editorial ("MATCHA, STUDIED.") */}
+        {/* 3. Featured Matcha Editorial ("MATCHA, STUDIED.") */}
         <FeaturedMatcha />
 
-        {/* 6. The Tea Experience & 5-Step Craft Ceremony */}
+        {/* 4. The Tea Experience & 5-Step Craft Ceremony */}
         <TeaLabProcess />
 
-        {/* 7. Japanese Loose Leaf Tea Collection */}
+        {/* 5. Japanese Loose Leaf Tea Collection */}
         <TeaCollection />
 
-        {/* 8. Complete Interactive Menu Browsing & Search */}
+        {/* 6. Complete Interactive Menu Browsing & Search */}
         <MenuSection />
 
-        {/* 9. Japanese Desserts & Pastries Showcase */}
+        {/* 7. Japanese Desserts & Pastries Showcase */}
         <DessertShowcase onSelectItem={(item) => setSelectedProduct(item)} />
 
-        {/* 10. Photography & Atmosphere Gallery */}
+        {/* 8. Photography & Atmosphere Gallery */}
         <GalleryGrid />
 
-        {/* 11. Verified Google Reviews & Rating Snapshot */}
+        {/* 9. Verified Google Reviews & Rating Snapshot */}
         <ReviewsSection />
 
-        {/* 12. Visit, Location, Interactive Map & Opening Hours */}
+        {/* 10. Visit, Location, Interactive Map & Opening Hours */}
         <VisitSection />
       </main>
 
