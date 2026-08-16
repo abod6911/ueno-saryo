@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, memo } from 'react';
 import gsap from 'gsap';
 import type { HeroFlavor } from '../../types/matcha';
 import { OrbitCard } from './OrbitCard';
@@ -12,21 +12,23 @@ interface OrbitCarouselProps {
   setIsAutoplaying: (auto: boolean) => void;
 }
 
-export const OrbitCarousel: React.FC<OrbitCarouselProps> = ({
+export const OrbitCarousel: React.FC<OrbitCarouselProps> = memo(({
   flavors,
   activeIndex,
   onSelectFlavor,
   setIsAutoplaying,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 1200, height: 750 });
-  const [dragOffset, setDragOffset] = useState(0);
+  const [dimensions, setDimensions] = useState({ width: 1200, height: 700 });
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef(0);
-  const currentOffsetRef = useRef(activeIndex);
+  const currentOffsetRef = useRef({ val: activeIndex });
+  const [animOffset, setAnimOffset] = useState(activeIndex);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
 
-  // Measure container size
+  // Debounced container measurement
   useEffect(() => {
+    let timeoutId: number;
     const updateSize = () => {
       if (containerRef.current) {
         setDimensions({
@@ -35,40 +37,70 @@ export const OrbitCarousel: React.FC<OrbitCarouselProps> = ({
         });
       }
     };
+
     updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
+
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(updateSize, 150);
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // Sync GSAP smooth animation when activeIndex changes
   useEffect(() => {
     if (isDraggingRef.current) return;
 
-    gsap.to(currentOffsetRef, {
-      current: activeIndex,
+    if (tweenRef.current) {
+      tweenRef.current.kill();
+    }
+
+    const count = flavors.length;
+    let target = activeIndex;
+    let current = currentOffsetRef.current.val;
+
+    // Calculate shortest circular difference
+    let diff = (target - (current % count) + count) % count;
+    if (diff > count / 2) diff -= count;
+    const targetVal = current + diff;
+
+    tweenRef.current = gsap.to(currentOffsetRef.current, {
+      val: targetVal,
       duration: 0.65,
       ease: 'power3.out',
       onUpdate: () => {
-        setDragOffset(currentOffsetRef.current);
+        setAnimOffset(currentOffsetRef.current.val);
       },
     });
-  }, [activeIndex]);
 
-  // Pointer / Drag handlers
+    return () => {
+      if (tweenRef.current) tweenRef.current.kill();
+    };
+  }, [activeIndex, flavors.length]);
+
+  // Pointer / Drag handlers (Safe touch handling)
   const handlePointerDown = (e: React.PointerEvent) => {
     isDraggingRef.current = true;
     dragStartXRef.current = e.clientX;
     setIsAutoplaying(false);
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    if (tweenRef.current) tweenRef.current.kill();
+    try {
+      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    } catch {}
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDraggingRef.current) return;
     const deltaX = e.clientX - dragStartXRef.current;
-    const itemWidth = dimensions.width < 768 ? 150 : 250;
+    const itemWidth = dimensions.width < 768 ? 160 : 260;
     const offsetDelta = -deltaX / itemWidth;
-    currentOffsetRef.current = activeIndex + offsetDelta;
-    setDragOffset(currentOffsetRef.current);
+    currentOffsetRef.current.val = activeIndex + offsetDelta;
+    setAnimOffset(currentOffsetRef.current.val);
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
@@ -80,11 +112,11 @@ export const OrbitCarousel: React.FC<OrbitCarouselProps> = ({
 
     // Snap to nearest index
     const count = flavors.length;
-    let targetIndex = Math.round(currentOffsetRef.current);
+    let targetIndex = Math.round(currentOffsetRef.current.val);
     targetIndex = ((targetIndex % count) + count) % count;
 
     onSelectFlavor(targetIndex);
-    setTimeout(() => setIsAutoplaying(true), 4000);
+    setTimeout(() => setIsAutoplaying(true), 2500);
   };
 
   // Keyboard navigation
@@ -102,6 +134,8 @@ export const OrbitCarousel: React.FC<OrbitCarouselProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeIndex, flavors.length, onSelectFlavor, setIsAutoplaying]);
 
+  const isMobile = dimensions.width < 768;
+
   return (
     <div
       ref={containerRef}
@@ -113,10 +147,9 @@ export const OrbitCarousel: React.FC<OrbitCarouselProps> = ({
     >
       {flavors.map((flavor, index) => {
         const count = flavors.length;
-        // Calculate shortest relative distance around the ring
-        let diff = index - dragOffset;
-        while (diff > count / 2) diff -= count;
-        while (diff < -count / 2) diff += count;
+        // Calculate shortest relative modular distance around the ring
+        let diff = (index - (animOffset % count) + count) % count;
+        if (diff > count / 2) diff -= count;
 
         const transform = getCardTransform(
           diff,
@@ -137,12 +170,16 @@ export const OrbitCarousel: React.FC<OrbitCarouselProps> = ({
               transform: `translate3d(calc(-50% + ${transform.x}px), calc(-50% + ${transform.y}px), 0) rotate(${transform.rotation}deg) scale(${transform.scale})`,
               opacity: transform.opacity,
               zIndex: transform.zIndex,
-              filter: transform.blur > 0.1 ? `blur(${transform.blur}px)` : 'none',
-              pointerEvents: transform.opacity < 0.1 ? 'none' : 'auto',
+              // On mobile, eliminate dynamic CSS blur recalculation for smooth 60fps
+              filter: !isMobile && transform.blur > 0.2 ? `blur(${transform.blur}px)` : 'none',
+              pointerEvents: transform.opacity < 0.15 ? 'none' : 'auto',
+              willChange: isDraggingRef.current ? 'transform' : 'auto',
             }}
           />
         );
       })}
     </div>
   );
-};
+});
+
+OrbitCarousel.displayName = 'OrbitCarousel';

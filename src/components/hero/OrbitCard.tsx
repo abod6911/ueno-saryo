@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import type { HeroFlavor } from '../../types/matcha';
 import { useLanguage } from '../../i18n/context';
 
@@ -9,7 +9,7 @@ interface OrbitCardProps {
   isActive?: boolean;
 }
 
-export const OrbitCard: React.FC<OrbitCardProps> = ({
+export const OrbitCard: React.FC<OrbitCardProps> = memo(({
   flavor,
   onClick,
   style,
@@ -21,9 +21,9 @@ export const OrbitCard: React.FC<OrbitCardProps> = ({
     <div
       style={style}
       onClick={onClick}
-      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115px] h-[115px] sm:w-[145px] sm:h-[145px] md:w-[165px] md:h-[165px] lg:w-[178px] lg:h-[178px] rounded-[20px] sm:rounded-[24px] bg-[#EFEDE3] shadow-[0_12px_30px_rgba(0,0,0,0.35)] flex flex-col items-center justify-between p-2.5 sm:p-3 cursor-pointer transform-gpu transition-all duration-300 group border border-black/5 ${
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115px] h-[115px] sm:w-[145px] sm:h-[145px] md:w-[165px] md:h-[165px] lg:w-[178px] lg:h-[178px] rounded-[20px] sm:rounded-[24px] bg-[#EFEDE3] shadow-[0_10px_25px_rgba(0,0,0,0.3)] flex flex-col items-center justify-between p-2.5 sm:p-3 cursor-pointer transform-gpu transition-[box-shadow,ring] duration-300 group border border-black/5 ${
         isActive
-          ? 'ring-2 ring-white/80 shadow-[0_20px_40px_rgba(0,0,0,0.45)]'
+          ? 'ring-2 ring-white/80 shadow-[0_18px_35px_rgba(0,0,0,0.4)]'
           : 'hover:brightness-105'
       }`}
     >
@@ -42,8 +42,9 @@ export const OrbitCard: React.FC<OrbitCardProps> = ({
         <img
           src={flavor.fruitImage}
           alt={flavor.fruitAlt}
-          className="max-w-[74%] max-h-[74%] object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)] group-hover:scale-105 transition-transform duration-300 rounded-lg"
+          className="max-w-[74%] max-h-[74%] object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)] group-hover:scale-105 transition-transform duration-300 rounded-lg"
           loading="eager"
+          decoding="async"
           draggable={false}
         />
       </div>
@@ -54,4 +55,6 @@ export const OrbitCard: React.FC<OrbitCardProps> = ({
       </div>
     </div>
   );
-};
+});
+
+OrbitCard.displayName = 'OrbitCard';

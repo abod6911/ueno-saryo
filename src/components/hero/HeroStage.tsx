@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo } from 'react';
 import gsap from 'gsap';
 import { HERO_FLAVORS } from '../../data/heroFlavors';
 import { OrbitCarousel } from './OrbitCarousel';
@@ -6,17 +6,71 @@ import { CenterDrink } from './CenterDrink';
 import { HeroHeadline } from './HeroHeadline';
 import { useLanguage } from '../../i18n/context';
 import { getAssetUrl } from '../../lib/assetUrl';
+import { preloadHeroImages } from '../../lib/imagePreloader';
 
 interface HeroStageProps {
   onOrderDrink: (flavorId: string) => void;
 }
+
+// Memoized Static Environment Layer to prevent unnecessary repaints during flavor transitions
+const HeroEnvironment = memo(({
+  bgRef,
+  backFogRef,
+  foregroundFogRef,
+}: {
+  bgRef: React.RefObject<HTMLDivElement | null>;
+  backFogRef: React.RefObject<HTMLDivElement | null>;
+  foregroundFogRef: React.RefObject<HTMLDivElement | null>;
+}) => {
+  return (
+    <>
+      {/* Layer 0: Background Environment Stage (Sculptural Powder Hills) */}
+      <div
+        ref={bgRef}
+        className="absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-95 scale-[1.02] transform-gpu"
+        style={{
+          backgroundImage: `url('${getAssetUrl('assets/environment/hero_stage_clean.jpg')}')`,
+        }}
+      />
+
+      {/* Layer 1: Ambient Deep Matcha Radial Illumination */}
+      <div className="absolute inset-0 bg-radial-gradient from-[#243A1C]/25 via-transparent to-[#0a150c]/80 pointer-events-none" />
+
+      {/* Layer 2: Atmospheric Back Fog behind orbit cards */}
+      <div
+        ref={backFogRef}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 opacity-35 transform-gpu"
+      >
+        <div className="w-[550px] sm:w-[750px] h-[320px] bg-radial from-[#243A1C]/40 via-[#172E19]/20 to-transparent blur-[30px] rounded-full" />
+      </div>
+
+      {/* Layer 5: Foreground Soft Mist across lower cup base */}
+      <div
+        ref={foregroundFogRef}
+        className="absolute bottom-16 sm:bottom-20 inset-x-0 flex items-center justify-center pointer-events-none z-32 opacity-45 transform-gpu"
+      >
+        <div className="w-[450px] sm:w-[650px] h-[80px] bg-gradient-to-t from-[#102315]/65 via-[#172E19]/20 to-transparent blur-[16px] rounded-full" />
+      </div>
+
+      {/* Layer 6: Subtle Cinematic Film Grain Overlay (1.5% max) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.02] mix-blend-overlay z-45"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+    </>
+  );
+});
+
+HeroEnvironment.displayName = 'HeroEnvironment';
 
 export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
   const { locale } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isAutoplaying, setIsAutoplaying] = useState(false); // starts false, enabled only after intro
+  const [isAutoplaying, setIsAutoplaying] = useState(false);
   const [introFinished, setIntroFinished] = useState(false);
 
   const frameRef = useRef<HTMLDivElement>(null);
@@ -27,6 +81,11 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
   const headlineWrapperRef = useRef<HTMLDivElement>(null);
   const carouselWrapperRef = useRef<HTMLDivElement>(null);
   const topUIRef = useRef<HTMLDivElement>(null);
+
+  // Pre-decode all Hero product images into GPU cache on mount
+  useEffect(() => {
+    preloadHeroImages();
+  }, []);
 
   // Switch flavor handler
   const handleSelectFlavor = (index: number) => {
@@ -89,8 +148,8 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
           '-=0.35'
         );
 
-      // Atmospheric back fog continuous drift
-      if (backFogRef.current) {
+      // Atmospheric back fog continuous drift (Only on desktop/fine pointer for maximum performance)
+      if (backFogRef.current && window.matchMedia('(pointer: fine)').matches) {
         gsap.to(backFogRef.current, {
           x: 16,
           duration: 7.5,
@@ -101,7 +160,7 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
       }
 
       // Foreground mist continuous drift
-      if (foregroundFogRef.current) {
+      if (foregroundFogRef.current && window.matchMedia('(pointer: fine)').matches) {
         gsap.to(foregroundFogRef.current, {
           x: -12,
           duration: 8.5,
@@ -131,9 +190,9 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
     return () => clearInterval(timer);
   }, [isAutoplaying, introFinished]);
 
-  // Subtle Multi-Depth Mouse Parallax (Desktop Only, §52)
+  // Subtle Multi-Depth Mouse Parallax (Explicitly disabled on touch/coarse pointers)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!frameRef.current || window.innerWidth < 1024) return;
+    if (!frameRef.current || window.innerWidth < 1024 || window.matchMedia('(pointer: coarse)').matches) return;
     const rect = frameRef.current.getBoundingClientRect();
     const xRel = (e.clientX - rect.left) / rect.width - 0.5;
     const yRel = (e.clientY - rect.top) / rect.height - 0.5;
@@ -207,27 +266,14 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
         onMouseLeave={handleMouseLeave}
         className="relative w-full aspect-auto sm:aspect-[4/3] h-[76svh] sm:h-auto max-h-[82vh] min-h-[560px] sm:min-h-[600px] md:min-h-[680px] rounded-[24px] sm:rounded-[28px] md:rounded-[32px] overflow-hidden bg-[#102315] shadow-[0_25px_60px_rgba(0,0,0,0.45)] border border-black/20 flex flex-col justify-between select-none"
       >
-        {/* Layer 0: Background Environment Stage (Sculptural Powder Hills) */}
-        <div
-          ref={bgRef}
-          className="absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none opacity-95 scale-[1.02]"
-          style={{
-            backgroundImage: `url('${getAssetUrl('assets/environment/hero_stage_clean.jpg')}')`,
-          }}
+        {/* Memoized Static Background Environment */}
+        <HeroEnvironment
+          bgRef={bgRef}
+          backFogRef={backFogRef}
+          foregroundFogRef={foregroundFogRef}
         />
 
-        {/* Layer 1: Ambient Deep Matcha Radial Illumination */}
-        <div className="absolute inset-0 bg-radial-gradient from-[#243A1C]/25 via-transparent to-[#0a150c]/80 pointer-events-none" />
-
-        {/* Layer 2: Atmospheric Back Fog behind orbit cards */}
-        <div
-          ref={backFogRef}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 opacity-35"
-        >
-          <div className="w-[550px] sm:w-[750px] h-[320px] bg-radial from-[#243A1C]/40 via-[#172E19]/20 to-transparent blur-[35px] rounded-full" />
-        </div>
-
-        {/* Layer 3: Minimal Top UI (Visible on sm+ screens) */}
+        {/* Minimal Top UI (Visible on sm+ screens) */}
         <div ref={topUIRef} className="w-full px-5 sm:px-9 pt-4 sm:pt-6 hidden sm:flex items-center justify-between z-40 relative">
           <div className="flex items-center gap-2 bg-[#102315]/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs text-[#f8f7f1] shadow-sm">
             <span className="font-japanese text-[11px] text-[#939458] font-bold">茶道</span>
@@ -246,7 +292,7 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
           </div>
         </div>
 
-        {/* Layer 4: Central Stage (Curved Orbiting Cards + Central Drink) */}
+        {/* Central Stage (Curved Orbiting Cards + Central Drink) */}
         <div className="absolute inset-0 flex items-center justify-center">
           {/* Orbital Carousel Cards */}
           <div ref={carouselWrapperRef} className="absolute inset-0 z-20">
@@ -268,25 +314,9 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
               onPriceTagClick={() => onOrderDrink(currentFlavor.id)}
             />
           </div>
-
-          {/* Layer 5: Foreground Soft Mist across lower cup base */}
-          <div
-            ref={foregroundFogRef}
-            className="absolute bottom-16 sm:bottom-20 inset-x-0 flex items-center justify-center pointer-events-none z-32 opacity-45"
-          >
-            <div className="w-[450px] sm:w-[650px] h-[80px] bg-gradient-to-t from-[#102315]/65 via-[#172E19]/20 to-transparent blur-[18px] rounded-full" />
-          </div>
         </div>
 
-        {/* Layer 6: Subtle Cinematic Film Grain Overlay (1.5% max) */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.02] mix-blend-overlay z-45"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
-        />
-
-        {/* Layer 7: Bottom Editorial Headline */}
+        {/* Bottom Editorial Headline */}
         <HeroHeadline ref={headlineWrapperRef} />
       </div>
     </section>
