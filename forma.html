@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forma — We Craft Bold Ideas &amp; Ship Them as Products</title>
+  <meta name="description" content="We craft bold ideas and ship them as products. Web, mobile, brand identity, and motion design." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & Instrument Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .font-serif-italic {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased selection:bg-black selection:text-white">
+
+  <!-- Root Container -->
+  <div class="min-h-screen bg-white p-3 sm:p-4 md:p-6">
+    <!-- Large Rounded Card Container -->
+    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[calc(100vh-24px)] sm:min-h-[calc(100vh-32px)] md:min-h-[calc(100vh-48px)] lg:h-[calc(100vh-48px)]">
+      
+      <!-- Background Video -->
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="absolute inset-0 w-full h-full object-cover"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260602_150901_c45b90ec-18d7-42ff-90e2-b95d7109e330.mp4"
+      ></video>
+
+      <!-- Subtle Dark Overlay for contrast -->
+      <div class="absolute inset-0 bg-black/20 pointer-events-none"></div>
+
+      <!-- Content Layer -->
+      <div class="relative z-10 flex flex-col min-h-[calc(100vh-24px)] sm:min-h-[calc(100vh-32px)] md:min-h-[calc(100vh-48px)] lg:h-full p-4 sm:p-6 md:p-8 gap-6">
+        
+        <!-- Navbar (top) -->
+        <nav class="bg-white/60 backdrop-blur-md rounded-2xl shadow-sm pl-3 sm:pl-4 pr-2 py-2 w-full sm:w-auto flex items-center gap-3 sm:gap-6 self-start">
+          <!-- Logo -->
+          <a href="#" class="flex items-center" aria-label="Home">
+            <svg width="32" height="32" viewBox="0 0 256 256" class="shrink-0">
+              <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z" fill="black" />
+              <path d="M 256 128 L 128 128 L 0 0 L 128 0 Z" fill="black" />
+            </svg>
+          </a>
+
+          <!-- Navigation Links -->
+          <div class="hidden sm:flex items-center gap-6">
+            <a href="#story" class="text-gray-800 text-sm font-medium hover:opacity-60 transition-opacity whitespace-nowrap">Our story</a>
+            <a href="#expertise" class="text-gray-800 text-sm font-medium hover:opacity-60 transition-opacity whitespace-nowrap">Expertise</a>
+            <a href="#work" class="text-gray-800 text-sm font-medium hover:opacity-60 transition-opacity whitespace-nowrap">Our work</a>
+            <a href="#journal" class="text-gray-800 text-sm font-medium hover:opacity-60 transition-opacity whitespace-nowrap">Journal</a>
+          </div>
+
+          <!-- CTA Button -->
+          <a href="#contact" class="bg-black text-white text-sm font-medium px-4 sm:px-5 py-2 rounded-xl hover:bg-gray-800 transition-colors ml-auto whitespace-nowrap">
+            Start a project
+          </a>
+        </nav>
+
+        <!-- Spacer -->
+        <div class="flex-1 min-h-[2rem]"></div>
+
+        <!-- Bottom row (headline + form) -->
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+          
+          <!-- Headline (left) -->
+          <p class="text-3xl sm:text-4xl xl:text-5xl font-medium leading-tight drop-shadow-lg lg:max-w-lg xl:max-w-2xl shrink-0 text-white">
+            We craft bold ideas<br />
+            and ship them as <span class="font-serif-italic">products</span>
+          </p>
+
+          <!-- Contact form card (right) -->
+          <div id="contact" class="w-full lg:w-[min(480px,45%)] shrink-0">
+            <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden p-4 sm:p-6 flex flex-col gap-4">
+              
+              <!-- 1. Heading -->
+              <h2 class="text-xl sm:text-2xl font-semibold text-black tracking-tight">Say hello! 👋</h2>
+
+              <!-- 2. Email + socials row -->
+              <div class="flex flex-row items-center justify-between gap-3 bg-gray-50 rounded-2xl px-4 py-2.5">
+                <div class="min-w-0 pr-1">
+                  <span class="text-[11px] text-gray-500 font-medium block leading-tight mb-0.5">Drop us a line</span>
+                  <a href="mailto:hello@forma.co" class="text-blue-600 font-semibold hover:underline truncate block text-sm sm:text-base">
+                    hello@forma.co
+                  </a>
+                </div>
+
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <!-- Twitter -->
+                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity bg-gray-100 text-gray-800">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                    </svg>
+                  </a>
+                  <!-- Circle -->
+                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Circle" class="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity bg-pink-100 text-pink-500">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                  </a>
+                  <!-- Instagram -->
+                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity bg-orange-100 text-orange-400">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
+                  </a>
+                  <!-- Linkedin -->
+                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-8 h-8 rounded-xl flex items-center justify-center hover:opacity-80 transition-opacity bg-blue-100 text-blue-600">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect width="4" height="12" x="2" y="9" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 3. OR divider -->
+              <div class="flex items-center gap-3">
+                <div class="flex-1 h-px bg-gray-200"></div>
+                <span class="text-gray-400 font-medium text-sm">OR</span>
+                <div class="flex-1 h-px bg-gray-200"></div>
+              </div>
+
+              <!-- 4. Form Container -->
+              <div id="formContainer">
+                <form id="contactForm" class="flex flex-col gap-4">
+                  <div>
+                    <label class="text-sm font-medium text-black block mb-2">Tell us about your vision</label>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                      <input
+                        type="text"
+                        required
+                        placeholder="Full name"
+                        class="flex-1 min-w-0 text-sm px-3 py-2.5 rounded-xl border border-gray-200 bg-transparent placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition"
+                      />
+                      <input
+                        type="email"
+                        required
+                        placeholder="Email"
+                        class="flex-1 min-w-0 text-sm px-3 py-2.5 rounded-xl border border-gray-200 bg-transparent placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition"
+                      />
+                    </div>
+                  </div>
+
+                  <textarea
+                    rows="4"
+                    required
+                    placeholder="What are you looking to build or improve..."
+                    class="w-full text-sm px-3 py-2.5 rounded-xl border border-gray-200 bg-transparent placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition resize-none"
+                  ></textarea>
+
+                  <div>
+                    <label class="text-sm font-medium text-black block mb-2">I need help with...</label>
+                    <div id="servicesList" class="flex flex-wrap gap-1.5">
+                      <!-- Service Tags dynamically rendered / toggled -->
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    id="submitBtn"
+                    class="w-full bg-black text-white text-sm font-semibold py-3 rounded-2xl hover:bg-gray-800 transition-colors disabled:opacity-60 cursor-pointer"
+                  >
+                    Send my message
+                  </button>
+                </form>
+              </div>
+
+              <!-- 5. Success State (Initially hidden) -->
+              <div id="successState" class="hidden py-6 gap-3 flex-col items-center justify-center text-center">
+                <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-xl text-green-600 font-bold">
+                  ✓
+                </div>
+                <h3 class="text-base font-semibold text-gray-900">You're all set!</h3>
+                <p class="text-sm text-gray-500">Expect a reply within 24 hours.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Services List
+    const SERVICES = [
+      'Website',
+      'Mobile App',
+      'Web App',
+      'E-Commerce',
+      'Visual Identity',
+      '3D & Motion',
+      'Digital Marketing',
+      'Growth & Consulting',
+      'Other'
+    ];
+
+    const selectedServices = new Set();
+    const servicesContainer = document.getElementById('servicesList');
+
+    function renderServices() {
+      servicesContainer.innerHTML = '';
+      SERVICES.forEach(service => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        const isSelected = selectedServices.has(service);
+        btn.className = `text-xs font-medium px-3 py-2 rounded-lg border transition-all cursor-pointer ${
+          isSelected
+            ? 'bg-gray-100 text-black border-black shadow-xs'
+            : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'
+        }`;
+        btn.textContent = service;
+        btn.onclick = () => {
+          if (selectedServices.has(service)) {
+            selectedServices.delete(service);
+          } else {
+            selectedServices.add(service);
+          }
+          renderServices();
+        };
+        servicesContainer.appendChild(btn);
+      });
+    }
+
+    renderServices();
+
+    // Form Submission Behavior
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formContainer = document.getElementById('formContainer');
+    const successState = document.getElementById('successState');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      setTimeout(() => {
+        formContainer.classList.add('hidden');
+        successState.classList.remove('hidden');
+        successState.classList.add('flex');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

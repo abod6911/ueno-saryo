@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>flowpath — Bridge the gaps. Ditch the grindwork.</title>
+  <meta name="description" content="Flowpath unifies your complete wellness tools, so your crew spends less energy plugging gaps and more on real progress." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/08e020de1811ec4489f82d1247a42c09?family=Helvetica+Now+Text" />
+
+  <style>
+    * { font-family: "Helvetica Now Text", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; box-sizing: border-box; }
+    body { margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+        rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    @keyframes dropdown-in {
+      from { opacity: 0; transform: translateY(-4px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .animate-dropdown { animation: dropdown-in 0.2s ease-out forwards; }
+    .duration-400 { transition-duration: 400ms; }
+  </style>
+</head>
+<body class="bg-black text-white antialiased overflow-hidden">
+
+  <section class="relative h-screen w-full overflow-hidden flex flex-col">
+    
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260703_053131_1ec3dd1c-d627-44fb-ab20-6e1fce41b0d5.mp4"></video>
+    <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
+
+    <header class="relative z-20 w-full px-5 sm:px-6 md:px-12 lg:px-16 py-4 sm:py-5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" class="shrink-0 transition-transform group-hover:scale-105">
+          <path d="M12 2L22 12L12 22L2 12Z" fill="white" fill-opacity="0.9" />
+          <path d="M16 6L26 16L16 26L6 16Z" fill="white" fill-opacity="0.5" />
+        </svg>
+        <span class="text-white text-lg sm:text-xl font-medium tracking-tight">flowpath</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 lg:gap-8">
+        <div class="relative py-2 dropdown-container" data-dropdown="product">
+          <button class="text-white/90 hover:text-white text-sm font-medium flex items-center gap-1.5 transition-colors focus:outline-none cursor-pointer">
+            <span>Product</span>
+            <svg class="chevron-icon w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu hidden !absolute top-full left-0 liquid-glass rounded-xl py-3 px-2 min-w-[160px] shadow-xl animate-dropdown z-30">
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Connections</a>
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Workflows</a>
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Insights</a>
+          </div>
+        </div>
+
+        <div class="relative py-2 dropdown-container" data-dropdown="solutions">
+          <button class="text-white/90 hover:text-white text-sm font-medium flex items-center gap-1.5 transition-colors focus:outline-none cursor-pointer">
+            <span>Solutions</span>
+            <svg class="chevron-icon w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu hidden !absolute top-full left-0 liquid-glass rounded-xl py-3 px-2 min-w-[160px] shadow-xl animate-dropdown z-30">
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Guides</a>
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Use cases</a>
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">API reference</a>
+          </div>
+        </div>
+
+        <div class="relative py-2 dropdown-container" data-dropdown="about">
+          <button class="text-white/90 hover:text-white text-sm font-medium flex items-center gap-1.5 transition-colors focus:outline-none cursor-pointer">
+            <span>About</span>
+            <svg class="chevron-icon w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="dropdown-menu hidden !absolute top-full left-0 liquid-glass rounded-xl py-3 px-2 min-w-[160px] shadow-xl animate-dropdown z-30">
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Our story</a>
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Open roles</a>
+            <a href="#" class="text-white/80 hover:text-white text-sm rounded-lg hover:bg-white/5 block px-3 py-2 transition-colors whitespace-nowrap">Reach us</a>
+          </div>
+        </div>
+
+        <a href="#" class="text-white/90 hover:text-white text-sm font-medium transition-colors">Plans</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-5">
+        <a href="#" class="text-white/90 hover:text-white text-sm font-medium transition-colors">Log in</a>
+        <a href="#" class="liquid-glass rounded-full px-5 py-2 text-white text-sm font-medium hover:bg-white/10 transition-colors">Try it free</a>
+      </div>
+
+      <button id="mobileToggleBtn" class="md:hidden relative w-9 h-9 flex items-center justify-center text-white focus:outline-none cursor-pointer" aria-label="Toggle mobile menu">
+        <svg id="menuIcon" class="w-6 h-6 absolute transition-all duration-300 opacity-100 rotate-0 scale-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+        <svg id="closeIcon" class="w-6 h-6 absolute transition-all duration-300 opacity-0 -rotate-90 scale-75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      </button>
+
+      <div id="mobileMenu" class="md:hidden absolute top-full left-4 right-4 sm:left-6 sm:right-6 mt-2 z-50 bg-[#2C221C]/95 backdrop-blur-xl rounded-2xl p-6 shadow-2xl transition-all duration-400 opacity-0 -translate-y-3 pointer-events-none" style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);">
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <span class="text-white/90 text-sm font-semibold tracking-wide">Product</span>
+            <div class="flex flex-col pl-3 gap-2 border-l border-white/10 ml-1">
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Connections</a>
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Workflows</a>
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Insights</a>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <span class="text-white/90 text-sm font-semibold tracking-wide">Solutions</span>
+            <div class="flex flex-col pl-3 gap-2 border-l border-white/10 ml-1">
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Guides</a>
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Use cases</a>
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">API reference</a>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <span class="text-white/90 text-sm font-semibold tracking-wide">About</span>
+            <div class="flex flex-col pl-3 gap-2 border-l border-white/10 ml-1">
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Our story</a>
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Open roles</a>
+              <a href="#" class="text-white/70 hover:text-white text-sm py-1 transition-colors">Reach us</a>
+            </div>
+          </div>
+          <a href="#" class="text-white/90 hover:text-white text-sm font-semibold transition-colors block">Plans</a>
+          <div class="border-t border-white/10 pt-5 mt-2 flex flex-col gap-3">
+            <a href="#" class="text-white/90 hover:text-white text-center py-2 text-sm font-medium transition-colors">Log in</a>
+            <a href="#" class="liquid-glass rounded-full py-3 text-center text-white text-sm font-medium hover:bg-white/10 transition-colors">Try it free</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex-1 flex items-start justify-center pt-16 sm:pt-20 md:pt-24 px-4 sm:px-6 relative z-10">
+      <div class="text-center max-w-3xl">
+        <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-[-0.02em] font-medium">
+          Bridge the<br />
+          gaps. <span class="text-white/60">Ditch the</span><br />
+          <span class="text-white/60">grindwork.</span>
+        </h1>
+
+        <p class="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-md mx-auto mt-6 sm:mt-8">
+          Flowpath unifies your complete wellness tools, so your crew spends less energy plugging gaps and more on real progress.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+          <a href="#" class="px-5 sm:px-6 py-2.5 sm:py-3 bg-white text-gray-900 text-sm font-semibold rounded-full hover:bg-white/90 transition-colors shadow-sm">
+            Begin your journey
+          </a>
+          <a href="#" class="px-5 sm:px-6 py-2.5 sm:py-3 liquid-glass rounded-full text-white text-sm font-semibold hover:bg-white/10 transition-colors">
+            See it live
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    const dropdownContainers = document.querySelectorAll('.dropdown-container');
+    dropdownContainers.forEach(container => {
+      const menu = container.querySelector('.dropdown-menu');
+      const chevron = container.querySelector('.chevron-icon');
+      container.addEventListener('mouseenter', () => {
+        menu.classList.remove('hidden');
+        chevron.classList.add('rotate-180');
+      });
+      container.addEventListener('mouseleave', () => {
+        menu.classList.add('hidden');
+        chevron.classList.remove('rotate-180');
+      });
+    });
+
+    const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let isMobileOpen = false;
+
+    mobileToggleBtn.addEventListener('click', () => {
+      isMobileOpen = !isMobileOpen;
+      if (isMobileOpen) {
+        mobileMenu.classList.remove('opacity-0', '-translate-y-3', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        menuIcon.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+        menuIcon.classList.add('opacity-0', 'rotate-90', 'scale-75');
+        closeIcon.classList.remove('opacity-0', '-rotate-90', 'scale-75');
+        closeIcon.classList.add('opacity-100', 'rotate-0', 'scale-100');
+      } else {
+        mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        mobileMenu.classList.add('opacity-0', '-translate-y-3', 'pointer-events-none');
+        menuIcon.classList.remove('opacity-0', 'rotate-90', 'scale-75');
+        menuIcon.classList.add('opacity-100', 'rotate-0', 'scale-100');
+        closeIcon.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+        closeIcon.classList.add('opacity-0', '-rotate-90', 'scale-75');
+      }
+    });
+  </script>
+</body>
+</html>
