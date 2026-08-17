@@ -21,10 +21,10 @@ export const OrbitCard: React.FC<OrbitCardProps> = memo(({
     <div
       style={style}
       onClick={onClick}
-      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105px] h-[105px] sm:w-[135px] sm:h-[135px] md:w-[155px] md:h-[155px] lg:w-[168px] lg:h-[168px] rounded-[18px] sm:rounded-[22px] bg-[#f8f7f1] shadow-[0_8px_20px_rgba(0,0,0,0.35)] flex flex-col items-center justify-between p-2 sm:p-2.5 cursor-pointer transform-gpu transition-[box-shadow,ring,transform] duration-300 group border border-black/5 ${
+      className={`relative w-[105px] h-[105px] sm:w-[135px] sm:h-[135px] md:w-[155px] md:h-[155px] lg:w-[168px] lg:h-[168px] rounded-[18px] sm:rounded-[22px] bg-[#f8f7f1] shadow-[0_8px_20px_rgba(0,0,0,0.35)] flex flex-col items-center justify-between p-2 sm:p-2.5 cursor-pointer transform-gpu transition-[box-shadow,ring] duration-300 group border border-black/5 ${
         isActive
-          ? 'ring-2 ring-white/90 shadow-[0_16px_32px_rgba(0,0,0,0.45)] scale-105'
-          : 'hover:brightness-105 opacity-90 hover:opacity-100'
+          ? 'ring-2 ring-white/90 shadow-[0_16px_32px_rgba(0,0,0,0.45)]'
+          : 'hover:brightness-105'
       }`}
     >
       {/* Top Small Category / Price Indicator */}

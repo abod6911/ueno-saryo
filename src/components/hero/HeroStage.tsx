@@ -174,20 +174,26 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
     return () => ctx.revert();
   }, []);
 
-  // Autoplay rotation (cycles every ~1.8s after intro completes)
+  // Autoplay rotation (controlled recursive schedule with 3.2s calm cadence)
   useEffect(() => {
     if (!isAutoplaying || !introFinished) return;
 
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => {
-        setPrevIndex(prev);
-        setIsTransitioning(true);
-        setTimeout(() => setIsTransitioning(false), 450);
-        return (prev + 1) % HERO_FLAVORS.length;
-      });
-    }, 1800);
+    let timeoutId: number;
+    const scheduleNext = () => {
+      timeoutId = window.setTimeout(() => {
+        setActiveIndex((prev) => {
+          setPrevIndex(prev);
+          setIsTransitioning(true);
+          setTimeout(() => setIsTransitioning(false), 580);
+          return (prev + 1) % HERO_FLAVORS.length;
+        });
+        scheduleNext();
+      }, 3200);
+    };
 
-    return () => clearInterval(timer);
+    scheduleNext();
+
+    return () => clearTimeout(timeoutId);
   }, [isAutoplaying, introFinished]);
 
   // Subtle Multi-Depth Mouse Parallax (Explicitly disabled on touch/coarse pointers)

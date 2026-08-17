@@ -97,10 +97,10 @@ export const CenterDrink: React.FC<CenterDrinkProps> = memo(({
 
           {/* 3. Persistent Dual-Layer Crossfade (Layer A) */}
           <div
-            className={`absolute inset-0 w-full h-full flex items-center justify-center z-10 transition-all duration-450 ease-out transform-gpu ${
+            className={`absolute inset-0 w-full h-full flex items-center justify-center z-10 transition-[opacity,transform] duration-[400ms] ease-out transform-gpu pointer-events-none ${
               activeLayer === 'A'
-                ? 'opacity-100 scale-100 pointer-events-auto'
-                : 'opacity-0 scale-[0.985] pointer-events-none'
+                ? 'opacity-100 scale-100'
+                : 'opacity-0 scale-[0.985]'
             }`}
           >
             <img
@@ -115,10 +115,10 @@ export const CenterDrink: React.FC<CenterDrinkProps> = memo(({
 
           {/* 4. Persistent Dual-Layer Crossfade (Layer B) */}
           <div
-            className={`absolute inset-0 w-full h-full flex items-center justify-center z-10 transition-all duration-450 ease-out transform-gpu ${
+            className={`absolute inset-0 w-full h-full flex items-center justify-center z-10 transition-[opacity,transform] duration-[400ms] ease-out transform-gpu pointer-events-none ${
               activeLayer === 'B'
-                ? 'opacity-100 scale-100 pointer-events-auto'
-                : 'opacity-0 scale-[0.985] pointer-events-none'
+                ? 'opacity-100 scale-100'
+                : 'opacity-0 scale-[0.985]'
             }`}
           >
             <img
