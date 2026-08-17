@@ -88,11 +88,11 @@ export const CenterDrink: React.FC<CenterDrinkProps> = memo(({
           {/* 2. Realistic Grounding Contact Shadows */}
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-full flex items-center justify-center pointer-events-none z-0">
             {/* Broad Diffuse Ground Shadow */}
-            <div className="absolute w-[90%] h-7 bg-[#051107]/90 rounded-full blur-[12px] transform-gpu translate-y-2" />
+            <div className="absolute w-[88%] h-6 bg-[#051107]/90 rounded-full blur-[10px] transform-gpu translate-y-2" />
             {/* Ambient Occlusion Core Contact Line */}
-            <div className="absolute w-[65%] h-3.5 bg-black rounded-full blur-[3px] transform-gpu translate-y-1" />
+            <div className="absolute w-[62%] h-3 bg-black rounded-full blur-[2.5px] transform-gpu translate-y-1" />
             {/* Soft Ambient Matcha Spill */}
-            <div className="absolute w-[50%] h-4 bg-[#29482a]/40 rounded-full blur-[6px] transform-gpu" />
+            <div className="absolute w-[48%] h-3.5 bg-[#29482a]/40 rounded-full blur-[5px] transform-gpu" />
           </div>
 
           {/* 3. Persistent Dual-Layer Crossfade (Layer A) */}
@@ -106,7 +106,7 @@ export const CenterDrink: React.FC<CenterDrinkProps> = memo(({
             <img
               src={flavorA.productImage}
               alt={flavorA.nameEn}
-              className="w-full h-full object-contain pointer-events-none drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)]"
+              className="w-full h-full object-contain pointer-events-none drop-shadow-[0_8px_16px_rgba(0,0,0,0.35)]"
               decoding="async"
               loading="eager"
               draggable={false}
@@ -124,37 +124,29 @@ export const CenterDrink: React.FC<CenterDrinkProps> = memo(({
             <img
               src={flavorB.productImage}
               alt={flavorB.nameEn}
-              className="w-full h-full object-contain pointer-events-none drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)]"
+              className="w-full h-full object-contain pointer-events-none drop-shadow-[0_8px_16px_rgba(0,0,0,0.35)]"
               decoding="async"
               loading="eager"
               draggable={false}
             />
           </div>
+        </div>
 
-          {/* 5. Subtle Studio Rim & Specular Light Overlay */}
-          <div
-            className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay opacity-20 rounded-3xl z-15"
-            style={{
-              background:
-                'radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.4) 0%, transparent 60%)',
-            }}
-          />
-
-          {/* 6. Delicate Tactile Price & Cart Pill at base */}
+        {/* 5. Minimalist Price Pill Trigger (Anchored at Ground Base) */}
+        <div className="relative -mt-3 z-35 pointer-events-auto">
           <button
             type="button"
             onClick={onPriceTagClick}
-            aria-label={`Order ${currentFlavor.nameEn} for ${currentFlavor.priceFormatted}`}
-            className="absolute -bottom-5 sm:-bottom-6 left-1/2 -translate-x-1/2 w-11 sm:w-13 h-14 sm:h-16 bg-[#ede9de] rounded-xl sm:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.45)] flex flex-col items-center justify-between py-1.5 sm:py-2 px-1.5 pointer-events-auto hover:-translate-y-0.5 hover:scale-105 active:scale-95 transition-all duration-200 group border border-black/10 z-30 cursor-pointer"
+            className="group/btn relative px-3 py-1 rounded-full bg-[#f0ede1] hover:bg-white text-[#122416] border border-black/10 shadow-[0_8px_20px_rgba(0,0,0,0.4)] flex items-center gap-1.5 transition-all duration-300 transform-gpu active:scale-95 cursor-pointer"
+            aria-label={`Order ${currentFlavor.nameEn}`}
           >
-            <span className="font-headline font-bold text-[9.5px] sm:text-[11px] text-[#122416] tracking-tight">
-              {currentFlavor.priceSAR} {locale === 'ar' ? 'ريال' : 'SAR'}
+            <span className="font-headline font-bold text-xs">
+              {currentFlavor.priceSAR} {locale === 'ar' ? 'ر.س' : 'SAR'}
             </span>
-            <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#1b341f] text-[#ede9de] flex items-center justify-center group-hover:bg-[#29482a] group-hover:scale-110 transition-all shadow-sm">
-              <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current" viewBox="0 0 24 24">
-                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-              </svg>
-            </div>
+            <span className="w-1 h-1 rounded-full bg-[#29482a]/50" />
+            <span className="text-[10.5px] font-sans font-medium text-[#29482a]">
+              {locale === 'ar' ? 'طلب فوري' : 'Order'}
+            </span>
           </button>
         </div>
       </div>
