@@ -5,6 +5,8 @@ import { getAssetUrl } from '../../lib/assetUrl';
 import { MatchaContour } from '../ui/MatchaContour';
 import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
 import { JapaneseSeal } from '../ui/JapaneseSeal';
+import { AnimatedWords } from '../ui/AnimatedWords';
+import { RevealOnView } from '../ui/RevealOnView';
 
 export const FeaturedMatcha: React.FC = () => {
   const { t, locale } = useLanguage();
@@ -24,8 +26,12 @@ export const FeaturedMatcha: React.FC = () => {
 
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 py-16 sm:py-24 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Editorial Copy & Laboratory Pillars */}
-          <div className="lg:col-span-6 flex flex-col items-start gap-6">
+          {/* Left Column: Editorial Copy & Laboratory Pillars (Inline-Start Asymmetric Reveal) */}
+          <RevealOnView
+            variant="slide-inline-start"
+            delay={0}
+            className="lg:col-span-6 flex flex-col items-start gap-6"
+          >
             {/* Specimen Index Annotation */}
             <TeaLabAnnotation
               index="LAB / 01"
@@ -41,9 +47,14 @@ export const FeaturedMatcha: React.FC = () => {
                 </span>
                 <JapaneseSeal char="研" size={20} variant="square" />
               </div>
-              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08]">
-                {t.featuredMatcha.heading}
-              </h2>
+
+              {/* Word-by-word Heading Reveal */}
+              <AnimatedWords
+                text={t.featuredMatcha.heading}
+                as="h2"
+                delay={100}
+                className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08]"
+              />
             </div>
 
             <p className="text-xs sm:text-base text-[#f8f7f1]/80 leading-relaxed font-sans max-w-xl">
@@ -103,53 +114,52 @@ export const FeaturedMatcha: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </RevealOnView>
 
-          {/* Right Column: Visual Stage Showcase with Tea Lab Annotations */}
-          <div className="lg:col-span-6 relative flex flex-col items-center justify-center">
-            {/* Subtle Vertical Japanese Accent */}
-            <div className="absolute -end-3 sm:-end-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-2 font-japanese text-[11px] text-[#939458]/50 select-none writing-vertical-rl pointer-events-none">
-              一期一会 · 宇治手摘み · 本生抹茶
-            </div>
-
-            <div className="relative w-full aspect-[4/3] max-w-[540px] matcha-organic-crop bg-[#19321d] border border-white/15 overflow-hidden shadow-2xl group">
-              {/* Product Photo */}
+          {/* Right Column: Visual Stage with Organic Contour Crop (Inline-End & Scale-In Reveal) */}
+          <RevealOnView
+            variant="slide-inline-end"
+            delay={120}
+            className="lg:col-span-6 flex flex-col items-center justify-center"
+          >
+            <div className="relative w-full max-w-[540px] aspect-[4/3] matcha-organic-crop overflow-hidden border border-white/15 shadow-2xl group bg-[#19321d]">
               <img
                 src={getAssetUrl('assets/products/menu_matcha_latte.jpg')}
-                alt="Ceremonial Matcha Preparation"
+                alt="Ceremonial Matcha Extraction"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                loading="lazy"
+                loading="eager"
                 decoding="async"
               />
 
-              {/* Subtle Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
+              {/* Ambient Shadow Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
-              {/* Top Specimen Tag */}
-              <div className="absolute top-5 start-5 z-20 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 text-[10.5px] text-[#f8f7f1] font-mono flex items-center gap-2 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>Stone-ground Uji Tencha</span>
+              {/* Extraction Parameters Specimen Line */}
+              <div className="absolute bottom-4 start-4 end-4 flex items-center justify-between text-xs text-white/90">
+                <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#939458]" />
+                  <span className="font-mono text-[11px]">Ceremonial Grade 100%</span>
+                </div>
+
+                <div className="flex items-center gap-3 font-mono text-[10px] text-[#f8f7f1]/70 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+                  <span>3000K / 1.5M</span>
+                  <span>·</span>
+                  <span>PRONG CHASEN 100</span>
+                  <span>·</span>
+                  <span className="text-[#939458] font-bold">EXTRACTION / 75°C</span>
+                </div>
               </div>
 
-              {/* Bottom Certificate Badge */}
-              <div className="absolute bottom-5 end-5 z-20 bg-[#f0ede1] text-[#122416] px-4 py-2 rounded-2xl font-bold text-xs shadow-lg flex items-center gap-2">
-                <span>100% Ceremonial Grade</span>
-                <JapaneseSeal char="印" size={16} variant="circle" />
+              {/* Floating Japanese Seal Stamp */}
+              <div className="absolute top-4 end-4">
+                <div className="bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 text-[11px] font-japanese text-[#f0ede1]">
+                  石臼挽き宇治抹茶
+                </div>
               </div>
             </div>
-
-            {/* Microscopic Specimen Metadata Line Beneath Photo */}
-            <div className="w-full max-w-[540px] mt-4 flex items-center justify-between text-[10px] font-mono text-white/40 px-2 select-none">
-              <span>EXTRACTION · 75°C</span>
-              <span className="text-[#939458]">100-PRONG CHASEN</span>
-              <span>JEDDAH · LAB</span>
-            </div>
-          </div>
+          </RevealOnView>
         </div>
       </div>
-
-      {/* Bottom Organic Matcha Contour Transition to Next Section */}
-      <MatchaContour variant="ridge-soft" fill="#122416" flip className="w-full -mb-1 rotate-180 transform-gpu" />
     </section>
   );
 };

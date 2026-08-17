@@ -7,6 +7,7 @@ import { MenuItemCard } from './MenuItemCard';
 import { ProductDetailModal } from './ProductDetailModal';
 import { useLanguage } from '../../i18n/context';
 import { Sparkles } from 'lucide-react';
+import { AnimatedWords } from '../ui/AnimatedWords';
 
 export const MenuSection: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -57,42 +58,58 @@ export const MenuSection: React.FC = () => {
             </div>
           </div>
 
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight mb-3">
-            {t.menu.heading}
-          </h2>
+          {/* Word-by-word Heading Reveal */}
+          <AnimatedWords
+            text={t.menu.heading}
+            as="h2"
+            delay={80}
+            className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight mb-3"
+          />
 
           <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl">
             {t.menu.subheading}
           </p>
         </div>
 
-        {/* Category Filter & Search Bar */}
-        <div className="flex flex-col gap-6 mb-10">
+        {/* Japanese Tea Index Category Bar */}
+        <div className="mb-6 sm:mb-8">
           <MenuCategoryBar
             categories={MENU_CATEGORIES}
             activeCategoryId={activeCategoryId}
             onSelectCategory={setActiveCategoryId}
           />
+        </div>
+
+        {/* Live Search Bar */}
+        <div className="mb-8 sm:mb-10 max-w-xl mx-auto">
           <MenuSearchBar
             onSearch={setSearchQuery}
           />
         </div>
 
-        {/* Menu Items Grid */}
-        {filteredItems.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
-            {filteredItems.map((item) => (
-              <MenuItemCard
-                key={item.id}
-                item={item}
-                onSelect={() => setSelectedItem(item)}
-              />
-            ))}
+        {/* Products Grid (Fast, lightweight CSS stagger) */}
+        {filteredItems.length === 0 ? (
+          <div className="w-full py-16 text-center text-[#181813]/60 font-sans">
+            <p className="text-sm">
+              {locale === 'ar'
+                ? 'لم نجد أصناف تطابق بحثك.'
+                : 'No menu items match your search criteria.'}
+            </p>
           </div>
         ) : (
-          <div className="w-full py-16 flex flex-col items-center justify-center text-center">
-            <p className="text-sm font-semibold text-[#181813]/80">{t.menu.noResults}</p>
-            <p className="text-xs text-[#181813]/50 mt-1">{t.menu.tryDifferent}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+            {filteredItems.map((item, idx) => (
+              <div
+                key={item.id}
+                style={{ animationDelay: `${Math.min(idx * 30, 240)}ms` }}
+                className="animate-fade-in"
+              >
+                <MenuItemCard
+                  item={item}
+                  onSelect={() => setSelectedItem(item)}
+                />
+              </div>
+            ))}
           </div>
         )}
       </div>

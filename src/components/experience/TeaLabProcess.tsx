@@ -8,6 +8,14 @@ import { JapaneseSeal } from '../ui/JapaneseSeal';
 export const TeaLabProcess: React.FC = () => {
   const { locale, t } = useLanguage();
   const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const [isChanging, setIsChanging] = useState(false);
+
+  const handleStepSelect = (idx: number) => {
+    if (idx === activeStepIndex) return;
+    setIsChanging(true);
+    setActiveStepIndex(idx);
+    setTimeout(() => setIsChanging(false), 350);
+  };
 
   const activeStep = TEA_LAB_STEPS[activeStepIndex];
 
@@ -51,7 +59,7 @@ export const TeaLabProcess: React.FC = () => {
               <button
                 key={step.number}
                 type="button"
-                onClick={() => setActiveStepIndex(idx)}
+                onClick={() => handleStepSelect(idx)}
                 className={`min-h-[70px] sm:min-h-[85px] p-3.5 sm:p-4 rounded-[18px] sm:rounded-[20px] flex flex-col justify-between text-start transition-all duration-300 active:scale-95 border cursor-pointer ${
                   isActive
                     ? 'bg-[#EFEDE3] text-[#122416] shadow-card border-transparent ring-2 ring-white/20'
@@ -62,7 +70,7 @@ export const TeaLabProcess: React.FC = () => {
                   <span className="font-mono text-xs font-bold text-[#939458]">
                     {step.number}
                   </span>
-                  <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-[#29482a]' : 'bg-white/20'}`} />
+                  <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${isActive ? 'bg-[#29482a]' : 'bg-white/20'}`} />
                 </div>
 
                 <div className="flex flex-col mt-2">
@@ -70,7 +78,7 @@ export const TeaLabProcess: React.FC = () => {
                     {name}
                   </span>
                   {step.nameJa && (
-                    <span className={`text-[10px] font-japanese ${isActive ? 'text-[#122416]/60' : 'text-white/40'}`}>
+                    <span className={`text-[10px] font-japanese transition-colors duration-300 ${isActive ? 'text-[#122416]/60' : 'text-white/40'}`}>
                       {step.nameJa}
                     </span>
                   )}
@@ -80,10 +88,14 @@ export const TeaLabProcess: React.FC = () => {
           })}
         </div>
 
-        {/* Active Step Detailed Showcase Stage */}
-        <div className="w-full bg-[#122416] rounded-[24px] sm:rounded-[28px] p-6 sm:p-10 lg:p-12 border border-white/12 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
+        {/* Active Step Detailed Showcase Stage (Transition Animated, Zero Layout Shift) */}
+        <div className="w-full min-h-[360px] bg-[#122416] rounded-[24px] sm:rounded-[28px] p-6 sm:p-10 lg:p-12 border border-white/12 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
           {/* Left: Step Information */}
-          <div className="flex-1 flex flex-col items-start gap-4">
+          <div
+            className={`flex-1 flex flex-col items-start gap-4 transition-all duration-350 ease-out transform-gpu ${
+              isChanging ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
+            }`}
+          >
             <div className="flex items-center gap-3">
               <span className="text-3xl sm:text-4xl font-mono font-extrabold text-[#939458]">
                 {activeStep.number}
@@ -113,7 +125,7 @@ export const TeaLabProcess: React.FC = () => {
             {/* Next Step Shortcut */}
             <button
               type="button"
-              onClick={() => setActiveStepIndex((prev) => (prev + 1) % TEA_LAB_STEPS.length)}
+              onClick={() => handleStepSelect((activeStepIndex + 1) % TEA_LAB_STEPS.length)}
               className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#939458] hover:text-white transition-colors cursor-pointer"
             >
               <span>{locale === 'ar' ? 'المرحلة التالية' : 'Next Stage'}</span>
@@ -126,7 +138,8 @@ export const TeaLabProcess: React.FC = () => {
             <img
               src={activeStep.image}
               alt={activeStep.nameEn}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              key={activeStep.number}
+              className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ease-out transform-gpu animate-fade-in"
               loading="eager"
               decoding="async"
             />
