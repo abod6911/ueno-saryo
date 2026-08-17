@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 interface RevealOnViewProps {
   children: React.ReactNode;
   className?: string;
-  variant?: 'fade-up' | 'slide-inline-start' | 'slide-inline-end' | 'scale-in' | 'fade';
+  variant?: 'signature-rise' | 'fade-up' | 'slide-inline-start' | 'slide-inline-end' | 'scale-in' | 'fade';
   delay?: number;
   threshold?: number;
 }
@@ -44,6 +44,10 @@ export const RevealOnView: React.FC<RevealOnViewProps> = ({
 
   const getTransformClasses = () => {
     switch (variant) {
+      case 'signature-rise':
+        return isVisible
+          ? 'translate-y-0 scale-100 opacity-100'
+          : 'translate-y-8 sm:translate-y-10 scale-[0.98] opacity-0';
       case 'fade-up':
         return isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0';
       case 'slide-inline-start':
@@ -64,15 +68,19 @@ export const RevealOnView: React.FC<RevealOnViewProps> = ({
     }
   };
 
+  const isSignatureRise = variant === 'signature-rise';
+
   return (
     <div
       ref={containerRef}
       style={{
-        transitionDuration: '700ms',
-        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        transitionDuration: isSignatureRise ? '850ms' : '700ms',
+        transitionTimingFunction: isSignatureRise
+          ? 'cubic-bezier(0.22, 1, 0.36, 1)'
+          : 'cubic-bezier(0.16, 1, 0.3, 1)',
         transitionDelay: `${delay}ms`,
       }}
-      className={`will-change-transform transform-gpu transition-all ${getTransformClasses()} ${className}`}
+      className={`will-change-transform transform-gpu transition-[opacity,transform] ${getTransformClasses()} ${className}`}
     >
       {children}
     </div>

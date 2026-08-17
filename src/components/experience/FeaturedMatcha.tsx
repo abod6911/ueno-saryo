@@ -116,10 +116,10 @@ export const FeaturedMatcha: React.FC = () => {
             </div>
           </RevealOnView>
 
-          {/* Right Column: Visual Stage with Organic Contour Crop (Inline-End & Scale-In Reveal) */}
+          {/* Right Column: Visual Stage with Signature Rise Motion */}
           <RevealOnView
-            variant="slide-inline-end"
-            delay={120}
+            variant="signature-rise"
+            delay={100}
             className="lg:col-span-6 flex flex-col items-center justify-center"
           >
             <div className="relative w-full max-w-[540px] aspect-[4/3] matcha-organic-crop overflow-hidden border border-white/15 shadow-2xl group bg-[#19321d]">

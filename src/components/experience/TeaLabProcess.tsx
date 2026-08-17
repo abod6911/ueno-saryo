@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { TEA_LAB_STEPS } from '../../data/teaExperience';
 import { useLanguage } from '../../i18n/context';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
 import { JapaneseSeal } from '../ui/JapaneseSeal';
+import { RevealOnView } from '../ui/RevealOnView';
+
+const STEP_KANJI = ['葉', '量', '温', '点', '碗'];
 
 export const TeaLabProcess: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -14,7 +17,12 @@ export const TeaLabProcess: React.FC = () => {
     if (idx === activeStepIndex) return;
     setIsChanging(true);
     setActiveStepIndex(idx);
-    setTimeout(() => setIsChanging(false), 350);
+    setTimeout(() => setIsChanging(false), 280);
+  };
+
+  const handleNextStep = () => {
+    const nextIdx = (activeStepIndex + 1) % TEA_LAB_STEPS.length;
+    handleStepSelect(nextIdx);
   };
 
   const activeStep = TEA_LAB_STEPS[activeStepIndex];
@@ -28,7 +36,7 @@ export const TeaLabProcess: React.FC = () => {
 
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header with Specimen Index */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <TeaLabAnnotation
             index="LAB / 02"
             label={locale === 'ar' ? 'مراحل وفلسفة التحضير' : 'TEA EXTRACTION CEREMONY'}
@@ -49,111 +57,181 @@ export const TeaLabProcess: React.FC = () => {
           </p>
         </div>
 
-        {/* 5-Step Process Tabs Navigation */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 sm:mb-10">
-          {TEA_LAB_STEPS.map((step, idx) => {
-            const isActive = idx === activeStepIndex;
-            const name = locale === 'ar' ? step.nameAr : step.nameEn;
+        {/* Japanese Tea Lab Precision Rail (Unified Process Surface) */}
+        <div className="w-full max-w-5xl mx-auto mb-10 sm:mb-14">
+          {/* Desktop Precision Rail (>= 768px) */}
+          <div className="hidden md:block relative">
+            {/* Background Connecting Timeline */}
+            <div className="absolute top-6 inset-x-8 h-[2px] bg-white/10 z-0">
+              {/* Active Step Progress Fill */}
+              <div
+                className="h-full bg-[#939458] transition-all duration-500 ease-out"
+                style={{
+                  width: `${(activeStepIndex / (TEA_LAB_STEPS.length - 1)) * 100}%`,
+                }}
+              />
+            </div>
 
-            return (
-              <button
-                key={step.number}
-                type="button"
-                onClick={() => handleStepSelect(idx)}
-                className={`min-h-[70px] sm:min-h-[85px] p-3.5 sm:p-4 rounded-[18px] sm:rounded-[20px] flex flex-col justify-between text-start transition-all duration-300 active:scale-95 border cursor-pointer ${
-                  isActive
-                    ? 'bg-[#EFEDE3] text-[#122416] shadow-card border-transparent ring-2 ring-white/20'
-                    : 'bg-[#122416]/60 hover:bg-[#122416] text-white/80 border-white/10 hover:border-white/20'
-                }`}
-              >
-                <div className="flex items-center justify-between w-full">
-                  <span className="font-mono text-xs font-bold text-[#939458]">
-                    {step.number}
-                  </span>
-                  <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${isActive ? 'bg-[#29482a]' : 'bg-white/20'}`} />
-                </div>
+            {/* 5 Step Nodes */}
+            <div className="grid grid-cols-5 gap-2 relative z-10">
+              {TEA_LAB_STEPS.map((step, idx) => {
+                const isActive = idx === activeStepIndex;
+                const isPassed = idx < activeStepIndex;
+                const name = locale === 'ar' ? step.nameAr : step.nameEn;
+                const kanji = STEP_KANJI[idx] || '茶';
 
-                <div className="flex flex-col mt-2">
-                  <span className="font-headline text-xs sm:text-sm font-bold truncate">
-                    {name}
-                  </span>
-                  {step.nameJa && (
-                    <span className={`text-[10px] font-japanese transition-colors duration-300 ${isActive ? 'text-[#122416]/60' : 'text-white/40'}`}>
-                      {step.nameJa}
+                return (
+                  <button
+                    key={step.number}
+                    type="button"
+                    onClick={() => handleStepSelect(idx)}
+                    className="flex flex-col items-center text-center group cursor-pointer p-2 focus:outline-none"
+                  >
+                    {/* Node Badge */}
+                    <div
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 transform-gpu mb-3 border ${
+                        isActive
+                          ? 'bg-[#f8f7f1] text-[#122416] border-white shadow-[0_8px_20px_rgba(0,0,0,0.3)] scale-110'
+                          : isPassed
+                          ? 'bg-[#29482a] text-[#939458] border-[#939458]/40'
+                          : 'bg-[#122416]/80 text-white/50 border-white/10 group-hover:border-white/30 group-hover:text-white'
+                      }`}
+                    >
+                      <span className="font-japanese text-sm font-bold">{kanji}</span>
+                    </div>
+
+                    {/* Step Number & Title */}
+                    <span className={`font-mono text-[10.5px] font-bold mb-1 transition-colors ${
+                      isActive ? 'text-[#939458]' : 'text-white/40'
+                    }`}>
+                      {step.number}
                     </span>
-                  )}
-                </div>
-              </button>
-            );
-          })}
+
+                    <span className={`font-headline text-xs sm:text-[13px] font-bold line-clamp-1 transition-colors ${
+                      isActive ? 'text-white' : 'text-white/70 group-hover:text-white'
+                    }`}>
+                      {name}
+                    </span>
+
+                    {step.nameJa && (
+                      <span className={`text-[10px] font-japanese mt-0.5 transition-colors ${
+                        isActive ? 'text-[#939458]' : 'text-white/30'
+                      }`}>
+                        {step.nameJa.split('·')[0].trim()}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile Horizontally Scrollable Step Index (< 768px) */}
+          <div className="md:hidden w-full overflow-x-auto no-scrollbar py-2 -mx-1 px-1 select-none">
+            <div className="flex items-center gap-2 w-max px-1">
+              {TEA_LAB_STEPS.map((step, idx) => {
+                const isActive = idx === activeStepIndex;
+                const name = locale === 'ar' ? step.nameAr : step.nameEn;
+                const kanji = STEP_KANJI[idx] || '茶';
+
+                return (
+                  <button
+                    key={step.number}
+                    type="button"
+                    onClick={() => handleStepSelect(idx)}
+                    className={`min-h-[46px] px-3.5 py-2 rounded-[16px] text-xs font-medium whitespace-nowrap transition-all duration-200 active:scale-95 flex items-center gap-2.5 shrink-0 border cursor-pointer ${
+                      isActive
+                        ? 'bg-[#f8f7f1] text-[#122416] border-white shadow-md'
+                        : 'bg-[#122416]/70 text-white/70 border-white/10'
+                    }`}
+                  >
+                    <span className={`font-mono text-[10.5px] font-bold ${isActive ? 'text-[#29482a]' : 'text-[#939458]'}`}>
+                      {step.number}
+                    </span>
+                    <span className="font-japanese text-xs font-bold">{kanji}</span>
+                    <span className="font-sans font-bold">{name}</span>
+                    {isActive && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#29482a] shrink-0" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        {/* Active Step Detailed Showcase Stage (Transition Animated, Zero Layout Shift) */}
-        <div className="w-full min-h-[360px] bg-[#122416] rounded-[24px] sm:rounded-[28px] p-6 sm:p-10 lg:p-12 border border-white/12 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
-          {/* Left: Step Information */}
-          <div
-            className={`flex-1 flex flex-col items-start gap-4 transition-all duration-350 ease-out transform-gpu ${
-              isChanging ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-3xl sm:text-4xl font-mono font-extrabold text-[#939458]">
-                {activeStep.number}
-              </span>
-              <div className="w-px h-8 bg-white/20" />
-              <div className="flex flex-col">
-                <span className="font-japanese text-xs text-[#939458] tracking-wider uppercase font-semibold">
+        {/* Active Step Detailed Showcase Stage (Signature Rise Initial Entrance) */}
+        <RevealOnView variant="signature-rise" delay={80} className="w-full">
+          <div className="w-full min-h-[360px] bg-[#122416] rounded-[24px] sm:rounded-[32px] p-6 sm:p-10 lg:p-12 border border-white/12 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
+            {/* Left: Step Information */}
+            <div
+              className={`flex-1 flex flex-col items-start gap-4 transition-all duration-300 ease-out transform-gpu ${
+                isChanging ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-3xl sm:text-4xl font-mono font-extrabold text-[#939458]">
+                  {activeStep.number}
+                </span>
+                <div className="h-6 w-[1px] bg-white/20" />
+                <span className="text-xs font-japanese text-[#f8f7f1]/60 tracking-wider">
                   {activeStep.nameJa}
                 </span>
-                <h3 className="font-headline text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
-                  {locale === 'ar' ? activeStep.nameAr : activeStep.nameEn}
-                </h3>
+              </div>
+
+              <h3 className="font-headline text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                {locale === 'ar' ? activeStep.nameAr : activeStep.nameEn}
+              </h3>
+
+              <p className="text-sm sm:text-base text-[#f8f7f1]/80 leading-relaxed font-sans max-w-xl">
+                {locale === 'ar' ? activeStep.descriptionAr : activeStep.descriptionEn}
+              </p>
+
+              {/* Scientific Extraction Metric Note */}
+              <div className="w-full bg-[#19321d]/80 rounded-[18px] p-4 border border-white/10 text-xs text-[#f8f7f1]/90 flex items-start gap-3 mt-2">
+                <span className="w-2 h-2 rounded-full bg-[#939458] shrink-0 mt-1.5" />
+                <p className="leading-relaxed">
+                  {locale === 'ar' ? activeStep.scientificNoteAr : activeStep.scientificNoteEn}
+                </p>
+              </div>
+
+              {/* Next Step Interaction Button */}
+              <button
+                type="button"
+                onClick={handleNextStep}
+                className="mt-2 inline-flex items-center gap-2 text-xs font-mono font-bold text-[#939458] hover:text-white transition-colors cursor-pointer group"
+              >
+                <span>{locale === 'ar' ? 'المرحلة التالية' : 'Next Step'}</span>
+                {locale === 'ar' ? (
+                  <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+                ) : (
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                )}
+              </button>
+            </div>
+
+            {/* Right: Authentic Photograph Showcase with Organic Crop */}
+            <div className="w-full lg:w-[480px] h-[260px] sm:h-[320px] rounded-[20px] sm:rounded-[24px] overflow-hidden border border-white/15 relative shadow-xl shrink-0 group bg-[#19321d]">
+              <img
+                key={activeStep.number}
+                src={activeStep.image}
+                alt={activeStep.nameEn}
+                className={`w-full h-full object-cover transition-all duration-500 ease-out ${
+                  isChanging ? 'opacity-0 scale-[1.03]' : 'opacity-100 scale-100'
+                }`}
+                loading="eager"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+
+              {/* Step Identification Specimen Tag */}
+              <div className="absolute bottom-3 start-3 end-3 flex items-center justify-between text-[11px] font-mono text-white/80 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                <span>UENO SARYO · CRAFT</span>
+                <span className="text-[#939458] font-bold">{activeStep.nameJa}</span>
               </div>
             </div>
-
-            <p className="text-sm sm:text-base text-[#f8f7f1]/85 leading-relaxed pt-2 font-sans">
-              {locale === 'ar' ? activeStep.descriptionAr : activeStep.descriptionEn}
-            </p>
-
-            <div className="w-full p-4 rounded-[16px] bg-white/5 border border-white/10 text-xs text-[#939458] flex items-start gap-3 mt-2">
-              <Sparkles className="w-4 h-4 shrink-0 mt-0.5 text-[#939458]" />
-              <p className="text-white/80 leading-relaxed font-sans">
-                {locale === 'ar' ? activeStep.scientificNoteAr : activeStep.scientificNoteEn}
-              </p>
-            </div>
-
-            {/* Next Step Shortcut */}
-            <button
-              type="button"
-              onClick={() => handleStepSelect((activeStepIndex + 1) % TEA_LAB_STEPS.length)}
-              className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#939458] hover:text-white transition-colors cursor-pointer"
-            >
-              <span>{locale === 'ar' ? 'المرحلة التالية' : 'Next Stage'}</span>
-              <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
-            </button>
           </div>
-
-          {/* Right: Step Visual Photo with Organic Contour Crop */}
-          <div className="w-full lg:w-[460px] aspect-[4/3] matcha-organic-crop border border-white/15 overflow-hidden relative shadow-2xl shrink-0 group bg-[#19321d]">
-            <img
-              src={activeStep.image}
-              alt={activeStep.nameEn}
-              key={activeStep.number}
-              className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ease-out transform-gpu animate-fade-in"
-              loading="eager"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-            <div className="absolute bottom-4 start-4 end-4 flex items-center justify-between text-xs text-white/90">
-              <span className="font-japanese font-bold text-sm text-[#f0ede1] bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                {activeStep.nameJa}
-              </span>
-              <span className="font-mono text-[11px] text-[#939458] bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
-                UENO SARYO · CRAFT
-              </span>
-            </div>
-          </div>
-        </div>
+        </RevealOnView>
       </div>
     </section>
   );

@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { MENU_CATEGORIES, MENU_ITEMS } from '../../data/menu';
 import type { MenuItem } from '../../types/menu';
-import { MenuCategoryBar } from './MenuCategoryBar';
-import { MenuSearchBar } from './MenuSearchBar';
+import { TeaIndexControlDeck } from './TeaIndexControlDeck';
 import { MenuItemCard } from './MenuItemCard';
 import { ProductDetailModal } from './ProductDetailModal';
 import { useLanguage } from '../../i18n/context';
@@ -72,19 +71,15 @@ export const MenuSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Japanese Tea Index Category Bar */}
-        <div className="mb-6 sm:mb-8">
-          <MenuCategoryBar
+        {/* Japanese Tea Index Control Deck (Unified Specimen Surface) */}
+        <div className="mb-10 sm:mb-12">
+          <TeaIndexControlDeck
             categories={MENU_CATEGORIES}
             activeCategoryId={activeCategoryId}
             onSelectCategory={setActiveCategoryId}
-          />
-        </div>
-
-        {/* Live Search Bar */}
-        <div className="mb-8 sm:mb-10 max-w-xl mx-auto">
-          <MenuSearchBar
+            searchQuery={searchQuery}
             onSearch={setSearchQuery}
+            totalCount={filteredItems.length}
           />
         </div>
 
