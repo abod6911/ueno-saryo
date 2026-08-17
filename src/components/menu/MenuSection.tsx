@@ -48,11 +48,12 @@ export const MenuSection: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-[11px] font-mono text-[#29482a] font-bold tracking-wider">
-              04 / {locale === 'ar' ? 'القائمة' : 'MENU'}
+            <span className="text-[11px] text-[#29482a] font-bold">
+              <span className="font-mono tracking-wider">04 / </span>
+              <span className="font-sans">{locale === 'ar' ? 'القائمة' : 'MENU'}</span>
             </span>
             <span className="w-1 h-1 rounded-full bg-[#29482a]/50" />
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#122416]/10 text-[#122416] text-xs font-mono uppercase tracking-widest">
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#122416]/10 text-[#122416] text-xs font-sans font-medium">
               <Sparkles className="w-3.5 h-3.5 text-[#29482a]" />
               <span>{t.menu.badge}</span>
             </div>

@@ -56,7 +56,7 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[9.5px] font-mono font-semibold uppercase px-2 py-0.5 rounded-[6px] bg-[#122416]/10 text-[#122416]">
+                    <span className="text-[9.5px] font-sans font-medium px-2 py-0.5 rounded-[6px] bg-[#122416]/10 text-[#122416]">
                       {locale === 'ar' ? 'حلى ياباني' : 'Japanese Sweet'}
                     </span>
                     {item.name.ja && (

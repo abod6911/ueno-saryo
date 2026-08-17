@@ -44,7 +44,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMe
                 茶道研究所
               </span>
             </div>
-            <span className="text-[10px] sm:text-xs text-[#f8f7f1]/60 tracking-wider uppercase mt-0.5 font-mono">
+            <span className="text-[10px] sm:text-xs text-[#f8f7f1]/60 mt-0.5 font-sans font-medium">
               {locale === 'ar' ? 'UENO SARYO · تجربة الشاي' : 'Tea Experience · Ar Rawdah'}
             </span>
           </div>

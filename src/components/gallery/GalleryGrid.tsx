@@ -92,7 +92,7 @@ export const GalleryGrid: React.FC = () => {
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#939458] font-semibold">
+                    <span className="text-[10.5px] font-sans text-[#939458] font-semibold">
                       {categoryLabel}
                     </span>
                     <h3 className="font-headline text-base sm:text-lg font-bold text-white mt-0.5 drop-shadow-md">
