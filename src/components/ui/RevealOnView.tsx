@@ -28,18 +28,45 @@ export const RevealOnView: React.FC<RevealOnViewProps> = ({
     const el = containerRef.current;
     if (!el) return;
 
+    const check = () => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 100) {
+        setIsVisible(true);
+        return true;
+      }
+      return false;
+    };
+
+    if (check()) return;
+
+    const onScroll = () => {
+      if (check()) {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
+          window.removeEventListener('scroll', onScroll);
+          window.removeEventListener('resize', onScroll);
         }
       },
-      { threshold, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.01, rootMargin: '100px 0px 100px 0px' }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, [threshold]);
 
   const getTransformClasses = () => {

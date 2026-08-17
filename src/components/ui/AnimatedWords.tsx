@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '../../i18n/context';
 
 interface AnimatedWordsProps {
   text: string;
@@ -17,9 +18,11 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
   staggerMs = 55,
   ariaLabel,
 }) => {
+  const { locale } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
   const words = text.split(' ').filter(Boolean);
+  const isRtl = locale === 'ar';
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -39,17 +42,24 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.02, rootMargin: '50px 0px 50px 0px' }
     );
 
     observer.observe(el);
+
+    // Fallback: check if already in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setIsVisible(true);
+    }
+
     return () => observer.disconnect();
   }, []);
 
   return (
     <Component
       ref={containerRef as any}
-      className={className}
+      className={`${className} ${isRtl ? 'tracking-normal' : ''}`}
       aria-label={ariaLabel || text}
     >
       {words.map((word, idx) => {
@@ -58,7 +68,7 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
         return (
           <span
             key={`${word}-${idx}`}
-            className="inline-block overflow-hidden align-top me-[0.26em] last:me-0"
+            className="inline-block overflow-hidden align-top py-2 px-1 -my-2 -mx-0.5 me-[0.3em] last:me-0"
             aria-hidden="true"
           >
             <span
@@ -67,10 +77,10 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
                 transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 transitionDelay: `${wordDelay}ms`,
               }}
-              className={`inline-block will-change-transform transform-gpu transition-all ${
+              className={`inline-block py-1 px-1 will-change-transform transform-gpu transition-all ${
                 isVisible
                   ? 'translate-y-0 opacity-100 blur-0'
-                  : 'translate-y-[105%] opacity-0 blur-[3px]'
+                  : 'translate-y-[110%] opacity-0 blur-[3px]'
               }`}
             >
               {word}

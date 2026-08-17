@@ -6,7 +6,7 @@ import { MenuItemCard } from './MenuItemCard';
 import { ProductDetailModal } from './ProductDetailModal';
 import { useLanguage } from '../../i18n/context';
 import { Sparkles } from 'lucide-react';
-import { AnimatedWords } from '../ui/AnimatedWords';
+import { RevealOnView } from '../ui/RevealOnView';
 
 export const MenuSection: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -58,13 +58,12 @@ export const MenuSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Word-by-word Heading Reveal */}
-          <AnimatedWords
-            text={t.menu.heading}
-            as="h2"
-            delay={80}
-            className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight mb-3"
-          />
+          {/* Signature Rise Heading Reveal */}
+          <RevealOnView variant="signature-rise" delay={80}>
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-normal mb-3">
+              {t.menu.heading}
+            </h2>
+          </RevealOnView>
 
           <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl">
             {t.menu.subheading}

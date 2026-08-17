@@ -5,7 +5,6 @@ import { getAssetUrl } from '../../lib/assetUrl';
 import { MatchaContour } from '../ui/MatchaContour';
 import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
 import { JapaneseSeal } from '../ui/JapaneseSeal';
-import { AnimatedWords } from '../ui/AnimatedWords';
 import { RevealOnView } from '../ui/RevealOnView';
 
 export const FeaturedMatcha: React.FC = () => {
@@ -48,13 +47,12 @@ export const FeaturedMatcha: React.FC = () => {
                 <JapaneseSeal char="研" size={20} variant="square" />
               </div>
 
-              {/* Word-by-word Heading Reveal */}
-              <AnimatedWords
-                text={t.featuredMatcha.heading}
-                as="h2"
-                delay={100}
-                className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08]"
-              />
+              {/* Signature Rise Heading Reveal */}
+              <RevealOnView variant="signature-rise" delay={100}>
+                <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-normal leading-[1.12]">
+                  {t.featuredMatcha.heading}
+                </h2>
+              </RevealOnView>
             </div>
 
             <p className="text-xs sm:text-base text-[#f8f7f1]/80 leading-relaxed font-sans max-w-xl">

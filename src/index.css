@@ -38,6 +38,20 @@
     font-family: 'Alexandria', 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
   }
 
+  html[dir="rtl"] .font-headline,
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3,
+  html[dir="rtl"] h4 {
+    font-family: 'Alexandria', 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+    letter-spacing: normal !important;
+  }
+
+  html[dir="rtl"] .tracking-tight,
+  html[dir="rtl"] .tracking-tighter {
+    letter-spacing: normal !important;
+  }
+
   html[dir="ltr"] {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
