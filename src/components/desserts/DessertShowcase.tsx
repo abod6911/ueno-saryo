@@ -27,6 +27,7 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
             label={locale === 'ar' ? 'الحلويات والمخبوزات اليابانية' : 'JAPANESE SWEETS & WAGASHI'}
             kanji="甘味 · 和菓子"
             variant="minimal"
+            theme="light"
             className="mb-3"
           />
 
