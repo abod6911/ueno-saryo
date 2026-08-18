@@ -298,8 +298,8 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
           </div>
         </div>
 
-        {/* Central Stage (Curved Orbiting Cards + Central Drink) */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Central Stage (Curved Orbiting Cards + Central Drink) - Elevated to ensure generous clearance above headline */}
+        <div className="absolute inset-0 flex items-center justify-center -translate-y-10 sm:-translate-y-14 md:-translate-y-16">
           {/* Orbital Carousel Cards */}
           <div ref={carouselWrapperRef} className="absolute inset-0 z-20">
             <OrbitCarousel
@@ -312,7 +312,7 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
           </div>
 
           {/* Central Grounded Drink with Contact Shadow */}
-          <div ref={cupWrapperRef} className="relative z-30 mb-4 sm:mb-8 md:mb-10">
+          <div ref={cupWrapperRef} className="relative z-30">
             <CenterDrink
               currentFlavor={currentFlavor}
               previousFlavor={previousFlavor}
