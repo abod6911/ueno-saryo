@@ -36,8 +36,18 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
   if (!photo) return null;
 
-  const title = locale === 'ar' ? photo.titleAr : photo.titleEn;
-  const category = locale === 'ar' ? photo.categoryAr : photo.categoryEn;
+  const title =
+    locale === 'ar'
+      ? photo.titleAr
+      : locale === 'zh-CN'
+      ? photo.titleZh || photo.titleEn
+      : photo.titleEn;
+  const category =
+    locale === 'ar'
+      ? photo.categoryAr
+      : locale === 'zh-CN'
+      ? photo.categoryZh || photo.categoryEn
+      : photo.categoryEn;
 
   return (
     <div
@@ -52,7 +62,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
         type="button"
         onClick={onClose}
         aria-label="Close Lightbox"
-        className="absolute top-6 end-6 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/20 active:scale-95"
+        className="absolute top-6 end-6 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/20 active:scale-95 cursor-pointer"
       >
         <X className="w-6 h-6 stroke-[2]" />
       </button>
@@ -65,7 +75,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           onPrev();
         }}
         aria-label="Previous Image"
-        className="absolute start-4 sm:start-8 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/20 active:scale-95"
+        className="absolute start-4 sm:start-8 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/20 active:scale-95 cursor-pointer"
       >
         <ChevronLeft className="w-6 h-6 stroke-[2] rtl:rotate-180" />
       </button>
@@ -78,7 +88,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           onNext();
         }}
         aria-label="Next Image"
-        className="absolute end-4 sm:end-8 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/20 active:scale-95"
+        className="absolute end-4 sm:end-8 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all border border-white/20 active:scale-95 cursor-pointer"
       >
         <ChevronRight className="w-6 h-6 stroke-[2] rtl:rotate-180" />
       </button>

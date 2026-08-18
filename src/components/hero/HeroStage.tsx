@@ -285,7 +285,7 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
             <span className="font-japanese text-[11px] text-[#939458] font-bold">茶道</span>
             <span className="text-white/30">·</span>
             <span className="font-mono text-[10.5px] text-white/85">
-              {locale === 'ar' ? 'فن إعداد الماتشا' : 'Matcha Craft'}
+              {locale === 'ar' ? 'فن إعداد الماتشا' : locale === 'zh-CN' ? '抹茶点茶研萃' : 'Matcha Craft'}
             </span>
           </div>
 
@@ -293,7 +293,7 @@ export const HeroStage: React.FC<HeroStageProps> = ({ onOrderDrink }) => {
             <span className="font-japanese text-[11px] text-[#939458] font-bold">茶道研究所</span>
             <span className="text-white/30">·</span>
             <span className="text-[10.5px] font-mono text-white/85">
-              {locale === 'ar' ? 'مختبرات الشاي — جدة' : 'UENO SARYO · JEDDAH'}
+              {locale === 'ar' ? 'مختبرات الشاي — جدة' : locale === 'zh-CN' ? 'UENO SARYO · 吉达' : 'UENO SARYO · JEDDAH'}
             </span>
           </div>
         </div>

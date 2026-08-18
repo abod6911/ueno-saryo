@@ -1,15 +1,16 @@
 import React from 'react';
 import { useLanguage } from '../../i18n/context';
 import { BUSINESS_DATA } from '../../data/business';
-import { MapPin, Phone, Globe, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, ArrowUp } from 'lucide-react';
 import { MatchaContour } from '../ui/MatchaContour';
+import { LanguageSelector } from '../ui/LanguageSelector';
 
 interface FooterProps {
   onOpenMenu: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
-  const { locale, toggleLocale, t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -42,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                 JEDDAH · SAUDI ARABIA
               </span>
             </div>
-            <p className="text-xs text-[#f8f7f1]/70 leading-relaxed max-w-sm">
+            <p className="text-xs text-[#f8f7f1]/70 leading-relaxed max-w-sm font-sans">
               {t.footer.brandBio}
             </p>
             <div className="flex items-center gap-3 pt-2">
@@ -61,14 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                   </svg>
                 </a>
               )}
-              <button
-                type="button"
-                onClick={toggleLocale}
-                className="h-8 px-3 rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold flex items-center gap-1.5 transition-all text-white cursor-pointer"
-              >
-                <Globe className="w-3.5 h-3.5 text-[#939458]" />
-                <span>{t.nav.langToggle}</span>
-              </button>
+              <LanguageSelector variant="footer" />
             </div>
           </div>
 
@@ -94,7 +88,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
               </li>
               <li>
                 <a href="#matcha-studied" className="hover:text-white transition-colors">
-                  {locale === 'ar' ? 'الماتشا الاحتفالية' : 'Ceremonial Matcha'}
+                  {locale === 'ar'
+                    ? 'الماتشا الاحتفالية'
+                    : locale === 'zh-CN'
+                    ? '仪式级抹茶研析'
+                    : 'Ceremonial Matcha'}
                 </a>
               </li>
               <li>
@@ -109,7 +107,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
               </li>
               <li>
                 <a href="#desserts" className="hover:text-white transition-colors">
-                  {locale === 'ar' ? 'الحلويات اليابانية' : 'Desserts & Sweets'}
+                  {locale === 'ar'
+                    ? 'الحلويات اليابانية'
+                    : locale === 'zh-CN'
+                    ? '日式和菓子与甜点'
+                    : 'Desserts & Sweets'}
                 </a>
               </li>
               <li>
@@ -136,6 +138,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                 <span>
                   {locale === 'ar'
                     ? `${BUSINESS_DATA.address.streetAr}، ${BUSINESS_DATA.address.districtAr}، ${BUSINESS_DATA.address.cityAr}`
+                    : locale === 'zh-CN'
+                    ? `${BUSINESS_DATA.address.cityZh} · ${BUSINESS_DATA.address.districtZh} · ${BUSINESS_DATA.address.streetZh}`
                     : `${BUSINESS_DATA.address.streetEn}, ${BUSINESS_DATA.address.districtEn}, ${BUSINESS_DATA.address.cityEn}`}
                 </span>
               </div>
@@ -162,11 +166,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
           {/* Col 4: Philosophy Note */}
           <div className="flex flex-col items-start gap-3">
             <span className="text-xs font-mono uppercase tracking-widest text-[#939458] font-bold">
-              {locale === 'ar' ? 'فلسفة الشاي' : 'Tea Philosophy'}
+              {locale === 'ar' ? 'فلسفة الشاي' : locale === 'zh-CN' ? '茶道哲学' : 'Tea Philosophy'}
             </span>
-            <p className="text-xs text-[#f8f7f1]/70 leading-relaxed italic">
+            <p className="text-xs text-[#f8f7f1]/70 leading-relaxed italic font-sans">
               {locale === 'ar'
                 ? '«إيتشي-غو إيتشي-إي» — نقاء اللحظة الواحدة التي لا تتكرر أبداً في وعاء من الشاي المصنوع بحب وسكينة.'
+                : locale === 'zh-CN'
+                ? '“一期一会” (Ichi-go Ichi-e) —— 珍重此生唯此一瞬的相遇，在一碗倾注静心与匠艺的茶汤中体会永恒。'
                 : '"Ichi-go ichi-e" — Treasure every encounter, for it will never recur in the exact same way.'}
             </p>
             <div className="pt-3 w-full">
@@ -177,7 +183,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
                 className="w-full h-10 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center gap-2 text-xs text-white/80 hover:text-white transition-all active:scale-95 cursor-pointer"
               >
                 <ArrowUp className="w-3.5 h-3.5" />
-                <span>{locale === 'ar' ? 'العودة للأعلى' : 'Back to Top'}</span>
+                <span>
+                  {locale === 'ar' ? 'العودة للأعلى' : locale === 'zh-CN' ? '返回顶部' : 'Back to Top'}
+                </span>
               </button>
             </div>
           </div>
@@ -186,7 +194,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
         {/* Bottom Bar: Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#f8f7f1]/50">
           <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} Ueno Saryo (مختبرات الشاي). {t.footer.rights}</span>
+            <span>© {new Date().getFullYear()} Ueno Saryo (مختبرات الشاي · 茶道研究所). {t.footer.rights}</span>
           </div>
           <div className="text-[11px] font-mono tracking-wider text-[#939458]">
             AR RAWDAH · JEDDAH · SAUDI ARABIA

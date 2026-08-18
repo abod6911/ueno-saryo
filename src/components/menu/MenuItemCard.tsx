@@ -10,8 +10,25 @@ interface MenuItemCardProps {
 
 export const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, onSelect }) => {
   const { locale, t } = useLanguage();
-  const name = locale === 'ar' ? item.name.ar : item.name.en;
-  const description = locale === 'ar' ? item.description.ar : item.description.en;
+  const name =
+    locale === 'ar'
+      ? item.name.ar
+      : locale === 'zh-CN'
+      ? item.name.zh || item.name.en
+      : item.name.en;
+  const description =
+    locale === 'ar'
+      ? item.description.ar
+      : locale === 'zh-CN'
+      ? item.description.zh || item.description.en
+      : item.description.en;
+
+  const formatTemperature = (temp?: 'Iced' | 'Hot' | 'Both') => {
+    if (!temp) return null;
+    if (temp === 'Iced') return locale === 'ar' ? 'بارد' : locale === 'zh-CN' ? '冰饮' : 'Iced';
+    if (temp === 'Hot') return locale === 'ar' ? 'ساخن' : locale === 'zh-CN' ? '热饮' : 'Hot';
+    return locale === 'ar' ? 'بارد / ساخن' : locale === 'zh-CN' ? '冷热皆可' : 'Both';
+  };
 
   return (
     <div
@@ -88,7 +105,7 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, onSelect }) =>
             )}
             {item.temperature && (
               <span className="hidden sm:inline-block px-1.5 py-0.5 rounded-[4px] bg-black/5 text-[9.5px] font-mono">
-                {item.temperature}
+                {formatTemperature(item.temperature)}
               </span>
             )}
           </div>

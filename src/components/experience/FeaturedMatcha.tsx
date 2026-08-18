@@ -34,7 +34,13 @@ export const FeaturedMatcha: React.FC = () => {
             {/* Specimen Index Annotation */}
             <TeaLabAnnotation
               index="LAB / 01"
-              label={locale === 'ar' ? 'دراسة الماتشا الاحتفالية' : 'CEREMONIAL MATCHA STUDY'}
+              label={
+                locale === 'ar'
+                  ? 'دراسة الماتشا الاحتفالية'
+                  : locale === 'zh-CN'
+                  ? '仪式级抹茶研析'
+                  : 'CEREMONIAL MATCHA STUDY'
+              }
               kanji="濃茶 · 宇治"
               variant="minimal"
             />

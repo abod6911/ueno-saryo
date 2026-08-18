@@ -43,6 +43,7 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         arabic: ['Alexandria', 'IBM Plex Sans Arabic', 'system-ui', 'sans-serif'],
+        chinese: ['"PingFang SC"', '"Microsoft YaHei"', '"Noto Sans SC"', '"Source Han Sans SC"', 'system-ui', 'sans-serif'],
         serif: ['"DM Serif Display"', '"Instrument Serif"', 'Georgia', 'serif'],
         headline: ['"DM Serif Display"', '"Playfair Display"', 'Georgia', 'serif'],
         display: ['"Instrument Serif"', '"DM Serif Display"', 'serif'],

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLanguage } from '../../i18n/context';
 import { BUSINESS_DATA } from '../../data/business';
-import { X, Globe, MapPin, Phone, ShoppingBag, ArrowUpRight } from 'lucide-react';
+import { X, MapPin, Phone, ShoppingBag, ArrowUpRight } from 'lucide-react';
+import { LanguageSelector } from '../ui/LanguageSelector';
 
 interface MobileMenuSheetProps {
   isOpen: boolean;
@@ -14,7 +15,7 @@ export const MobileMenuSheet: React.FC<MobileMenuSheetProps> = ({
   onClose,
   onNavigateToMenu,
 }) => {
-  const { locale, toggleLocale, t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   if (!isOpen) return null;
 
@@ -44,30 +45,29 @@ export const MobileMenuSheet: React.FC<MobileMenuSheetProps> = ({
             </span>
             <span className="font-japanese text-xs text-[#939458]">茶道研究所</span>
           </div>
-          <span className="text-[11px] text-white/50">{BUSINESS_DATA.address.districtEn}, {BUSINESS_DATA.address.cityEn}</span>
+          <span className="text-[11px] text-white/50">
+            {locale === 'ar'
+              ? `${BUSINESS_DATA.address.districtAr}، ${BUSINESS_DATA.address.cityAr}`
+              : locale === 'zh-CN'
+              ? `${BUSINESS_DATA.address.cityZh || '吉达'} · ${BUSINESS_DATA.address.districtZh || 'Ar Rawdah'}`
+              : `${BUSINESS_DATA.address.districtEn}, ${BUSINESS_DATA.address.cityEn}`}
+          </span>
         </div>
 
-        <div className="flex items-center gap-2">
-          {/* Language Switch */}
-          <button
-            type="button"
-            onClick={toggleLocale}
-            className="min-h-[44px] min-w-[44px] px-3.5 rounded-full bg-white/10 text-xs font-semibold flex items-center justify-center gap-1.5 border border-white/15"
-          >
-            <Globe className="w-4 h-4 text-[#939458]" />
-            <span>{t.nav.langToggle}</span>
-          </button>
+        {/* Close Button */}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close Menu"
+          className="min-h-[44px] min-w-[44px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 active:scale-95 border border-white/15"
+        >
+          <X className="w-6 h-6 stroke-[2]" />
+        </button>
+      </div>
 
-          {/* Close Button */}
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close Menu"
-            className="min-h-[44px] min-w-[44px] rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 active:scale-95 border border-white/15"
-          >
-            <X className="w-6 h-6 stroke-[2]" />
-          </button>
-        </div>
+      {/* Language Selector Grid */}
+      <div className="py-4 border-b border-white/10">
+        <LanguageSelector variant="mobile" />
       </div>
 
       {/* Navigation List */}
@@ -87,7 +87,7 @@ export const MobileMenuSheet: React.FC<MobileMenuSheetProps> = ({
         >
           <span>{t.nav.menu}</span>
           <span className="text-xs uppercase px-2.5 py-0.5 rounded-full bg-[#939458]/20 text-[#f0ede1] font-sans font-normal">
-            {locale === 'ar' ? 'تفاعلي' : 'Interactive'}
+            {locale === 'ar' ? 'تفاعلي' : locale === 'zh-CN' ? '互动茶单' : 'Interactive'}
           </span>
         </button>
 
@@ -96,7 +96,7 @@ export const MobileMenuSheet: React.FC<MobileMenuSheetProps> = ({
           onClick={() => handleLinkClick('#matcha-studied')}
           className="text-start min-h-[48px] py-2 font-headline text-2xl sm:text-3xl font-bold text-white/90 hover:text-white transition-colors"
         >
-          {locale === 'ar' ? 'الماتشا، بتفاصيلها' : 'Matcha, Studied'}
+          {locale === 'ar' ? 'الماتشا، بتفاصيلها' : locale === 'zh-CN' ? '抹茶，研析精微' : 'Matcha, Studied'}
         </button>
 
         <button
@@ -120,7 +120,7 @@ export const MobileMenuSheet: React.FC<MobileMenuSheetProps> = ({
           onClick={() => handleLinkClick('#desserts')}
           className="text-start min-h-[48px] py-2 font-headline text-2xl sm:text-3xl font-bold text-white/90 hover:text-white transition-colors"
         >
-          {locale === 'ar' ? 'الحلويات والمخبوزات' : 'Japanese Desserts'}
+          {locale === 'ar' ? 'الحلويات والمخبوزات' : locale === 'zh-CN' ? '日式甜点与和菓子' : 'Japanese Desserts'}
         </button>
 
         <button

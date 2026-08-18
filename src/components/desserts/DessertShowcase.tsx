@@ -24,7 +24,13 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
           <TeaLabAnnotation
             index="LAB / 05"
-            label={locale === 'ar' ? 'الحلويات والمخبوزات اليابانية' : 'JAPANESE SWEETS & WAGASHI'}
+            label={
+              locale === 'ar'
+                ? 'الحلويات والمخبوزات اليابانية'
+                : locale === 'zh-CN'
+                ? '日式和菓子与甜点'
+                : 'JAPANESE SWEETS & WAGASHI'
+            }
             kanji="甘味 · 和菓子"
             variant="minimal"
             theme="light"
@@ -46,8 +52,18 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
         {/* Desserts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {desserts.map((item) => {
-            const name = locale === 'ar' ? item.name.ar : item.name.en;
-            const description = locale === 'ar' ? item.description.ar : item.description.en;
+            const name =
+              locale === 'ar'
+                ? item.name.ar
+                : locale === 'zh-CN'
+                ? item.name.zh || item.name.en
+                : item.name.en;
+            const description =
+              locale === 'ar'
+                ? item.description.ar
+                : locale === 'zh-CN'
+                ? item.description.zh || item.description.en
+                : item.description.en;
 
             return (
               <div
@@ -58,7 +74,11 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-[9.5px] font-sans font-medium px-2 py-0.5 rounded-[6px] bg-[#122416]/10 text-[#122416]">
-                      {locale === 'ar' ? 'حلى ياباني' : 'Japanese Sweet'}
+                      {locale === 'ar'
+                        ? 'حلى ياباني'
+                        : locale === 'zh-CN'
+                        ? '日式茶点'
+                        : 'Japanese Sweet'}
                     </span>
                     {item.name.ja && (
                       <span className="text-[11px] font-japanese text-[#181813]/40">

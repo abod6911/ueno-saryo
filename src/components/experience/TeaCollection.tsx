@@ -15,12 +15,16 @@ export const TeaCollection: React.FC = () => {
           <div className="flex items-center gap-3 mb-4 sm:mb-5">
             <span className="text-[11px] text-[#939458] font-bold">
               <span className="font-mono tracking-wider">03 / </span>
-              <span className="font-sans">{locale === 'ar' ? 'تشكيلة الشاي' : 'COLLECTION'}</span>
+              <span className="font-sans">
+                {locale === 'ar' ? 'تشكيلة الشاي' : locale === 'zh-CN' ? '名茶精选' : 'COLLECTION'}
+              </span>
             </span>
             <span className="w-1 h-1 rounded-full bg-[#939458]/50" />
             <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 text-xs font-sans font-medium text-[#939458] border border-white/10">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>{locale === 'ar' ? 'أندر أوراق الشاي' : 'Single Origin Leaves'}</span>
+              <span>
+                {locale === 'ar' ? 'أندر أوراق الشاي' : locale === 'zh-CN' ? '日本原叶名茶' : 'Single Origin Leaves'}
+              </span>
             </div>
           </div>
 
@@ -36,10 +40,30 @@ export const TeaCollection: React.FC = () => {
         {/* Tea Varieties Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-8">
           {TEA_VARIETIES.map((tea) => {
-            const name = locale === 'ar' ? tea.nameAr : tea.nameEn;
-            const type = locale === 'ar' ? tea.typeAr : tea.typeEn;
-            const origin = locale === 'ar' ? tea.originAr : tea.originEn;
-            const description = locale === 'ar' ? tea.descriptionAr : tea.descriptionEn;
+            const name =
+              locale === 'ar'
+                ? tea.nameAr
+                : locale === 'zh-CN'
+                ? tea.nameZh || tea.nameEn
+                : tea.nameEn;
+            const type =
+              locale === 'ar'
+                ? tea.typeAr
+                : locale === 'zh-CN'
+                ? tea.typeZh || tea.typeEn
+                : tea.typeEn;
+            const origin =
+              locale === 'ar'
+                ? tea.originAr
+                : locale === 'zh-CN'
+                ? tea.originZh || tea.originEn
+                : tea.originEn;
+            const description =
+              locale === 'ar'
+                ? tea.descriptionAr
+                : locale === 'zh-CN'
+                ? tea.descriptionZh || tea.descriptionEn
+                : tea.descriptionEn;
 
             return (
               <div

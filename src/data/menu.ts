@@ -1,15 +1,15 @@
-import type { MenuItem } from '../types/menu';
+import type { MenuItem, MenuCategory } from '../types/menu';
 import { getAssetUrl } from '../lib/assetUrl';
 
-export const MENU_CATEGORIES = [
-  { id: 'all', slug: 'all', order: 0, name: { en: 'All Items', ar: 'الكل', ja: '全メニュー' } },
-  { id: 'featured', slug: 'featured', order: 1, name: { en: 'Signature & Best Sellers', ar: 'المميز والأكثر طلباً', ja: 'おすすめ' } },
-  { id: 'matcha', slug: 'matcha', order: 2, name: { en: 'Matcha Craft', ar: 'مشروبات الماتشا', ja: '抹茶' } },
-  { id: 'loose-leaf', slug: 'loose-leaf', order: 3, name: { en: 'Japanese Loose Leaf', ar: 'شاي ياباني فاخر', ja: '日本茶' } },
-  { id: 'iced-fruit', slug: 'iced-fruit', order: 4, name: { en: 'Iced & Fruit Teas', ar: 'شاي مثلج وفواكه', ja: '冷茶・果実' } },
-  { id: 'fusion', slug: 'fusion', order: 5, name: { en: 'Coffee & Fusion', ar: 'قهوة ومبتكرات', ja: '珈琲・融合' } },
-  { id: 'desserts', slug: 'desserts', order: 6, name: { en: 'Desserts & Sweets', ar: 'الحلويات والمخبوزات', ja: '甘味' } },
-  { id: 'exclusive', slug: 'exclusive', order: 7, name: { en: 'Limited & Exclusive', ar: 'إصدارات حصرية', ja: '限定' } },
+export const MENU_CATEGORIES: MenuCategory[] = [
+  { id: 'all', slug: 'all', order: 0, name: { en: 'All Items', ar: 'الكل', zh: '全部品类', ja: '全メニュー' } },
+  { id: 'featured', slug: 'featured', order: 1, name: { en: 'Signature & Best Sellers', ar: 'المميز والأكثر طلباً', zh: '招牌与热销', ja: 'おすすめ' } },
+  { id: 'matcha', slug: 'matcha', order: 2, name: { en: 'Matcha Craft', ar: 'مشروبات الماتشا', zh: '抹茶特调', ja: '抹茶' } },
+  { id: 'loose-leaf', slug: 'loose-leaf', order: 3, name: { en: 'Japanese Loose Leaf', ar: 'شاي ياباني فاخر', zh: '日本原叶名茶', ja: '日本茶' } },
+  { id: 'iced-fruit', slug: 'iced-fruit', order: 4, name: { en: 'Iced & Fruit Teas', ar: 'شاي مثلج وفواكه', zh: '冷茶与果茶', ja: '冷茶・果実' } },
+  { id: 'fusion', slug: 'fusion', order: 5, name: { en: 'Coffee & Fusion', ar: 'قهوة ومبتكرات', zh: '咖啡与特调融合', ja: '珈琲・融合' } },
+  { id: 'desserts', slug: 'desserts', order: 6, name: { en: 'Desserts & Sweets', ar: 'الحلويات والمخبوزات', zh: '日式甜点与和菓子', ja: '甘味' } },
+  { id: 'exclusive', slug: 'exclusive', order: 7, name: { en: 'Limited & Exclusive', ar: 'إصدارات حصرية', zh: '限定与主厨精选', ja: '限定' } },
 ];
 
 const RAW_MENU_ITEMS: MenuItem[] = [
@@ -24,11 +24,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Ceremonial Matcha Latte',
       ar: 'ماتشا لاتيه احتفالي',
+      zh: '仪式级抹茶拿铁',
       ja: '濃茶ラテ',
     },
     description: {
       en: 'First-harvest stone-ground ceremonial Uji matcha whisked with fresh milk or oat milk.',
       ar: 'ماتشا احتفالية من القطفة الأولى مطحونة على أحجار الغرانيت ممزوجة بالحليب الطازج أو حليب الشوفان.',
+      zh: '宇治头采石臼慢磨仪式级抹茶，融合新鲜牛乳或有机燕麦奶。',
     },
     priceSAR: 34,
     calories: 120,
@@ -38,10 +40,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Rich Umami', 'Fresh Sweet Grass', 'Velvety Smoothness'],
       ar: ['أومامي غني', 'نضارة عشبية حُلوة', 'ملمس مخملي'],
+      zh: ['浓郁鲜味', '清润草本回甘', '丝绒顺滑质感'],
     },
     ingredients: {
       en: ['Uji Ceremonial Grade Matcha', 'Filtered Soft Water', 'Whole Milk or Oat Milk', 'Pure Cane Sugar (Optional)'],
       ar: ['ماتشا أوجي احتفالية فاخرة', 'مياه نقية معالجة', 'حليب كامل الدسم أو شوفان', 'سكر قصب نقي (اختياري)'],
+      zh: ['宇治仪式级抹茶粉', '微矿软化纯净水', '鲜全脂牛乳或燕麦奶', '天然蔗糖（可选）'],
     },
   },
   {
@@ -54,11 +58,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Blueberry Matcha',
       ar: 'ماتشا التوت الأزرق',
+      zh: '野生蓝莓抹茶',
       ja: 'ブルーベリー抹茶',
     },
     description: {
       en: 'Cold-steeped wild blueberry compote layered beneath velvety ceremonial matcha foam.',
       ar: 'مربى التوت الأزرق البري الطازج مع رغوة الماتشا الاحتفالية الباردة.',
+      zh: '冷萃野生蓝莓果酱分层，覆以厚实丝滑的冰镇仪式级抹茶奶霜。',
     },
     priceSAR: 42,
     calories: 145,
@@ -68,10 +74,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Wild Berry Sweetness', 'Emerald Grassiness', 'Balanced Acidity'],
       ar: ['حلاوة التوت البري', 'عشبية الماتشا النقية', 'حموضة منعشة متوازنة'],
+      zh: ['野生浆果清甜', '翠绿抹茶草本感', '微酸爽口平衡'],
     },
     ingredients: {
       en: ['Ceremonial Matcha', 'Wild Blueberry Puree', 'Oat Milk', 'Ice'],
       ar: ['ماتشا احتفالية', 'بيوريه التوت الأزرق البري', 'حليب الشوفان', 'ثلج'],
+      zh: ['仪式级抹茶', '野生蓝莓慢熬纯浆', '有机燕麦奶', '纯净冰块'],
     },
   },
   {
@@ -84,11 +92,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Strawberry Matcha Cloud',
       ar: 'ماتشا سحابة الفراولة',
+      zh: '草莓抹茶云朵',
       ja: '苺抹茶クラウド',
     },
     description: {
       en: 'Handmade slow-reduced strawberry compote layered with oat milk and topped with rich matcha cream.',
       ar: 'بيوريه الفراولة الطازجة المطهو ببطء يعانق حليب الشوفان ورغوة الماتشا المخملية.',
+      zh: '店内慢熬熟成草莓纯果酱，分层融入燕麦奶，冠以馥郁抹茶厚奶霜。',
     },
     priceSAR: 42,
     calories: 150,
@@ -98,10 +108,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Ripe Strawberry', 'Floral Sweetness', 'Dense Matcha Velvet'],
       ar: ['فراولة ناضجة', 'حلاوة زهرية', 'رغوة ماتشا مخملية'],
+      zh: ['熟成草莓果香', '优雅花香清甜', '浓醇抹茶丝绒感'],
     },
     ingredients: {
       en: ['Stone-ground Uji Matcha', 'Fresh Strawberry Reduction', 'Organic Oat Milk', 'Ice'],
       ar: ['ماتشا أوجي مطحونة على الحجر', 'خلاصة الفراولة الطازجة', 'حليب شوفان عضوي', 'ثلج'],
+      zh: ['石臼研磨宇治抹茶', '手作鲜草莓纯浆', '有机燕麦奶', '纯净冰块'],
     },
   },
   {
@@ -114,11 +126,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Mango Matcha Cooler',
       ar: 'مانجو ماتشا المنعش',
+      zh: '阿方索芒果抹茶特调',
       ja: 'マンゴー抹茶',
     },
     description: {
       en: 'Tropical Alphonso mango puree topped with vibrant ceremonial matcha.',
       ar: 'مزيج المانجو الاستوائية الفاخرة مع طبقة الماتشا الخضراء الباردة.',
+      zh: '热带阿方索芒果纯果浆打底，注入清爽冰镇仪式级抹茶。',
     },
     priceSAR: 38,
     calories: 135,
@@ -128,10 +142,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Tropical Mango', 'Crisp Finish', 'Rich Cream'],
       ar: ['مانجو استوائية', 'نهاية منعشة', 'قوام غني'],
+      zh: ['热带浓郁芒果', '清爽回甘', '绵密奶香层次'],
     },
     ingredients: {
       en: ['Ceremonial Matcha', 'Alphonso Mango Puree', 'Milk', 'Ice'],
       ar: ['ماتشا احتفالية', 'بيوريه مانجو ألفونسو', 'حليب', 'ثلج'],
+      zh: ['仪式级抹茶', '阿方索芒果纯浆', '优质牛乳', '纯净冰块'],
     },
   },
   {
@@ -143,11 +159,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Cranberry Tart Matcha',
       ar: 'ماتشا الكرانبيري المنعش',
+      zh: '红莓鲜酸抹茶特饮',
       ja: 'クランベリー抹茶',
     },
     description: {
       en: 'Crisp tart cranberry reduction balanced with sweet ceremonial green tea.',
       ar: 'مزيج حامض وحلو من التوت البري الأحمر ونقيع الماتشا العضوي المنعش.',
+      zh: '酸甜蔓越莓果茸与甘润仪式级绿茶的明快平衡。',
     },
     priceSAR: 39,
     calories: 135,
@@ -157,10 +175,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Tart Cranberry', 'Clean Palate', 'Crisp Sweetness'],
       ar: ['توت بري حامض', 'إحساس نقي', 'حلاوة منعشة'],
+      zh: ['蔓越莓酸甜', '纯净味蕾感受', '清爽怡人甘甜'],
     },
     ingredients: {
       en: ['Ceremonial Matcha', 'Cranberry Compote', 'Cold Water / Oat Milk', 'Ice'],
       ar: ['ماتشا احتفالية', 'مربى الكرانبيري', 'ماء بارد / حليب شوفان', 'ثلج'],
+      zh: ['仪式级抹茶', '手熬蔓越莓酱', '冷萃纯净水 / 燕麦奶', '纯净冰块'],
     },
   },
   {
@@ -172,11 +192,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Iced Coconut Matcha',
       ar: 'ماء جوز الهند بالماتشا',
+      zh: '椰子水抹茶冷饮',
       ja: 'ココナッツ抹茶ウォーター',
     },
     description: {
       en: 'Pure 100% tender coconut water topped with freshly hand-whisked ceremonial matcha foam.',
       ar: 'ماء جوز الهند الطبيعي النقي 100% مغطى بطبقة مخفوقة من الماتشا الاحتفالية الفاخرة.',
+      zh: '100% 天然鲜椰青水，覆以现点茶筅手打仪式级抹茶清霜。',
     },
     priceSAR: 39,
     calories: 85,
@@ -186,10 +208,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Hydrating Coconut', 'Crisp Grassiness', 'Subtle Mineral Sweetness'],
       ar: ['انتعاش جوز الهند', 'نضارة عشبية', 'حلاوة معدنية نقية'],
+      zh: ['椰清沁甜', '青草嫩香', '微矿自然甘美'],
     },
     ingredients: {
       en: ['Fresh Young Coconut Water', 'Uji Ceremonial Matcha', 'Crystal Ice'],
       ar: ['ماء جوز هند طازج', 'ماتشا أوجي احتفالية', 'ثلج نقي'],
+      zh: ['新鲜嫩椰子水', '宇治仪式级抹茶', '透明方冰'],
     },
   },
   {
@@ -201,11 +225,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Salted Cheese Matcha Cloud',
       ar: 'ماتشا سحابة الجبن المملح',
+      zh: '岩盐芝士云顶抹茶',
       ja: 'チーズクラウド抹茶',
     },
     description: {
       en: 'Cold ceremonial matcha latte crowned with a thick layer of house-made salted cream cheese foam.',
       ar: 'قاعدة من حليب الماتشا البارد مغطاة بطبقة غنية وكثيفة من كريمة الجبن المملحة المحضرة في مختبرنا.',
+      zh: '冰镇仪式抹茶拿铁，覆以店内手作浓醇喜马拉雅粉盐芝士奶盖。',
     },
     priceSAR: 44,
     calories: 210,
@@ -215,10 +241,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Savory Cheese Cream', 'Rich Matcha Bitterness', 'Velvety Sweetness'],
       ar: ['كريمة جبن مالحة', 'مرارة ماتشا راقية', 'حلاوة مخملية متوازنة'],
+      zh: ['微咸芝士奶盖', '纯正抹茶茶香', '甜咸平衡丝滑'],
     },
     ingredients: {
       en: ['Ceremonial Matcha', 'Fresh Whole Milk', 'Cream Cheese', 'Himalayan Pink Salt', 'Heavy Cream'],
       ar: ['ماتشا احتفالية', 'حليب طازج', 'جبنة كريمية', 'ملح الهملايا الوردي', 'كريمة خفق'],
+      zh: ['仪式级抹茶', '鲜全脂牛乳', '天然奶油奶酪', '喜马拉雅粉盐', '淡奶油'],
     },
   },
 
@@ -233,11 +261,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Japanese Sencha',
       ar: 'شاي السينشا الأخضر',
+      zh: '静冈初摘煎茶',
       ja: '煎茶',
     },
     description: {
       en: 'Steamed green tea leaves offering a vibrant emerald liquor, crisp vegetative aroma, and clean finish.',
       ar: 'أوراق خضراء مطبوخة على البخار تعطي لوناً زمردياً ونكهة عشبية نقية ونظيفة.',
+      zh: '精细蒸青绿茶原叶，茶汤翠绿澄澈，散发初春嫩芽清香，收口甘醇纯净。',
     },
     priceSAR: 32,
     calories: 5,
@@ -247,10 +277,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Fresh Spinach', 'Subtle Astringency', 'Sweet Finish'],
       ar: ['نضارة عشبية', 'مرارة خفيفة محببة', 'نهاية حلوة'],
+      zh: ['嫩菠菜清香', '微涩回甜', '持久甘爽尾韵'],
     },
     ingredients: {
       en: ['100% Single-origin Japanese Sencha Leaves', '75°C Filtered Soft Water'],
       ar: ['أوراق شاي سينشا يابانية عضوية 100%', 'ماء نقي بدرجة 75 مئوية'],
+      zh: ['100% 单一产区日本煎茶叶', '75°C 微矿软化纯净水'],
     },
   },
   {
@@ -263,11 +295,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Toasted Genmaicha',
       ar: 'شاي الجينمايتشا المحمص',
+      zh: '焙香玄米茶',
       ja: '玄米茶',
     },
     description: {
       en: 'Blend of tender bancha green tea leaves and fire-toasted brown rice grains. Comforting and nutty.',
       ar: 'مزيج فاخر من أوراق الشاي الأخضر وحبوب الأرز البني المحمص بنكهة مكسرات دافئة ومريحة.',
+      zh: '甄选轻焙番茶拼配柴火焙炒糙米谷物，暖意浓郁，自带坚果米香。',
     },
     priceSAR: 28,
     calories: 5,
@@ -277,10 +311,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Popcorn & Toasted Rice', 'Malted Grain', 'Sweet Grassy Base'],
       ar: ['أرز محمص وفشار', 'حبوب مالت دافئة', 'قاعدة عشبية لطيفة'],
+      zh: ['炒米爆香', '麦芽谷香', '柔和绿茶底蕴'],
     },
     ingredients: {
       en: ['Japanese Green Tea Leaves', 'Roasted Brown Rice', '85°C Filtered Water'],
       ar: ['أوراق شاي أخضر ياباني', 'أرز بني محمص', 'ماء نقي بدرجة 85 مئوية'],
+      zh: ['日本绿茶叶', '慢火炒玄米', '85°C 纯净水'],
     },
   },
   {
@@ -293,11 +329,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Kyoto Hojicha',
       ar: 'شاي الهوجيتشا المحمص على الفحم',
+      zh: '京都备长炭焙茶',
       ja: 'ほうじ茶',
     },
     description: {
       en: 'Green tea leaves slow-roasted over charcoal into a deep copper liquor with low caffeine and toasted caramel aroma.',
       ar: 'شاي أخضر محمص على فحم البينشوتان يتميز بلونه النحاسي ونكهة الكراميل المحمص مع نسبة كافيين منخفضة.',
+      zh: '备长炭温火慢焙绿茶，茶汤呈深琥珀红铜色，低咖啡因，散发木质焦糖与可可烘烤香。',
     },
     priceSAR: 30,
     calories: 5,
@@ -307,10 +345,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Roasted Barley', 'Caramelized Wood', 'Smooth Cocoa Finish'],
       ar: ['شعير محمص', 'خشب مكرمل', 'نهاية ناعمة بنكهة الكاكاو'],
+      zh: ['炒大麦香', '焦糖木质调', '温润可可余韵'],
     },
     ingredients: {
       en: ['Charcoal-roasted Japanese Tea Leaves', '90°C Filtered Water'],
       ar: ['أوراق شاي ياباني محمص على الفحم', 'ماء نقي بدرجة 90 مئوية'],
+      zh: ['备长炭火焙日本绿茶原叶', '90°C 纯净水'],
     },
   },
   {
@@ -322,11 +362,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Imperial Gyokuro (Jewel Dew)',
       ar: 'شاي الجيوكورو الإمبراطوري المزروع في الظل',
+      zh: '宇治二十一日覆下玉露',
       ja: '玉露',
     },
     description: {
       en: 'The pinnacle of Japanese green tea. Shaded for 21 days before harvest for intense umami broth-like sweetness.',
       ar: 'درة التاج في الشاي الياباني. يُحجب عن ضوء الشمس لمدة 21 يوماً لتركيز الأحماض الأمينية والأومامي المكثف.',
+      zh: '日本茶道之至高殿堂。采摘前遮光覆盖21日，凝聚极致鲜味与高浓度茶氨酸甘露。',
     },
     priceSAR: 52,
     calories: 5,
@@ -336,10 +378,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Intense Broth Umami', 'Sweet Sea Air', 'Concentrated L-Theanine Sweetness'],
       ar: ['أومامي مكثف يشبه المرق', 'حلاوة بحرية نقية', 'تركيز فائق للأحماض الأمينية'],
+      zh: ['极致鲜甜如高汤', '海洋清风甘爽', '浓厚茶氨酸甘露'],
     },
     ingredients: {
       en: ['100% Ceremonial Gyokuro First-Harvest Buds', '60°C Low-Temperature Pure Water'],
       ar: ['براعم شاي جيوكورو قطفة أولى مظللة', 'ماء نقي بدرجة حرارة منخفضة 60 مئوية'],
+      zh: ['100% 宇治初采覆下玉露嫩芽', '60°C 低温微矿软水'],
     },
   },
   {
@@ -351,11 +395,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Silver Needle White Tea',
       ar: 'شاي الإبر الفضية الأبيض الفاخر',
+      zh: '特选白毫银针白茶',
       ja: '白茶',
     },
     description: {
       en: 'Single unoxidized tender spring buds. Ultra-delicate liquor with notes of fresh wild melon and gentle honeysuckle.',
       ar: 'براعم ربيعية بيضاء نضرة غير مؤكسدة. شاي فائق النقاء بنكهة الشمام العذبة وعبير زهر العسل.',
+      zh: '初春未经氧化的单芽嫩针，茶汤晶莹透亮，带有野生甜瓜与金银花清雅蜜香。',
     },
     priceSAR: 36,
     calories: 5,
@@ -365,10 +411,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Wild Honeydew', 'Sweet Hay', 'Silken Texture'],
       ar: ['شمام بري عذب', 'قش معطر بالشمس', 'ملمس حريري'],
+      zh: ['野生哈密瓜香', '暖阳甘草香', '丝缎般清润口感'],
     },
     ingredients: {
       en: ['Pure Unopened White Tea Buds', '80°C Filtered Soft Water'],
       ar: ['براعم شاي أبيض غير مفتوحة', 'ماء نقي بدرجة 80 مئوية'],
+      zh: ['未展单芽白茶嫩针', '80°C 软化纯净水'],
     },
   },
 
@@ -383,11 +431,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Iced Jasmine Blossom Matcha',
       ar: 'شاي الياسمين المثلج بالماتشا',
+      zh: '茉莉花香冷萃抹茶',
       ja: '茉莉花抹茶冷茶',
     },
     description: {
       en: 'Cold-steeped jasmine green tea poured over ice and topped with a floating ceremonial matcha layer.',
       ar: 'نقيع شاي الياسمين العطري المبرد مع طبقة من الماتشا الخضراء الصافية على وجه الكوب.',
+      zh: '慢萃茉莉绿茶注入冰块，上层悬浮手打仪式级抹茶，花香茶香层叠绽放。',
     },
     priceSAR: 35,
     calories: 45,
@@ -397,10 +447,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Night-blooming Jasmine', 'Crisp Green Tea', 'Clean Floral Finish'],
       ar: ['عبير الياسمين الليلي', 'نقاء الشاي الأخضر', 'نهاية زهرية منعشة'],
+      zh: ['夜开茉莉幽香', '清冽绿茶底蕴', '纯净花香收口'],
     },
     ingredients: {
       en: ['Cold-brewed Jasmine Green Tea', 'Whisked Ceremonial Matcha', 'Ice'],
       ar: ['شاي ياسمين مخمر على البارد', 'ماتشا احتفالية مخفوقة', 'ثلج'],
+      zh: ['冷萃茉莉花绿茶', '现打仪式级抹茶', '纯净方冰'],
     },
   },
   {
@@ -412,11 +464,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Sparkling Rose & White Tea Infusion',
       ar: 'فوار الورد والكركديه مع الشاي الأبيض',
+      zh: '塔伊夫玫瑰洛神白茶气泡饮',
       ja: '薔薇スパークリング白茶',
     },
     description: {
       en: 'Cold-infused Silver Needle white tea with Taif organic rose petals, hibiscus reduction, and sparkling soda.',
       ar: 'نقيع الشاي الأبيض الممزوج ببتلات الورد الطائفي والكركديه البارد مع مياه فوارة منعشة.',
+      zh: '冷萃白毫银针融入沙特塔伊夫大马士革玫瑰花露与洛神花原汁，注入轻盈气泡水。',
     },
     priceSAR: 34,
     calories: 60,
@@ -426,10 +480,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Taif Damask Rose', 'Tart Berry Hibiscus', 'Effervescent Bubbles'],
       ar: ['ورد طائفي جوردي', 'كركديه حامض منعش', 'فقاعات فوارة منعشة'],
+      zh: ['塔伊夫玫瑰雅香', '洛神花酸甜浆果调', '绵密细腻气泡'],
     },
     ingredients: {
       en: ['Cold-steeped White Tea', 'Taif Rose Water', 'Hibiscus Extract', 'Sparkling Spring Water', 'Ice'],
       ar: ['شاي أبيض مبرد', 'ماء ورد طائفي', 'مستخلص الكركديه', 'مياه فوارة نقية', 'ثلج'],
+      zh: ['冷萃白茶', '塔伊夫天然玫瑰露', '洛神花萃取液', '天然气泡矿泉水', '冰块'],
     },
   },
 
@@ -444,11 +500,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Matcha Espresso Latte (Dirty Matcha)',
       ar: 'ماتشا إسبريسو لاتيه',
+      zh: '脏抹茶浓缩拿铁 (Dirty Matcha)',
       ja: '抹茶エスプレッソ',
     },
     description: {
       en: 'Double shot of rich specialty espresso poured over iced sweetened milk and concentrated ceremonial matcha.',
       ar: 'شوت مزدوج من الإسبريسو المختص ينسكب فوق طبقات الحليب البارد والماتشا المركزة.',
+      zh: '双份精品浓缩咖啡轻柔倾倒于冰镇鲜奶与浓缩石臼仪式抹茶之上，层次鲜明。',
     },
     priceSAR: 38,
     calories: 140,
@@ -458,10 +516,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Roasted Cocoa Espresso', 'Rich Matcha Umami', 'Caramel Milk Layer'],
       ar: ['إسبريسو الشوكولاتة المحمصة', 'أومامي الماتشا الغني', 'حليب الكراميل الكريمي'],
+      zh: ['烘焙可可咖啡香', '浓醇抹茶茶鲜', '焦糖牛乳分层'],
     },
     ingredients: {
       en: ['Specialty Double Espresso', 'Ceremonial Matcha Shot', 'Whole Milk or Oat Milk', 'Ice'],
       ar: ['دبل شوت إسبريسو مختص', 'شوت ماتشا احتفالية', 'حليب طازج أو شوفان', 'ثلج'],
+      zh: ['双份精品意式浓缩', '仪式级抹茶浓缩液', '鲜全脂牛乳或燕麦奶', '冰块'],
     },
   },
   {
@@ -473,11 +533,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Kyoto Slow Cold Drip Coffee',
       ar: 'قهوة التقطير البطيء على الطريقة اليابانية',
+      zh: '京都十二小时慢滴冰滴咖啡',
       ja: '水出し珈琲',
     },
     description: {
       en: 'Slow 12-hour cold-water tower extraction through single-origin Ethiopian beans. Served over crystal ice sphere.',
       ar: 'استخلاص بطيء على مدار 12 ساعة عبر أبراج التقطير اليابانية لقهوة إثيوبية أحادية المصدر تقدم فوق كرة ثلجية كريستالية.',
+      zh: '京都传统玻璃冰滴塔12小时慢速滴滤埃塞俄比亚单一产区咖啡豆，置于手工透明冰球上呈现。',
     },
     priceSAR: 32,
     calories: 5,
@@ -487,10 +549,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Jasmine Florals', 'Bergamot Citrus', 'Whisky-like Body'],
       ar: ['زهور الياسمين', 'حمضيات البرغموت', 'قوام عميق وناعم'],
+      zh: ['茉莉花香调', '佛手柑柑橘韵', '威士忌般的醇厚醇滑'],
     },
     ingredients: {
       en: ['Single Origin Arabica Beans', 'Filtered Ice Water (12h Drip)'],
       ar: ['بن عربي إثيوبي أحادي المصدر', 'ماء ثلجي نقي (تقطير 12 ساعة)'],
+      zh: ['单一产区阿拉比卡咖啡豆', '12小时慢滴纯净冰水'],
     },
   },
 
@@ -505,11 +569,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Artisanal Mochi Trio (3 pcs)',
       ar: 'موتشي الماتشا الياباني الطازج (٣ قطع)',
+      zh: '手作生抹茶大福麻薯三味 (3枚)',
       ja: '手作り生抹茶大福',
     },
     description: {
       en: 'Hand-stretched Japanese glutinous rice cake stuffed with rich ceremonial matcha ganache, strawberry, and sweet red bean.',
       ar: 'عجينة الموتشي اليابانية اليدوية المحشوة بجناش الماتشا الاحتفالية الفاخرة، الفراولة، ومعجون الفاصوليا الحمراء الحُلو.',
+      zh: '手工揉打日式软糯羽二重饼皮，包裹浓郁仪式级抹茶甘纳许、草莓与北海道红豆沙。',
     },
     priceSAR: 36,
     calories: 220,
@@ -518,10 +584,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Chewy Mochi Skin', 'Bittersweet Matcha Ganache', 'Subtle Red Bean Sweetness'],
       ar: ['قوام موتشي مطاطي ناعم', 'جناش الماتشا الغني', 'حلاوة فاصوليا حمراء متوازنة'],
+      zh: ['软糯Q弹饼皮', '微苦回甘抹茶甘纳许', '清甜红豆细沙'],
     },
     ingredients: {
       en: ['Mochiko Rice Flour', 'Ceremonial Matcha Ganache', 'Azuki Bean Paste', 'Powdered Sugar'],
       ar: ['دقيق أرز الموتشيكو الياباني', 'جناش الماتشا الاحتفالية', 'معجون أزوكي الحلو', 'سكر بودرة ناعم'],
+      zh: ['日本糯米粉 (Mochiko)', '仪式级抹茶甘纳许', '红豆沙馅 (Azuki)', '纯糖粉'],
     },
   },
   {
@@ -534,11 +602,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Japanese Lemon & Yuzu Sponge',
       ar: 'كيكة الليمون واليوزو اليابانية',
+      zh: '日式濑户内柠檬与柚子蛋糕',
       ja: '檸檬レモンケーキ',
     },
     description: {
       en: 'Ultra-airy Japanese sponge cake infused with yuzu zest syrup and glazed with delicate white citrus fondant.',
       ar: 'كيكة إسفنجية خفيفة مشبعة بسيروب ليمون سيتوتشي واليوزو العطري مغلفة بجليز أبيض رقيق.',
+      zh: '超轻盈日式海绵蛋糕，浸润天然柚子与濑户内柠檬皮清甜糖浆，淋以晶莹柑橘糖霜。',
     },
     priceSAR: 29,
     calories: 210,
@@ -547,10 +617,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Zesty Citrus', 'Featherlight Crumb', 'Delicate Glaze'],
       ar: ['حمضيات منعشة', 'فتات كيك فائق الخفة', 'تغليفة سكرية ناعمة'],
+      zh: ['明媚清新柚香', '空气感轻盈糕体', '薄脆柑橘糖霜'],
     },
     ingredients: {
       en: ['Japanese Cake Flour', 'Fresh Yuzu & Lemon Zest', 'Farm Fresh Eggs', 'Butter'],
       ar: ['طحين كيك ياباني فاخر', 'بشر ليمون ويوزو طازج', 'بيض مزارع طازج', 'زبدة نقية'],
+      zh: ['日本低筋面粉', '新鲜柚子与柠檬碎', '优质鲜鸡蛋', '天然黄油'],
     },
   },
   {
@@ -562,11 +634,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Spiced Carrot & Roasted Walnut Cake',
       ar: 'كيكة الجزر والجوز بالبهارات اللطيفة',
+      zh: '香料胡萝卜与烤核桃蛋糕',
       ja: '人参と胡桃のスパイスケーキ',
     },
     description: {
       en: 'Moist spiced carrot cake studded with roasted California walnuts and layered with whipped mascarpone frosting.',
       ar: 'كيكة جزر هشة غنية بالجوز المحمص ومغطاة بكريمة الجبن والماسكاربوني المخفوقة بخفة.',
+      zh: '温润香料胡萝卜蛋糕体，揉入香脆加州烤核桃，抹上现打轻盈马斯卡彭乳酪霜。',
     },
     priceSAR: 32,
     calories: 310,
@@ -575,10 +649,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Warm Cinnamon Nutmeg', 'Crunchy Walnuts', 'Silky Mascarpone'],
       ar: ['قرفة وجوزة الطيب الدافئة', 'قرمشة الجوز المحمص', 'نعومة جبن الماسكاربوني'],
+      zh: ['肉桂肉豆蔻暖香', '香脆坚果口感', '丝滑马斯卡彭奶香'],
     },
     ingredients: {
       en: ['Grated Organic Carrots', 'Roasted Walnuts', 'Mascarpone Cream', 'Brown Sugar', 'Warm Spices'],
       ar: ['جزر عضوي مبشور', 'جوز محمص', 'كريمة ماسكاربوني', 'سكر بني', 'بهارات دافئة'],
+      zh: ['有机擦丝胡萝卜', '烘烤核桃仁', '马斯卡彭乳酪', '红糖', '天然温和香料'],
     },
   },
   {
@@ -591,11 +667,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Basque Burnt Matcha Cheesecake',
       ar: 'تشيز كيك الماتشا الباسكية الاحتفالية',
+      zh: '宇治抹茶巴斯克焦香芝士蛋糕',
       ja: '抹茶バスクチーズケーキ',
     },
     description: {
       en: 'Caramelized burnt crust enclosing an oozing molten ceremonial Uji matcha cream cheese center.',
       ar: 'وجه مكرمل ومحمص بقلب كريمي سائل يفيض بجبنة الكريمة وماتشا أوجي الاحتفالية عالية الجودة.',
+      zh: '外层深焦糖烘烤脆皮，内裹半熟流心的高级宇治仪式抹茶奶油芝士熔岩。',
     },
     priceSAR: 38,
     calories: 340,
@@ -604,10 +682,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Smoky Caramel Top', 'Rich Molten Matcha Custard', 'Creamy Umami Tang'],
       ar: ['كراميل مدخن لذيذ', 'قلب ماتشا سائل وغني', 'حموضة جبن كريمية متوازنة'],
+      zh: ['微焦焦糖表皮', '熔岩流心浓抹茶', '芝士鲜爽乳香'],
     },
     ingredients: {
       en: ['Philadelphia Cream Cheese', 'Ceremonial Uji Matcha', 'Heavy Cream', 'Organic Eggs', 'Sugar'],
       ar: ['جبنة كريمية فاخرة', 'ماتشا أوجي احتفالية', 'كريمة ثقيلة', 'بيض عضوي', 'سكر'],
+      zh: ['进口奶油奶酪', '宇治仪式级抹茶粉', '天然动物淡奶油', '有机鸡蛋', '纯糖'],
     },
   },
 
@@ -622,11 +702,13 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     name: {
       en: 'Single-Cultivar Samidori Ceremonial (Limited Harvest)',
       ar: 'ماتشا ساميدوري سلالة نادرة (محصول محدود)',
+      zh: '京都和束产 单一品种佐绿 (Samidori) 仪式抹茶',
       ja: '手摘み さみどり 抹茶',
     },
     description: {
       en: 'Single-cultivar hand-picked Samidori tea leaves from Wazuka, Kyoto. Whisked table-side with bamboo chasen.',
       ar: 'ماتشا نقية من سلالة ساميدوري النادرة من قطفة واحدة في وازوكا، كيوتو. تخفق يدوياً أمام الضيف بمضرب الخيزران التقليدي.',
+      zh: '京都和束町手摘单一品种佐绿 (Samidori) 茶叶，席前以传统竹茶筅现场点抹茶道呈现。',
     },
     priceSAR: 48,
     calories: 5,
@@ -636,10 +718,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     tastingNotes: {
       en: ['Silken Jade Microfoam', 'Pure Pistachio Sweetness', 'Zero Astringency'],
       ar: ['رغوة ياقوتية ناعمة جداً', 'حلاوة تشبه الفستق الحلبي', 'انعدام تام للمرارة'],
+      zh: ['翡翠般微细绵密茶沫', '纯净开心果坚果甘甜', '零苦涩极致醇厚'],
     },
     ingredients: {
       en: ['100% Hand-picked Single Cultivar Samidori Matcha', '75°C Ultra-soft Water'],
       ar: ['ماتشا ساميدوري يابانية مقطوفة يدوياً 100%', 'ماء نقي معالج بدرجة 75 مئوية'],
+      zh: ['100% 手摘单一品种佐绿抹茶原叶', '75°C 极软纯净水'],
     },
   },
 ];

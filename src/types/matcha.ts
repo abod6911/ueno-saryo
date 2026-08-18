@@ -2,6 +2,7 @@ export interface HeroFlavor {
   id: string;
   nameEn: string;
   nameAr: string;
+  nameZh?: string;
   nameJa?: string;
   priceSAR: number;
   priceFormatted: string;
@@ -12,8 +13,10 @@ export interface HeroFlavor {
   themeColor: string;
   descriptionEn: string;
   descriptionAr: string;
+  descriptionZh?: string;
   tastingNotesEn: string;
   tastingNotesAr: string;
+  tastingNotesZh?: string;
   // Legacy aliases
   name?: string;
   price?: string;
@@ -30,4 +33,3 @@ export interface CardTransform {
   blur: number;
   zIndex: number;
 }
-

@@ -7,11 +7,13 @@ export interface MenuCategory {
   name: {
     en: string;
     ar: string;
+    zh?: string;
     ja?: string;
   };
   description?: {
     en: string;
     ar: string;
+    zh?: string;
   };
   icon?: string;
 }
@@ -23,11 +25,13 @@ export interface MenuItem {
   name: {
     en: string;
     ar: string;
+    zh?: string;
     ja?: string;
   };
   description: {
     en: string;
     ar: string;
+    zh?: string;
   };
   priceSAR: number;
   calories?: number;
@@ -41,9 +45,11 @@ export interface MenuItem {
   tastingNotes?: {
     en: string[];
     ar: string[];
+    zh?: string[];
   };
   ingredients?: {
     en: string[];
     ar: string[];
+    zh?: string[];
   };
 }

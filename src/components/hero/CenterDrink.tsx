@@ -72,7 +72,11 @@ export const CenterDrink: React.FC<CenterDrinkProps> = memo(({
               </span>
               <span className="text-white/30 text-[9px]">·</span>
               <span className="text-[10.5px] sm:text-[11.5px] font-headline font-bold text-white tracking-tight">
-                {locale === 'ar' ? currentFlavor.nameAr : currentFlavor.nameEn}
+                {locale === 'ar'
+                  ? currentFlavor.nameAr
+                  : locale === 'zh-CN'
+                  ? currentFlavor.nameZh || currentFlavor.nameEn
+                  : currentFlavor.nameEn}
               </span>
               {currentFlavor.calories && (
                 <>
@@ -145,7 +149,7 @@ export const CenterDrink: React.FC<CenterDrinkProps> = memo(({
             </span>
             <span className="w-1 h-1 rounded-full bg-[#29482a]/50" />
             <span className="text-[10.5px] font-sans font-medium text-[#29482a]">
-              {locale === 'ar' ? 'طلب فوري' : 'Order'}
+              {locale === 'ar' ? 'طلب فوري' : locale === 'zh-CN' ? '立即点单' : 'Order'}
             </span>
           </button>
         </div>

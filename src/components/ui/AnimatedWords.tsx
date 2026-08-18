@@ -21,8 +21,13 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
   const { locale } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
-  const words = text.split(' ').filter(Boolean);
   const isRtl = locale === 'ar';
+  const isZh = locale === 'zh-CN';
+
+  // For Chinese, split by phrases/spaces or render fluid segments without artificial spaces
+  const words = isZh
+    ? (text.includes(' ') ? text.split(' ') : [text]).filter(Boolean)
+    : text.split(' ').filter(Boolean);
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -59,7 +64,7 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
   return (
     <Component
       ref={containerRef as any}
-      className={`${className} ${isRtl ? 'tracking-normal' : ''}`}
+      className={`${className} ${isRtl || isZh ? 'tracking-normal' : ''}`}
       aria-label={ariaLabel || text}
     >
       {words.map((word, idx) => {
@@ -68,7 +73,9 @@ export const AnimatedWords: React.FC<AnimatedWordsProps> = ({
         return (
           <span
             key={`${word}-${idx}`}
-            className="inline-block overflow-hidden align-top py-2 px-1 -my-2 -mx-0.5 me-[0.3em] last:me-0"
+            className={`inline-block overflow-hidden align-top py-2 px-1 -my-2 -mx-0.5 ${
+              isZh ? 'me-0' : 'me-[0.3em]'
+            } last:me-0`}
             aria-hidden="true"
           >
             <span

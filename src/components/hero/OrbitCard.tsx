@@ -34,7 +34,11 @@ export const OrbitCard: React.FC<OrbitCardProps> = memo(({
       {/* Top Small Category / Price Indicator */}
       <div className="w-full flex items-center justify-between text-[8.5px] sm:text-[10px] md:text-[10.5px] text-[#122416]/75 font-mono px-0.5">
         <span className="truncate max-w-[58px] sm:max-w-[85px] font-medium tracking-tight">
-          {locale === 'ar' ? flavor.nameAr : flavor.nameEn}
+          {locale === 'ar'
+            ? flavor.nameAr
+            : locale === 'zh-CN'
+            ? flavor.nameZh || flavor.nameEn
+            : flavor.nameEn}
         </span>
         <span className="font-bold text-[#29482a] shrink-0">
           {flavor.priceSAR} <span className="text-[7.5px] sm:text-[9px]">{locale === 'ar' ? 'ر.س' : 'SAR'}</span>

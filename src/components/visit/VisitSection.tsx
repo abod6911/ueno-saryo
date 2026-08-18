@@ -21,7 +21,13 @@ export const VisitSection: React.FC = () => {
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
           <TeaLabAnnotation
             index="LAB / 08"
-            label={locale === 'ar' ? 'ملاذ الشاي بجدة' : 'JEDDAH SANCTUARY & VISITING'}
+            label={
+              locale === 'ar'
+                ? 'ملاذ الشاي بجدة'
+                : locale === 'zh-CN'
+                ? '吉达茶道圣所与到店指南'
+                : 'JEDDAH SANCTUARY & VISITING'
+            }
             kanji="訪茶 · 茶道研究所"
             variant="minimal"
             className="mb-4 sm:mb-5"

@@ -27,6 +27,28 @@ export const GalleryGrid: React.FC = () => {
     }
   };
 
+  const getCategoryLabel = (category: string) => {
+    if (locale === 'ar') {
+      return category === 'atmosphere'
+        ? 'الأجواء والسكينة'
+        : category === 'craft'
+        ? 'حرفة الشاي'
+        : category === 'origin'
+        ? 'المصدر والزراعة'
+        : 'الحلويات اليابانية';
+    }
+    if (locale === 'zh-CN') {
+      return category === 'atmosphere'
+        ? '空间与意境'
+        : category === 'craft'
+        ? '点茶工艺'
+        : category === 'origin'
+        ? '茶园产地'
+        : '日式茶点';
+    }
+    return category.toUpperCase();
+  };
+
   return (
     <section id="gallery" className="w-full bg-[#122416] text-[#f8f7f1] relative overflow-hidden border-t border-white/10">
       {/* Top Organic Contour Transition */}
@@ -37,7 +59,13 @@ export const GalleryGrid: React.FC = () => {
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
           <TeaLabAnnotation
             index="LAB / 06"
-            label={locale === 'ar' ? 'معرض الأجواء والسكينة' : 'ATMOSPHERE & VISUAL ESSENCE'}
+            label={
+              locale === 'ar'
+                ? 'معرض الأجواء والسكينة'
+                : locale === 'zh-CN'
+                ? '空间光影与茶境'
+                : 'ATMOSPHERE & VISUAL ESSENCE'
+            }
             kanji="空間 · 喫茶"
             variant="minimal"
             className="mb-4 sm:mb-5"
@@ -58,13 +86,21 @@ export const GalleryGrid: React.FC = () => {
         {/* Gallery Grid with Asymmetrical Organic Rhythm */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {GALLERY_ITEMS.map((photo, idx) => {
-            const title = locale === 'ar' ? photo.titleAr : photo.titleEn;
-            const categoryLabel = locale === 'ar'
-              ? (photo.category === 'atmosphere' ? 'الأجواء والسكينة' : photo.category === 'craft' ? 'حرفة الشاي' : photo.category === 'origin' ? 'المصدر والزراعة' : 'الحلويات اليابانية')
-              : photo.category.toUpperCase();
+            const title =
+              locale === 'ar'
+                ? photo.titleAr
+                : locale === 'zh-CN'
+                ? photo.titleZh || photo.titleEn
+                : photo.titleEn;
+            const categoryLabel = getCategoryLabel(photo.category);
 
             // Selective organic contour crop for intentional rhythm (1 in 3)
-            const cropClass = idx === 1 ? 'matcha-organic-crop' : idx === 4 ? 'matcha-organic-crop-alt' : 'rounded-[22px] sm:rounded-[24px]';
+            const cropClass =
+              idx === 1
+                ? 'matcha-organic-crop'
+                : idx === 4
+                ? 'matcha-organic-crop-alt'
+                : 'rounded-[22px] sm:rounded-[24px]';
 
             return (
               <div
@@ -108,11 +144,24 @@ export const GalleryGrid: React.FC = () => {
 
       {/* Lightbox Modal */}
       <LightboxModal
-        photo={activePhoto ? {
-          ...activePhoto,
-          categoryEn: activePhoto.category.toUpperCase(),
-          categoryAr: activePhoto.category === 'atmosphere' ? 'الأجواء والسكينة' : activePhoto.category === 'craft' ? 'حرفة الشاي' : activePhoto.category === 'origin' ? 'المصدر والزراعة' : 'الحلويات اليابانية'
-        } : null}
+        photo={
+          activePhoto
+            ? {
+                ...activePhoto,
+                titleZh: activePhoto.titleZh,
+                categoryZh: getCategoryLabel(activePhoto.category),
+                categoryEn: activePhoto.category.toUpperCase(),
+                categoryAr:
+                  activePhoto.category === 'atmosphere'
+                    ? 'الأجواء والسكينة'
+                    : activePhoto.category === 'craft'
+                    ? 'حرفة الشاي'
+                    : activePhoto.category === 'origin'
+                    ? 'المصدر والزراعة'
+                    : 'الحلويات اليابانية',
+              }
+            : null
+        }
         onClose={() => setSelectedPhotoIndex(null)}
         onPrev={handlePrev}
         onNext={handleNext}

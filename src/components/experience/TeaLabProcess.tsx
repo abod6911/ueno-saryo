@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { TEA_LAB_STEPS } from '../../data/teaExperience';
 import { useLanguage } from '../../i18n/context';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
-import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { JapaneseSeal } from '../ui/JapaneseSeal';
+import { TeaLabAnnotation } from '../ui/TeaLabAnnotation';
 import { RevealOnView } from '../ui/RevealOnView';
 
-const STEP_KANJI = ['葉', '量', '温', '点', '碗'];
+const STEP_KANJI = ['選', '量', '温', '点', '碗'];
 
 export const TeaLabProcess: React.FC = () => {
   const { locale, t } = useLanguage();
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
 
-  const handleStepSelect = (idx: number) => {
-    if (idx === activeStepIndex) return;
+  const activeStep = TEA_LAB_STEPS[activeStepIndex];
+
+  const handleStepSelect = (index: number) => {
+    if (index === activeStepIndex) return;
     setIsChanging(true);
-    setActiveStepIndex(idx);
-    setTimeout(() => setIsChanging(false), 280);
+    setTimeout(() => {
+      setActiveStepIndex(index);
+      setIsChanging(false);
+    }, 150);
   };
 
   const handleNextStep = () => {
@@ -25,21 +29,24 @@ export const TeaLabProcess: React.FC = () => {
     handleStepSelect(nextIdx);
   };
 
-  const activeStep = TEA_LAB_STEPS[activeStepIndex];
-
   return (
-    <section id="tea-experience" className="w-full bg-[#19321d] text-[#f8f7f1] py-16 sm:py-24 relative overflow-hidden border-t border-white/10">
-      {/* Background Decorative Kanji */}
-      <div className="absolute top-10 start-8 text-[120px] sm:text-[180px] font-japanese font-black text-white/[0.02] pointer-events-none select-none">
-        点前
-      </div>
+    <section id="tea-experience" className="w-full bg-[#1b331f] text-[#f8f7f1] py-16 sm:py-24 relative overflow-hidden border-t border-white/10">
+      {/* Background Decorative Rings */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-white/5 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full border border-white/5 pointer-events-none" />
 
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header with Specimen Index */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <TeaLabAnnotation
             index="LAB / 02"
-            label={locale === 'ar' ? 'مراحل وفلسفة التحضير' : 'TEA EXTRACTION CEREMONY'}
+            label={
+              locale === 'ar'
+                ? 'مراحل وفلسفة التحضير'
+                : locale === 'zh-CN'
+                ? '五阶沏茶工法'
+                : 'TEA EXTRACTION CEREMONY'
+            }
             kanji="点前 · 精密抽出"
             variant="minimal"
             className="mb-4 sm:mb-5"
@@ -57,13 +64,12 @@ export const TeaLabProcess: React.FC = () => {
           </p>
         </div>
 
-        {/* Japanese Tea Lab Precision Rail (Unified Process Surface) */}
-        <div className="w-full max-w-5xl mx-auto mb-10 sm:mb-14">
-          {/* Desktop Precision Rail (>= 768px) */}
-          <div className="hidden md:block relative">
-            {/* Background Connecting Timeline */}
-            <div className="absolute top-6 inset-x-8 h-[2px] bg-white/10 z-0">
-              {/* Active Step Progress Fill */}
+        {/* 5-Stage Floating Control Surface Stepper */}
+        <div className="max-w-5xl mx-auto mb-8 sm:mb-12">
+          {/* Desktop & Tablet Navigation Deck (>= 768px) */}
+          <div className="hidden md:block bg-[#122416]/90 backdrop-blur-xl rounded-[24px] p-4 sm:p-6 border border-white/12 shadow-[0_12px_32px_rgba(0,0,0,0.35)] relative select-none">
+            {/* Progress Track */}
+            <div className="absolute top-[38px] left-[10%] right-[10%] h-[2px] bg-white/10 z-0">
               <div
                 className="h-full bg-[#939458] transition-all duration-500 ease-out"
                 style={{
@@ -77,7 +83,12 @@ export const TeaLabProcess: React.FC = () => {
               {TEA_LAB_STEPS.map((step, idx) => {
                 const isActive = idx === activeStepIndex;
                 const isPassed = idx < activeStepIndex;
-                const name = locale === 'ar' ? step.nameAr : step.nameEn;
+                const name =
+                  locale === 'ar'
+                    ? step.nameAr
+                    : locale === 'zh-CN'
+                    ? step.nameZh || step.nameEn
+                    : step.nameEn;
                 const kanji = STEP_KANJI[idx] || '茶';
 
                 return (
@@ -101,22 +112,28 @@ export const TeaLabProcess: React.FC = () => {
                     </div>
 
                     {/* Step Number & Title */}
-                    <span className={`font-mono text-[10.5px] font-bold mb-1 transition-colors ${
-                      isActive ? 'text-[#939458]' : 'text-white/40'
-                    }`}>
+                    <span
+                      className={`font-mono text-[10.5px] font-bold mb-1 transition-colors ${
+                        isActive ? 'text-[#939458]' : 'text-white/40'
+                      }`}
+                    >
                       {step.number}
                     </span>
 
-                    <span className={`font-headline text-xs sm:text-[13px] font-bold line-clamp-1 transition-colors ${
-                      isActive ? 'text-white' : 'text-white/70 group-hover:text-white'
-                    }`}>
+                    <span
+                      className={`font-headline text-xs sm:text-[13px] font-bold line-clamp-1 transition-colors ${
+                        isActive ? 'text-white' : 'text-white/70 group-hover:text-white'
+                      }`}
+                    >
                       {name}
                     </span>
 
                     {step.nameJa && (
-                      <span className={`text-[10px] font-japanese mt-0.5 transition-colors ${
-                        isActive ? 'text-[#939458]' : 'text-white/30'
-                      }`}>
+                      <span
+                        className={`text-[10px] font-japanese mt-0.5 transition-colors ${
+                          isActive ? 'text-[#939458]' : 'text-white/30'
+                        }`}
+                      >
                         {step.nameJa.split('·')[0].trim()}
                       </span>
                     )}
@@ -131,7 +148,12 @@ export const TeaLabProcess: React.FC = () => {
             <div className="flex items-center gap-2 w-max px-1">
               {TEA_LAB_STEPS.map((step, idx) => {
                 const isActive = idx === activeStepIndex;
-                const name = locale === 'ar' ? step.nameAr : step.nameEn;
+                const name =
+                  locale === 'ar'
+                    ? step.nameAr
+                    : locale === 'zh-CN'
+                    ? step.nameZh || step.nameEn
+                    : step.nameEn;
                 const kanji = STEP_KANJI[idx] || '茶';
 
                 return (
@@ -145,7 +167,11 @@ export const TeaLabProcess: React.FC = () => {
                         : 'bg-[#122416]/70 text-white/70 border-white/10'
                     }`}
                   >
-                    <span className={`font-mono text-[10.5px] font-bold ${isActive ? 'text-[#29482a]' : 'text-[#939458]'}`}>
+                    <span
+                      className={`font-mono text-[10.5px] font-bold ${
+                        isActive ? 'text-[#29482a]' : 'text-[#939458]'
+                      }`}
+                    >
                       {step.number}
                     </span>
                     <span className="font-japanese text-xs font-bold">{kanji}</span>
@@ -180,18 +206,30 @@ export const TeaLabProcess: React.FC = () => {
               </div>
 
               <h3 className="font-headline text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-                {locale === 'ar' ? activeStep.nameAr : activeStep.nameEn}
+                {locale === 'ar'
+                  ? activeStep.nameAr
+                  : locale === 'zh-CN'
+                  ? activeStep.nameZh || activeStep.nameEn
+                  : activeStep.nameEn}
               </h3>
 
               <p className="text-sm sm:text-base text-[#f8f7f1]/80 leading-relaxed font-sans max-w-xl">
-                {locale === 'ar' ? activeStep.descriptionAr : activeStep.descriptionEn}
+                {locale === 'ar'
+                  ? activeStep.descriptionAr
+                  : locale === 'zh-CN'
+                  ? activeStep.descriptionZh || activeStep.descriptionEn
+                  : activeStep.descriptionEn}
               </p>
 
               {/* Scientific Extraction Metric Note */}
               <div className="w-full bg-[#19321d]/80 rounded-[18px] p-4 border border-white/10 text-xs text-[#f8f7f1]/90 flex items-start gap-3 mt-2">
                 <span className="w-2 h-2 rounded-full bg-[#939458] shrink-0 mt-1.5" />
-                <p className="leading-relaxed">
-                  {locale === 'ar' ? activeStep.scientificNoteAr : activeStep.scientificNoteEn}
+                <p className="leading-relaxed font-sans">
+                  {locale === 'ar'
+                    ? activeStep.scientificNoteAr
+                    : locale === 'zh-CN'
+                    ? activeStep.scientificNoteZh || activeStep.scientificNoteEn
+                    : activeStep.scientificNoteEn}
                 </p>
               </div>
 
@@ -201,7 +239,13 @@ export const TeaLabProcess: React.FC = () => {
                 onClick={handleNextStep}
                 className="mt-2 inline-flex items-center gap-2 text-xs font-mono font-bold text-[#939458] hover:text-white transition-colors cursor-pointer group"
               >
-                <span>{locale === 'ar' ? 'المرحلة التالية' : 'Next Step'}</span>
+                <span>
+                  {locale === 'ar'
+                    ? 'المرحلة التالية'
+                    : locale === 'zh-CN'
+                    ? '下一阶段工法'
+                    : 'Next Step'}
+                </span>
                 {locale === 'ar' ? (
                   <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
                 ) : (
@@ -210,24 +254,18 @@ export const TeaLabProcess: React.FC = () => {
               </button>
             </div>
 
-            {/* Right: Authentic Photograph Showcase with Organic Crop */}
-            <div className="w-full lg:w-[480px] h-[260px] sm:h-[320px] rounded-[20px] sm:rounded-[24px] overflow-hidden border border-white/15 relative shadow-xl shrink-0 group bg-[#19321d]">
+            {/* Right: Step Visual Specimen Image */}
+            <div className="w-full lg:w-[440px] aspect-[4/3] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-[#19321d] border border-white/10 shadow-2xl relative shrink-0">
               <img
-                key={activeStep.number}
                 src={activeStep.image}
                 alt={activeStep.nameEn}
-                className={`w-full h-full object-cover transition-all duration-500 ease-out ${
-                  isChanging ? 'opacity-0 scale-[1.03]' : 'opacity-100 scale-100'
+                className={`w-full h-full object-cover transition-all duration-500 transform-gpu ${
+                  isChanging ? 'scale-105 opacity-60' : 'scale-100 opacity-100'
                 }`}
-                loading="eager"
-                decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-
-              {/* Step Identification Specimen Tag */}
-              <div className="absolute bottom-3 start-3 end-3 flex items-center justify-between text-[11px] font-mono text-white/80 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                <span>UENO SARYO · CRAFT</span>
-                <span className="text-[#939458] font-bold">{activeStep.nameJa}</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 start-3 px-3 py-1 rounded-full bg-[#122416]/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-[#939458]">
+                UENO LAB ARCHIVE · {activeStep.number}
               </div>
             </div>
           </div>

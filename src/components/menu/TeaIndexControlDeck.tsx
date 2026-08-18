@@ -63,7 +63,12 @@ export const TeaIndexControlDeck: React.FC<TeaIndexControlDeckProps> = ({
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/5 text-[#122416] text-[11px] sm:text-xs font-mono font-medium ms-auto sm:ms-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#29482a]" />
             <span>
-              {totalCount} {locale === 'ar' ? 'صنفاً مختاراً' : 'selections'}
+              {totalCount}{' '}
+              {locale === 'ar'
+                ? 'صنفاً مختاراً'
+                : locale === 'zh-CN'
+                ? '款精选品项'
+                : 'selections'}
             </span>
           </div>
         </div>
@@ -99,7 +104,12 @@ export const TeaIndexControlDeck: React.FC<TeaIndexControlDeckProps> = ({
         <div className="flex md:flex-wrap items-center gap-1.5 sm:gap-2 w-max md:w-full min-w-full">
           {categories.map((cat, idx) => {
             const isActive = cat.id === activeCategoryId;
-            const name = locale === 'ar' ? cat.name.ar : cat.name.en;
+            const name =
+              locale === 'ar'
+                ? cat.name.ar
+                : locale === 'zh-CN'
+                ? cat.name.zh || cat.name.en
+                : cat.name.en;
             const indexStr = `0${idx + 1}`;
 
             return (

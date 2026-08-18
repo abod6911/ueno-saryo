@@ -14,7 +14,7 @@ export const MenuSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
-  // Filter items by category & search query
+  // Filter items by category & search query with full Chinese, English, Arabic, Japanese support
   const filteredItems = useMemo(() => {
     return MENU_ITEMS.filter((item) => {
       // Category match
@@ -29,12 +29,30 @@ export const MenuSection: React.FC = () => {
 
       // Search match
       if (!searchQuery) return true;
-      const q = searchQuery.toLowerCase();
-      const matchEn = item.name.en.toLowerCase().includes(q) || item.description.en.toLowerCase().includes(q);
-      const matchAr = item.name.ar.includes(q) || item.description.ar.includes(q);
+      const q = searchQuery.toLowerCase().trim();
+      const matchEn =
+        item.name.en.toLowerCase().includes(q) ||
+        item.description.en.toLowerCase().includes(q);
+      const matchAr =
+        item.name.ar.includes(q) ||
+        item.description.ar.includes(q);
+      const matchZh =
+        (item.name.zh && item.name.zh.includes(q)) ||
+        (item.description.zh && item.description.zh.includes(q)) ||
+        false;
       const matchJa = item.name.ja?.includes(q) || false;
+      const matchNotes =
+        item.tastingNotes?.zh?.some((n) => n.includes(q)) ||
+        item.tastingNotes?.en?.some((n) => n.toLowerCase().includes(q)) ||
+        item.tastingNotes?.ar?.some((n) => n.includes(q)) ||
+        false;
+      const matchIng =
+        item.ingredients?.zh?.some((n) => n.includes(q)) ||
+        item.ingredients?.en?.some((n) => n.toLowerCase().includes(q)) ||
+        item.ingredients?.ar?.some((n) => n.includes(q)) ||
+        false;
 
-      return matchEn || matchAr || matchJa;
+      return matchEn || matchAr || matchZh || matchJa || matchNotes || matchIng;
     });
   }, [activeCategoryId, searchQuery]);
 
@@ -46,10 +64,12 @@ export const MenuSection: React.FC = () => {
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5">
             <span className="text-[11px] text-[#29482a] font-bold">
               <span className="font-mono tracking-wider">04 / </span>
-              <span className="font-sans">{locale === 'ar' ? 'القائمة' : 'MENU'}</span>
+              <span className="font-sans">
+                {locale === 'ar' ? 'القائمة' : locale === 'zh-CN' ? '茶单' : 'MENU'}
+              </span>
             </span>
             <span className="w-1 h-1 rounded-full bg-[#29482a]/50" />
             <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#122416]/10 text-[#122416] text-xs font-sans font-medium">
@@ -60,12 +80,12 @@ export const MenuSection: React.FC = () => {
 
           {/* Signature Rise Heading Reveal */}
           <RevealOnView variant="signature-rise" delay={80}>
-            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-normal mb-3">
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-normal mb-4 sm:mb-5">
               {t.menu.heading}
             </h2>
           </RevealOnView>
 
-          <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl">
+          <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl pt-0.5">
             {t.menu.subheading}
           </p>
         </div>
@@ -85,11 +105,8 @@ export const MenuSection: React.FC = () => {
         {/* Products Grid (Fast, lightweight CSS stagger) */}
         {filteredItems.length === 0 ? (
           <div className="w-full py-16 text-center text-[#181813]/60 font-sans">
-            <p className="text-sm">
-              {locale === 'ar'
-                ? 'لم نجد أصناف تطابق بحثك.'
-                : 'No menu items match your search criteria.'}
-            </p>
+            <p className="text-sm">{t.menu.noResults}</p>
+            <p className="text-xs text-[#181813]/40 mt-1.5">{t.menu.tryDifferent}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">

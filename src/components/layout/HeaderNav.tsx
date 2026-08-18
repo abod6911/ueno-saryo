@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../i18n/context';
 import { BUSINESS_DATA } from '../../data/business';
-import { Menu, MapPin, Globe, ArrowUpRight } from 'lucide-react';
+import { Menu, MapPin, ArrowUpRight } from 'lucide-react';
+import { LanguageSelector } from '../ui/LanguageSelector';
 
 interface HeaderNavProps {
   onOpenMobileMenu: () => void;
@@ -9,7 +10,7 @@ interface HeaderNavProps {
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMenuSection }) => {
-  const { locale, toggleLocale, t } = useLanguage();
+  const { locale, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -45,7 +46,11 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMe
               </span>
             </div>
             <span className="text-[10px] sm:text-xs text-[#f8f7f1]/60 mt-0.5 font-sans font-medium">
-              {locale === 'ar' ? 'UENO SARYO · تجربة الشاي' : 'Tea Experience · Ar Rawdah'}
+              {locale === 'ar'
+                ? 'UENO SARYO · تجربة الشاي'
+                : locale === 'zh-CN'
+                ? 'UENO SARYO · 日本茶道研萃'
+                : 'Tea Experience · Ar Rawdah'}
             </span>
           </div>
         </a>
@@ -72,7 +77,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMe
             href="#matcha-studied"
             className="px-3.5 py-1.5 text-xs font-medium text-[#f8f7f1]/80 hover:text-white hover:bg-white/10 rounded-full transition-all"
           >
-            {locale === 'ar' ? 'الماتشا' : 'Matcha'}
+            {locale === 'ar' ? 'الماتشا' : locale === 'zh-CN' ? '抹茶研析' : 'Matcha'}
           </a>
           <a
             href="#tea-experience"
@@ -90,7 +95,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMe
             href="#desserts"
             className="px-3.5 py-1.5 text-xs font-medium text-[#f8f7f1]/80 hover:text-white hover:bg-white/10 rounded-full transition-all"
           >
-            {locale === 'ar' ? 'الحلويات' : 'Desserts'}
+            {locale === 'ar' ? 'الحلويات' : locale === 'zh-CN' ? '日式甜点' : 'Desserts'}
           </a>
           <a
             href="#gallery"
@@ -112,18 +117,10 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMe
           </a>
         </nav>
 
-        {/* Right: Actions & Language Switch */}
+        {/* Right: Actions & 3-Language Selector */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Language Switch Button */}
-          <button
-            type="button"
-            onClick={toggleLocale}
-            aria-label="Switch Language"
-            className="h-9 sm:h-10 px-3 sm:px-4 rounded-full bg-[#f8f7f1]/10 hover:bg-[#f8f7f1]/20 backdrop-blur-md border border-white/15 text-[#f8f7f1] text-xs font-semibold flex items-center gap-1.5 transition-all active:scale-95 shadow-sm"
-          >
-            <Globe className="w-3.5 h-3.5 stroke-[2] opacity-80" />
-            <span>{t.nav.langToggle}</span>
-          </button>
+          {/* Universal Language Selector */}
+          <LanguageSelector variant="desktop" />
 
           {/* Directions Quick Link (Desktop) */}
           <a

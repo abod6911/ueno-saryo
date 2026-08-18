@@ -90,7 +90,13 @@ export const ReviewsSection: React.FC = memo(() => {
             >
               <TeaLabAnnotation
                 index="LAB / 07"
-                label={locale === 'ar' ? 'انطباعات وشهادات الضيوف' : 'GUEST REVIEWS & FEEDBACK'}
+                label={
+                  locale === 'ar'
+                    ? 'انطباعات وشهادات الضيوف'
+                    : locale === 'zh-CN'
+                    ? '宾客品鉴评价'
+                    : 'GUEST REVIEWS & FEEDBACK'
+                }
                 kanji="評価 · 評判"
                 variant="minimal"
               />
@@ -263,7 +269,7 @@ export const ReviewsSection: React.FC = memo(() => {
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#939458]" />
                         </div>
                         <span className="text-[10.5px] font-mono text-white/50">
-                          {review.date}
+                          {locale === 'zh-CN' ? review.dateZh || review.date : review.date}
                         </span>
                       </div>
                     </div>
@@ -286,11 +292,17 @@ export const ReviewsSection: React.FC = memo(() => {
                       isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
                     }`}
                   >
-                    "{locale === 'ar' ? review.commentAr : review.commentEn}"
+                    "
+                    {locale === 'ar'
+                      ? review.commentAr
+                      : locale === 'zh-CN'
+                      ? review.commentZh || review.commentEn
+                      : review.commentEn}
+                    "
                   </p>
 
                   {/* Mentioned Drink/Dessert Highlight Tag (Delay: cardDelay + 180ms) */}
-                  {(review.highlightAr || review.highlightEn) && (
+                  {(review.highlightAr || review.highlightEn || review.highlightZh) && (
                     <div
                       style={{
                         transitionDuration: prefersReducedMotion ? '0ms' : '300ms',
@@ -301,14 +313,24 @@ export const ReviewsSection: React.FC = memo(() => {
                         isInView ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.96]'
                       }`}
                     >
-                      {locale === 'ar' ? review.highlightAr : review.highlightEn}
+                      {locale === 'ar'
+                        ? review.highlightAr
+                        : locale === 'zh-CN'
+                        ? review.highlightZh || review.highlightEn
+                        : review.highlightEn}
                     </div>
                   )}
                 </div>
 
                 {/* Bottom Card Annotation */}
                 <div className="flex items-center justify-between mt-5 pt-3 border-t border-white/5 text-[10px] font-mono text-white/40">
-                  <span>verified visit · ar Rawdah</span>
+                  <span>
+                    {locale === 'ar'
+                      ? 'زيارة موثقة · حي الروضة'
+                      : locale === 'zh-CN'
+                      ? '真实宾客探店 · Ar Rawdah 街区'
+                      : 'verified visit · Ar Rawdah'}
+                  </span>
                   <span className="text-[#939458]/70">Google Maps</span>
                 </div>
               </div>

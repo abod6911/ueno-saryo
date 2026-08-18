@@ -56,6 +56,30 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
+  html[lang="zh-CN"] {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", system-ui, -apple-system, sans-serif;
+    line-break: strict;
+    word-break: normal;
+  }
+
+  html[lang="zh-CN"] .font-headline,
+  html[lang="zh-CN"] h1,
+  html[lang="zh-CN"] h2,
+  html[lang="zh-CN"] h3,
+  html[lang="zh-CN"] h4 {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", system-ui, -apple-system, sans-serif;
+    letter-spacing: normal !important;
+    font-weight: 700;
+  }
+
+  html[lang="zh-CN"] .tracking-tight,
+  html[lang="zh-CN"] .tracking-tighter,
+  html[lang="zh-CN"] .tracking-wide,
+  html[lang="zh-CN"] .tracking-wider,
+  html[lang="zh-CN"] .tracking-widest {
+    letter-spacing: normal !important;
+  }
+
   body {
     background-color: var(--olive-canvas);
     color: var(--white);

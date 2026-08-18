@@ -2,6 +2,7 @@ import type { BusinessInfo, OpenStatusResult } from '../types/business';
 
 /**
  * Calculates current open/closed status in Jeddah (Asia/Riyadh timezone)
+ * Supports English, Arabic, and Simplified Chinese localization.
  */
 export function getJeddahOpenStatus(business: BusinessInfo): OpenStatusResult {
   // Get current date & time specifically in Asia/Riyadh timezone
@@ -37,8 +38,10 @@ export function getJeddahOpenStatus(business: BusinessInfo): OpenStatusResult {
       isOpen: false,
       statusTextEn: 'Closed Today',
       statusTextAr: 'مغلق اليوم',
+      statusTextZh: '今日休息',
       closesOrOpensAtTextEn: 'Opens tomorrow at 08:00',
       closesOrOpensAtTextAr: 'يفتح غداً الساعة ٠٨:٠٠ صباحاً',
+      closesOrOpensAtTextZh: '将于明日 08:00 开始营业',
     };
   }
 
@@ -66,8 +69,10 @@ export function getJeddahOpenStatus(business: BusinessInfo): OpenStatusResult {
       isOpen: true,
       statusTextEn: 'Open Now',
       statusTextAr: 'مفتوح الآن',
+      statusTextZh: '营业中',
       closesOrOpensAtTextEn: `Closes at ${formattedCloseTime.en}`,
       closesOrOpensAtTextAr: `يغلق الساعة ${formattedCloseTime.ar}`,
+      closesOrOpensAtTextZh: `营业至 ${formattedCloseTime.zh}`,
       nextChangeTime: todaySchedule.closes,
     };
   } else {
@@ -77,22 +82,26 @@ export function getJeddahOpenStatus(business: BusinessInfo): OpenStatusResult {
       isOpen: false,
       statusTextEn: 'Closed',
       statusTextAr: 'مغلق حالياً',
+      statusTextZh: '已打烊',
       closesOrOpensAtTextEn: `Opens at ${formattedOpenTime.en}`,
       closesOrOpensAtTextAr: `يفتح الساعة ${formattedOpenTime.ar}`,
+      closesOrOpensAtTextZh: `将于 ${formattedOpenTime.zh} 开始营业`,
       nextChangeTime: todaySchedule.opens,
     };
   }
 }
 
-function formatTimeDisplay(timeStr: string): { en: string; ar: string } {
+function formatTimeDisplay(timeStr: string): { en: string; ar: string; zh: string } {
   const [h, m] = timeStr.split(':').map(Number);
   const periodEn = h >= 12 ? 'PM' : 'AM';
   const periodAr = h >= 12 ? 'مساءً' : 'صباحاً';
   const displayH = h % 12 === 0 ? 12 : h % 12;
   const displayM = m === 0 ? '00' : m < 10 ? `0${m}` : `${m}`;
+  const padH = h < 10 ? `0${h}` : `${h}`;
 
   return {
     en: `${displayH}:${displayM} ${periodEn}`,
     ar: `${displayH}:${displayM} ${periodAr}`,
+    zh: `${padH}:${displayM}`,
   };
 }

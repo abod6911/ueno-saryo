@@ -36,7 +36,11 @@ export const OpeningHoursCard: React.FC = () => {
               }`}
             />
             <span className="text-xs font-bold text-white">
-              {locale === 'ar' ? openStatus.statusTextAr : openStatus.statusTextEn}
+              {locale === 'ar'
+                ? openStatus.statusTextAr
+                : locale === 'zh-CN'
+                ? openStatus.statusTextZh || openStatus.statusTextEn
+                : openStatus.statusTextEn}
             </span>
           </div>
         </div>
@@ -45,6 +49,8 @@ export const OpeningHoursCard: React.FC = () => {
         <p className="text-xs text-[#939458] font-mono">
           {locale === 'ar'
             ? openStatus.closesOrOpensAtTextAr
+            : locale === 'zh-CN'
+            ? openStatus.closesOrOpensAtTextZh || openStatus.closesOrOpensAtTextEn
             : openStatus.closesOrOpensAtTextEn}
         </p>
 
@@ -52,7 +58,12 @@ export const OpeningHoursCard: React.FC = () => {
         <div className="flex flex-col gap-2 pt-2">
           {BUSINESS_DATA.openingHours.map((schedule) => {
             const isToday = schedule.dayEn.toLowerCase() === riyadhDay.toLowerCase();
-            const dayName = locale === 'ar' ? schedule.dayAr : schedule.dayEn;
+            const dayName =
+              locale === 'ar'
+                ? schedule.dayAr
+                : locale === 'zh-CN'
+                ? schedule.dayZh || schedule.dayEn
+                : schedule.dayEn;
 
             return (
               <div
@@ -68,7 +79,7 @@ export const OpeningHoursCard: React.FC = () => {
                   <span>{dayName}</span>
                   {isToday && (
                     <span className="text-[9px] uppercase px-1.5 py-0.2 rounded bg-white/20 text-white font-mono">
-                      {locale === 'ar' ? 'اليوم' : 'Today'}
+                      {locale === 'ar' ? 'اليوم' : locale === 'zh-CN' ? '今日' : 'Today'}
                     </span>
                   )}
                 </div>
