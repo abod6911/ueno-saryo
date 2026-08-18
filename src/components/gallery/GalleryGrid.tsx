@@ -40,17 +40,17 @@ export const GalleryGrid: React.FC = () => {
             label={locale === 'ar' ? 'معرض الأجواء والسكينة' : 'ATMOSPHERE & VISUAL ESSENCE'}
             kanji="空間 · 喫茶"
             variant="minimal"
-            className="mb-3"
+            className="mb-4 sm:mb-5"
           />
 
-          <div className="flex items-center gap-3 mb-3">
-            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5">
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-normal leading-[1.28] sm:leading-[1.22]">
               {t.gallery.heading}
             </h2>
             <JapaneseSeal char="景" size={24} variant="square" />
           </div>
 
-          <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-2xl">
+          <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-2xl pt-0.5">
             {t.gallery.subheading}
           </p>
         </div>

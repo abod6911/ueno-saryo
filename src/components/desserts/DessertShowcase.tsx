@@ -28,17 +28,17 @@ export const DessertShowcase: React.FC<DessertShowcaseProps> = ({ onSelectItem }
             kanji="甘味 · 和菓子"
             variant="minimal"
             theme="light"
-            className="mb-3"
+            className="mb-4 sm:mb-5"
           />
 
-          <div className="flex items-center gap-3 mb-3">
-            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-tight">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5">
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#122416] tracking-normal leading-[1.28] sm:leading-[1.22]">
               {t.desserts.heading}
             </h2>
             <JapaneseSeal char="菓" size={24} variant="square" />
           </div>
 
-          <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl">
+          <p className="text-xs sm:text-base text-[#181813]/75 leading-relaxed font-sans max-w-2xl pt-0.5">
             {t.desserts.subheading}
           </p>
         </div>

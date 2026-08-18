@@ -12,7 +12,7 @@ export const TeaCollection: React.FC = () => {
       <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5">
             <span className="text-[11px] text-[#939458] font-bold">
               <span className="font-mono tracking-wider">03 / </span>
               <span className="font-sans">{locale === 'ar' ? 'تشكيلة الشاي' : 'COLLECTION'}</span>
@@ -24,11 +24,11 @@ export const TeaCollection: React.FC = () => {
             </div>
           </div>
 
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-normal leading-[1.28] sm:leading-[1.22] mb-4 sm:mb-5">
             {t.teaExperience.collectionHeading}
           </h2>
 
-          <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-2xl">
+          <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans max-w-2xl pt-0.5">
             {t.teaExperience.collectionSubheading}
           </p>
         </div>
