@@ -24,14 +24,21 @@ export const TeaIndexControlDeck: React.FC<TeaIndexControlDeckProps> = ({
   const { locale, t } = useLanguage();
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const activeTabRef = useRef<HTMLButtonElement>(null);
+  const isFirstRender = useRef(true);
 
-  // Auto-scroll active tab into view on mobile
+  // Auto-scroll active tab inside the horizontal container on category selection (never scroll the window)
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (activeTabRef.current && tabsContainerRef.current) {
-      activeTabRef.current.scrollIntoView({
+      const container = tabsContainerRef.current;
+      const tab = activeTabRef.current;
+      const scrollLeft = tab.offsetLeft - container.offsetWidth / 2 + tab.offsetWidth / 2;
+      container.scrollTo({
+        left: scrollLeft,
         behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center',
       });
     }
   }, [activeCategoryId]);

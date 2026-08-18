@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LanguageProvider } from './i18n/context';
 import { HeaderNav } from './components/layout/HeaderNav';
 import { MobileMenuSheet } from './components/layout/MobileMenuSheet';
@@ -21,6 +21,14 @@ import type { MenuItem } from './types/menu';
 const MainExperience: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<MenuItem | null>(null);
+
+  // Always start at top of website on initial load and reload
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleOpenMenuSection = () => {
     const el = document.getElementById('menu');
