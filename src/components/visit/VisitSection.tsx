@@ -110,9 +110,42 @@ export const VisitSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-xs text-[#f8f7f1]/60">
-                <span className="font-mono text-[11px]">7140 Prince Saud Al Faisal, Ar Rawdah 23432</span>
-                <span className="text-[#939458] font-japanese font-medium">茶道研究所 · 喫茶</span>
+              <div className="pt-5 mt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#f8f7f1]/70">
+                <span className="font-mono text-[11px] text-[#f8f7f1]/60">7140 Prince Saud Al Faisal, Ar Rawdah 23432</span>
+                
+                {/* Social media links */}
+                <div className="flex items-center gap-2">
+                  {BUSINESS_DATA.instagramUrl && (
+                    <a
+                      href={BUSINESS_DATA.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-[#29482a] border border-white/10 text-white text-[11px] font-mono transition-all duration-200 active:scale-95"
+                      aria-label="Instagram: @ueno_saryo"
+                    >
+                      <svg className="w-3.5 h-3.5 stroke-current fill-none text-[#939458]" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                      </svg>
+                      <span>@ueno_saryo</span>
+                    </a>
+                  )}
+                  {BUSINESS_DATA.tiktokUrl && (
+                    <a
+                      href={BUSINESS_DATA.tiktokUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-[#29482a] border border-white/10 text-white text-[11px] font-mono transition-all duration-200 active:scale-95"
+                      aria-label="TikTok: @uenosaryotea"
+                    >
+                      <svg className="w-3.5 h-3.5 fill-current text-[#939458]" viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.47 6.27 6.27 0 0 0 1.94-4.47V8.58a8.27 8.27 0 0 0 4.83 1.56V6.69z"/>
+                      </svg>
+                      <span>@uenosaryotea</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </RevealOnView>

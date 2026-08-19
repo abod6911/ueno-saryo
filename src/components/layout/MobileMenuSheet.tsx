@@ -183,6 +183,38 @@ export const MobileMenuSheet: React.FC<MobileMenuSheetProps> = ({
           </a>
         )}
 
+        {/* Social Media Channels (Instagram & TikTok) */}
+        <div className="grid grid-cols-2 gap-2 pt-1">
+          {BUSINESS_DATA.instagramUrl && (
+            <a
+              href={BUSINESS_DATA.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-h-[44px] px-3.5 rounded-xl bg-white/5 hover:bg-[#29482a] border border-white/10 text-white text-xs font-medium flex items-center justify-center gap-2 active:scale-95 transition-all"
+            >
+              <svg className="w-4 h-4 stroke-current fill-none text-[#939458]" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+              <span>Instagram</span>
+            </a>
+          )}
+          {BUSINESS_DATA.tiktokUrl && (
+            <a
+              href={BUSINESS_DATA.tiktokUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-h-[44px] px-3.5 rounded-xl bg-white/5 hover:bg-[#29482a] border border-white/10 text-white text-xs font-medium flex items-center justify-center gap-2 active:scale-95 transition-all"
+            >
+              <svg className="w-4 h-4 fill-current text-[#939458]" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.47 6.27 6.27 0 0 0 1.94-4.47V8.58a8.27 8.27 0 0 0 4.83 1.56V6.69z"/>
+              </svg>
+              <span>TikTok</span>
+            </a>
+          )}
+        </div>
+
         <p className="text-[11px] text-center text-white/40 pt-2 font-japanese">
           茶道研究所 · UENO SARYO · JEDDAH
         </p>

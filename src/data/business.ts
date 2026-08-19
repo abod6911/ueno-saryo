@@ -39,8 +39,8 @@ export const BUSINESS_DATA: BusinessInfo = {
   googleMapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.680076045934!2d39.1550!3d21.5750!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDM0JzMwLjAiTiAzOcKwMDknMTguMCJF!5e0!3m2!1sen!2ssa!4v1620000000000!5m2!1sen!2ssa',
   hungerStationUrl: 'https://hungerstation.com/sa-ar/restaurant/ueno-saryo-jeddah',
   jahezUrl: 'https://jahez.net/',
-  instagramUrl: 'https://instagram.com/uenosaryo',
-  tiktokUrl: 'https://tiktok.com/@uenosaryo',
+  instagramUrl: 'https://www.instagram.com/ueno_saryo?igsi=aXM3enM0dzRkNTJk',
+  tiktokUrl: 'https://www.tiktok.com/@uenosaryotea?_r=1&_t=ZS-990yaUbxgyi',
   openingHours: [
     { dayEn: 'Saturday', dayAr: 'السبت', dayZh: '星期六', opens: '08:00', closes: '23:30' },
     { dayEn: 'Sunday', dayAr: 'الأحد', dayZh: '星期日', opens: '08:00', closes: '23:30' },
