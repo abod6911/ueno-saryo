@@ -1,7 +1,7 @@
 import React from 'react';
 import type { MenuItem } from '../../types/menu';
 import { useLanguage } from '../../i18n/context';
-import { Flame, Plus } from 'lucide-react';
+import { Flame, Sparkles } from 'lucide-react';
 
 interface MenuItemCardProps {
   item: MenuItem;
@@ -30,10 +30,21 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, onSelect }) =>
     return locale === 'ar' ? 'بارد / ساخن' : locale === 'zh-CN' ? '冷热皆可' : 'Both';
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onSelect();
+    }
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
       onClick={onSelect}
-      className="group bg-white rounded-[20px] sm:rounded-[22px] p-4 sm:p-5 border border-black/[0.06] shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between cursor-pointer transform-gpu hover:-translate-y-1 relative select-none"
+      onKeyDown={handleKeyDown}
+      aria-label={`${name} - ${item.priceSAR} ${t.menu.sar}`}
+      className="group bg-white rounded-[22px] sm:rounded-[24px] p-4 sm:p-5 border border-black/[0.06] hover:border-[#939458]/40 shadow-sm hover:shadow-card-hover active:scale-[0.98] transition-all duration-300 flex flex-col justify-between cursor-pointer transform-gpu hover:-translate-y-1 relative select-none focus:outline-none focus:ring-2 focus:ring-[#939458]/50"
     >
       {/* Top Badges & Japanese Subtitle */}
       <div className="flex items-start justify-between gap-2 mb-2.5">
@@ -64,18 +75,26 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, onSelect }) =>
       </div>
 
       {/* Center Image Container */}
-      <div className="w-full aspect-[4/3] flex items-center justify-center relative my-1.5 overflow-hidden rounded-[16px] bg-[#f8f7f1] shadow-inner">
+      <div className="w-full aspect-[4/3] flex items-center justify-center relative my-1.5 overflow-hidden rounded-[16px] bg-[#f8f7f1] shadow-inner group-hover:shadow-sm">
         <img
           src={item.image}
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-600 ease-out"
           loading="eager"
           decoding="async"
         />
+
+        {/* Subtle Specimen Reveal Overlay on Hover */}
+        <div className="absolute inset-0 bg-[#122416]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+          <div className="px-3 py-1 rounded-full bg-[#122416]/80 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-bold flex items-center gap-1.5 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <Sparkles className="w-3 h-3 text-[#939458]" />
+            <span>{t.drinkExperience.labStudy}</span>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Info: Title, Description, Price & Action */}
-      <div className="flex flex-col gap-1 mt-2.5">
+      <div className="flex flex-col gap-1 mt-2.5 text-start">
         <div className="flex items-baseline justify-between gap-2">
           <h3 className="font-headline text-base sm:text-lg font-bold text-[#181813] group-hover:text-[#29482a] transition-colors line-clamp-1">
             {name}
@@ -110,8 +129,8 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, onSelect }) =>
             )}
           </div>
 
-          <div className="w-7 h-7 rounded-full bg-[#122416]/5 group-hover:bg-[#122416] group-hover:text-white text-[#122416] flex items-center justify-center transition-all shadow-sm">
-            <Plus className="w-3.5 h-3.5" />
+          <div className="w-7 h-7 rounded-full bg-[#122416]/5 group-hover:bg-[#122416] group-hover:text-white text-[#122416] flex items-center justify-center transition-all shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 group-hover:text-[#939458] transition-colors" />
           </div>
         </div>
       </div>

@@ -37,6 +37,37 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Both',
     image: '/assets/products/menu_matcha_latte.jpg',
+    media: {
+      type: 'video',
+      src: '/reference.mp4',
+      poster: '/assets/products/menu_matcha_latte.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 001',
+      origin: {
+        en: 'Uji, Kyoto Prefecture',
+        ar: 'أوجي، محافظة كيوتو',
+        zh: '日本京都府宇治市',
+        ja: '京都府宇治',
+      },
+      servingTemp: '75°C / 4°C',
+      teaBase: {
+        en: 'First-Flush Shaded Tencha',
+        ar: 'تينشا القطفة الأولى المظللة',
+        zh: '头采覆下碾茶',
+      },
+      brewingStyle: {
+        en: 'Granite Stone-Ground & 100-Prong Chasen',
+        ar: 'طحن أحجار الغرانيت وخفق شاسين ١٠٠ سن',
+        zh: '花岗岩石臼慢磨 · 百本立竹筅点茶',
+      },
+      sweetness: 'Customizable',
+      milkType: {
+        en: 'Fresh Whole Milk / Barista Oat Milk',
+        ar: 'حليب طازج كامل الدسم / حليب شوفان للباريستا',
+        zh: '新鲜全脂牛乳 / 燕麦奶',
+      },
+    },
     tastingNotes: {
       en: ['Rich Umami', 'Fresh Sweet Grass', 'Velvety Smoothness'],
       ar: ['أومامي غني', 'نضارة عشبية حُلوة', 'ملمس مخملي'],
@@ -71,6 +102,35 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Iced',
     image: '/assets/products/menu_blueberry_matcha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_blueberry_matcha.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 002',
+      origin: {
+        en: 'Shizuoka & Wild Mountain Berries',
+        ar: 'شيزوكا وتوت الجبال البري',
+        zh: '日本静冈县 · 高山野生蓝莓',
+      },
+      servingTemp: '4°C',
+      teaBase: {
+        en: 'Ceremonial Grade Matcha',
+        ar: 'ماتشا احتفالية نقية',
+        zh: '高级仪式抹茶',
+      },
+      brewingStyle: {
+        en: 'Layered Cold Emulsion',
+        ar: 'استحلاب بارد متدرج الطبقات',
+        zh: '分层冷萃乳化工艺',
+      },
+      sweetness: 'Medium',
+      milkType: {
+        en: 'Organic Oat Milk',
+        ar: 'حليب الشوفان العضوي',
+        zh: '有机燕麦奶',
+      },
+    },
     tastingNotes: {
       en: ['Wild Berry Sweetness', 'Emerald Grassiness', 'Balanced Acidity'],
       ar: ['حلاوة التوت البري', 'عشبية الماتشا النقية', 'حموضة منعشة متوازنة'],
@@ -105,6 +165,30 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Iced',
     image: '/assets/products/menu_strawberry_matcha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_strawberry_matcha.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 003',
+      origin: {
+        en: 'Uji, Kyoto & Sweet Strawberry',
+        ar: 'أوجي، كيوتو مع فراولة طازجة',
+        zh: '京都宇治 · 特选手作熟草莓',
+      },
+      servingTemp: '4°C',
+      teaBase: {
+        en: 'First-Harvest Uji Tencha',
+        ar: 'تينشا أوجي القطفة الأولى',
+        zh: '宇治一番茶碾茶',
+      },
+      brewingStyle: {
+        en: 'Slow-simmer Reduction & Cloud Whisk',
+        ar: 'بيوريه مطهو ببطء مع خفق سحابي',
+        zh: '原果慢熬果浆 · 抹茶云顶',
+      },
+      sweetness: 'Medium',
+    },
     tastingNotes: {
       en: ['Ripe Strawberry', 'Floral Sweetness', 'Dense Matcha Velvet'],
       ar: ['فراولة ناضجة', 'حلاوة زهرية', 'رغوة ماتشا مخملية'],
@@ -139,6 +223,29 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Iced',
     image: '/assets/products/menu_mango_matcha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_mango_matcha.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 004',
+      origin: {
+        en: 'Uji, Kyoto & Alphonso Mango',
+        ar: 'أوجي، كيوتو مع مانجو ألفونسو',
+        zh: '京都宇治 · 阿方索黄金芒果',
+      },
+      servingTemp: '4°C',
+      teaBase: {
+        en: 'Ceremonial Matcha',
+        ar: 'ماتشا احتفالية نقية',
+        zh: '仪式级抹茶',
+      },
+      brewingStyle: {
+        en: 'Tropical Cold Layering',
+        ar: 'سكب بارد متدرج استوائي',
+        zh: '热带分层点茶',
+      },
+    },
     tastingNotes: {
       en: ['Tropical Mango', 'Crisp Finish', 'Rich Cream'],
       ar: ['مانجو استوائية', 'نهاية منعشة', 'قوام غني'],
@@ -172,6 +279,24 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Iced',
     image: '/assets/products/menu_strawberry_matcha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_strawberry_matcha.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 005',
+      origin: {
+        en: 'Uji, Kyoto & Tart Cranberries',
+        ar: 'أوجي، كيوتو وتوت الكرانبيري البري',
+        zh: '京都宇治 · 酸甜蔓越莓',
+      },
+      servingTemp: '4°C',
+      teaBase: {
+        en: 'Ceremonial Grade Matcha',
+        ar: 'ماتشا احتفالية فاخرة',
+        zh: '仪式级抹茶',
+      },
+    },
     tastingNotes: {
       en: ['Tart Cranberry', 'Clean Palate', 'Crisp Sweetness'],
       ar: ['توت بري حامض', 'إحساس نقي', 'حلاوة منعشة'],
@@ -205,6 +330,29 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Iced',
     image: '/assets/products/menu_coconut_matcha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_coconut_matcha.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 006',
+      origin: {
+        en: 'Kagoshima Organic Tea & Tender Coconut',
+        ar: 'شاي كاغوشيما العضوي مع جوز هند طبيعي',
+        zh: '鹿儿岛有机茶园 · 鲜采嫩椰青',
+      },
+      servingTemp: '4°C',
+      teaBase: {
+        en: 'Kagoshima Ceremonial Matcha',
+        ar: 'ماتشا كاغوشيما الاحتفالية',
+        zh: '鹿儿岛仪式级抹茶',
+      },
+      brewingStyle: {
+        en: 'Whisk-to-Order over Raw Coconut Water',
+        ar: 'خفق فوري طازج فوق ماء جوز الهند',
+        zh: '即席点茶 · 鲜椰清萃',
+      },
+    },
     tastingNotes: {
       en: ['Hydrating Coconut', 'Crisp Grassiness', 'Subtle Mineral Sweetness'],
       ar: ['انتعاش جوز الهند', 'نضارة عشبية', 'حلاوة معدنية نقية'],
@@ -238,6 +386,29 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Iced',
     image: '/assets/products/menu_cheese_cloud.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_cheese_cloud.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 007',
+      origin: {
+        en: 'Kyoto Matcha & Hokkaido Cream',
+        ar: 'ماتشا كيوتو مع كريمة هوكايدو',
+        zh: '京都宇治 · 北海道海盐芝士',
+      },
+      servingTemp: '4°C',
+      teaBase: {
+        en: 'Ceremonial Grade Matcha',
+        ar: 'ماتشا احتفالية فاخرة',
+        zh: '仪式级抹茶',
+      },
+      brewingStyle: {
+        en: 'Cold Cloud Crown Emulsion',
+        ar: 'مستحلب سحابي مملح',
+        zh: '岩盐芝士厚乳云顶',
+      },
+    },
     tastingNotes: {
       en: ['Savory Cheese Cream', 'Rich Matcha Bitterness', 'Velvety Sweetness'],
       ar: ['كريمة جبن مالحة', 'مرارة ماتشا راقية', 'حلاوة مخملية متوازنة'],
@@ -274,6 +445,30 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Both',
     image: '/assets/teas/tea_sencha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/teas/tea_sencha.jpg',
+    },
+    labDetails: {
+      labCode: 'TEA STUDY / 01',
+      origin: {
+        en: 'Shizuoka Prefecture, Japan',
+        ar: 'محافظة شيزوكا، اليابان',
+        zh: '日本静冈县',
+        ja: '静岡県',
+      },
+      servingTemp: '70°C',
+      teaBase: {
+        en: 'First-Flush Fukamushi Sencha',
+        ar: 'سينشا فوكاموشي قطفة أولى',
+        zh: '一番茶深蒸煎茶',
+      },
+      brewingStyle: {
+        en: 'Kyusu Banko Ware Steeping (60s)',
+        ar: 'نقع إبريق كيوسو بانكو (٦٠ ثانية)',
+        zh: '万古烧急须冲泡 (60秒)',
+      },
+    },
     tastingNotes: {
       en: ['Fresh Spinach', 'Subtle Astringency', 'Sweet Finish'],
       ar: ['نضارة عشبية', 'مرارة خفيفة محببة', 'نهاية حلوة'],
@@ -308,6 +503,30 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Low',
     temperature: 'Both',
     image: '/assets/teas/tea_genmaicha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/teas/tea_genmaicha.jpg',
+    },
+    labDetails: {
+      labCode: 'TEA STUDY / 02',
+      origin: {
+        en: 'Kagoshima Prefecture, Japan',
+        ar: 'محافظة كاغوشيما، اليابان',
+        zh: '日本鹿儿岛县',
+        ja: '鹿児島県',
+      },
+      servingTemp: '85°C',
+      teaBase: {
+        en: 'Bancha & Roasted Mochi Rice',
+        ar: 'بانشا وأرز الموتشي المحمص',
+        zh: '日式番茶与炒糯米',
+      },
+      brewingStyle: {
+        en: 'High-Temperature Flash Infusion (45s)',
+        ar: 'نقع سريع بحرارة عالية (٤٥ ثانية)',
+        zh: '高温快冲释香 (45秒)',
+      },
+    },
     tastingNotes: {
       en: ['Popcorn & Toasted Rice', 'Malted Grain', 'Sweet Grassy Base'],
       ar: ['أرز محمص وفشار', 'حبوب مالت دافئة', 'قاعدة عشبية لطيفة'],
@@ -342,6 +561,30 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Low',
     temperature: 'Both',
     image: '/assets/teas/tea_hojicha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/teas/tea_hojicha.jpg',
+    },
+    labDetails: {
+      labCode: 'TEA STUDY / 03',
+      origin: {
+        en: 'Kyoto Prefecture, Japan',
+        ar: 'محافظة كيوتو، اليابان',
+        zh: '日本京都府',
+        ja: '京都府',
+      },
+      servingTemp: '90°C / 4°C',
+      teaBase: {
+        en: 'Charcoal Slow-Roasted Sencha',
+        ar: 'سينشا محمص على فحم البينشوتان',
+        zh: '备长炭火焙煎茶',
+      },
+      brewingStyle: {
+        en: 'Direct Boiling Water Extraction (30s)',
+        ar: 'استخلاص مباشر بالماء المغلي (٣٠ ثانية)',
+        zh: '沸水瞬时浸润 (30秒)',
+      },
+    },
     tastingNotes: {
       en: ['Roasted Barley', 'Caramelized Wood', 'Smooth Cocoa Finish'],
       ar: ['شعير محمص', 'خشب مكرمل', 'نهاية ناعمة بنكهة الكاكاو'],
@@ -375,6 +618,30 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'High',
     temperature: 'Hot',
     image: '/assets/teas/tea_gyokuro.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/teas/tea_gyokuro.jpg',
+    },
+    labDetails: {
+      labCode: 'TEA STUDY / 04',
+      origin: {
+        en: 'Yame, Fukuoka & Uji, Kyoto',
+        ar: 'يامي، فوكوكا وأوجي، كيوتو',
+        zh: '福冈八女 · 京都宇治',
+        ja: '八女・宇治',
+      },
+      servingTemp: '55°C',
+      teaBase: {
+        en: '21-Day Shaded Single-Origin Buds',
+        ar: 'براعم قطفة أولى مظللة لـ 21 يوماً',
+        zh: '二十一日覆下玉露嫩芽',
+      },
+      brewingStyle: {
+        en: 'Low-Temp Precision Extraction (90s)',
+        ar: 'استخلاص دقيق بحرارة منخفضة (٩٠ ثانية)',
+        zh: '低温甘露萃取 (90秒)',
+      },
+    },
     tastingNotes: {
       en: ['Intense Broth Umami', 'Sweet Sea Air', 'Concentrated L-Theanine Sweetness'],
       ar: ['أومامي مكثف يشبه المرق', 'حلاوة بحرية نقية', 'تركيز فائق للأحماض الأمينية'],
@@ -408,6 +675,29 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Low',
     temperature: 'Both',
     image: '/assets/teas/tea_white_needle.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/teas/tea_white_needle.jpg',
+    },
+    labDetails: {
+      labCode: 'TEA STUDY / 05',
+      origin: {
+        en: 'High Altitude Mist Mountains',
+        ar: 'جبال الضباب العالية',
+        zh: '高山云雾生态茶园',
+      },
+      servingTemp: '80°C',
+      teaBase: {
+        en: 'Pure Unopened Spring Silver Needles',
+        ar: 'براعم ربيعية بيضاء غير مفتوحة',
+        zh: '未展单芽白毫银针',
+      },
+      brewingStyle: {
+        en: 'Glass Vessel Gentle Immersion (120s)',
+        ar: 'غمر لطيف في أواني زجاجية (١٢٠ ثانية)',
+        zh: '玻璃雅器静置浸润 (120秒)',
+      },
+    },
     tastingNotes: {
       en: ['Wild Honeydew', 'Sweet Hay', 'Silken Texture'],
       ar: ['شمام بري عذب', 'قش معطر بالشمس', 'ملمس حريري'],
@@ -444,6 +734,24 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Medium',
     temperature: 'Iced',
     image: '/assets/products/menu_jasmine_matcha.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_jasmine_matcha.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 008',
+      origin: {
+        en: 'Fukui & Kyoto Prefecture',
+        ar: 'فوكوي ومحافظة كيوتو',
+        zh: '日本福井 · 京都府',
+      },
+      servingTemp: '4°C',
+      teaBase: {
+        en: 'Night-Scented Jasmine & Ceremonial Matcha',
+        ar: 'شاي ياسمين ليلي مع ماتشا احتفالية',
+        zh: '窨花茉莉与仪式抹茶',
+      },
+    },
     tastingNotes: {
       en: ['Night-blooming Jasmine', 'Crisp Green Tea', 'Clean Floral Finish'],
       ar: ['عبير الياسمين الليلي', 'نقاء الشاي الأخضر', 'نهاية زهرية منعشة'],
@@ -477,6 +785,24 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'Low',
     temperature: 'Iced',
     image: '/assets/fusion/fusion_rose_tea.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/fusion/fusion_rose_tea.jpg',
+    },
+    labDetails: {
+      labCode: 'UENO LAB / 009',
+      origin: {
+        en: 'Taif Valley & High Mountain White Tea',
+        ar: 'وادي الطائف وشاي الجبال الأبيض',
+        zh: '沙特塔伊夫花谷 · 高山白茶',
+      },
+      servingTemp: '2°C',
+      teaBase: {
+        en: 'Silver Needle & Taif Rose Extract',
+        ar: 'الإبر الفضية ومستخلص الورد الطائفي',
+        zh: '白毫银针 · 大马士革玫瑰纯露',
+      },
+    },
     tastingNotes: {
       en: ['Taif Damask Rose', 'Tart Berry Hibiscus', 'Effervescent Bubbles'],
       ar: ['ورد طائفي جوردي', 'كركديه حامض منعش', 'فقاعات فوارة منعشة'],
@@ -513,6 +839,29 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'High',
     temperature: 'Both',
     image: '/assets/fusion/fusion_matcha_espresso.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/fusion/fusion_matcha_espresso.jpg',
+    },
+    labDetails: {
+      labCode: 'FUSION / 01',
+      origin: {
+        en: 'Uji Matcha & Ethiopian Yirgacheffe',
+        ar: 'ماتشا أوجي مع ييرغاتشيف الإثيوبية',
+        zh: '京都宇治 · 埃塞俄比亚耶加雪菲',
+      },
+      servingTemp: '4°C / 70°C',
+      teaBase: {
+        en: 'Dense Matcha Shot & 9-bar Espresso',
+        ar: 'شوت ماتشا مركز وإسبريسو ٩ بار',
+        zh: '浓缩浓茶 · 9-bar 精品浓缩',
+      },
+      brewingStyle: {
+        en: 'Tri-layer Gravity Pour',
+        ar: 'سكب ثلاثي الطبقات بالجاذبية',
+        zh: '三层重力分层萃取',
+      },
+    },
     tastingNotes: {
       en: ['Roasted Cocoa Espresso', 'Rich Matcha Umami', 'Caramel Milk Layer'],
       ar: ['إسبريسو الشوكولاتة المحمصة', 'أومامي الماتشا الغني', 'حليب الكراميل الكريمي'],
@@ -546,6 +895,24 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'High',
     temperature: 'Iced',
     image: '/assets/fusion/fusion_kyoto_drip.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/fusion/fusion_kyoto_drip.jpg',
+    },
+    labDetails: {
+      labCode: 'FUSION / 02',
+      origin: {
+        en: 'Single-Origin Ethiopian Natural Lot',
+        ar: 'محصول إثيوبي معالج مجفف أحادي المصدر',
+        zh: '埃塞俄比亚日晒单一产区精品豆',
+      },
+      servingTemp: '2°C',
+      brewingStyle: {
+        en: '12-Hour Kyoto Tower Drip (1 drop/sec)',
+        ar: 'تقطير برج كيوتو ١٢ ساعة (قطرة/ثانية)',
+        zh: '京都玻璃冰滴塔 12小时 (1滴/秒)',
+      },
+    },
     tastingNotes: {
       en: ['Jasmine Florals', 'Bergamot Citrus', 'Whisky-like Body'],
       ar: ['زهور الياسمين', 'حمضيات البرغموت', 'قوام عميق وناعم'],
@@ -581,6 +948,19 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     calories: 220,
     temperature: 'Both',
     image: '/assets/desserts/dessert_matcha_mochi.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/desserts/dessert_matcha_mochi.jpg',
+    },
+    labDetails: {
+      labCode: 'SWEETS / 01',
+      origin: {
+        en: 'Niigata Mochiko & Uji Ceremonial Matcha',
+        ar: 'أرز نييغاتا وماتشا أوجي الاحتفالية',
+        zh: '日本新潟糯米 · 宇治顶级抹茶',
+      },
+      servingTemp: 'Chilled or Ambient',
+    },
     tastingNotes: {
       en: ['Chewy Mochi Skin', 'Bittersweet Matcha Ganache', 'Subtle Red Bean Sweetness'],
       ar: ['قوام موتشي مطاطي ناعم', 'جناش الماتشا الغني', 'حلاوة فاصوليا حمراء متوازنة'],
@@ -614,6 +994,19 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     calories: 210,
     temperature: 'Both',
     image: '/assets/desserts/dessert_lemon_cake.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/desserts/dessert_lemon_cake.jpg',
+    },
+    labDetails: {
+      labCode: 'SWEETS / 02',
+      origin: {
+        en: 'Setouchi Lemon & Kochi Yuzu',
+        ar: 'ليمون سيتوتشي ويوزو كوتشي',
+        zh: '濑户内柠檬 · 高知天然柚子',
+      },
+      servingTemp: 'Ambient',
+    },
     tastingNotes: {
       en: ['Zesty Citrus', 'Featherlight Crumb', 'Delicate Glaze'],
       ar: ['حمضيات منعشة', 'فتات كيك فائق الخفة', 'تغليفة سكرية ناعمة'],
@@ -646,6 +1039,18 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     calories: 310,
     temperature: 'Both',
     image: '/assets/desserts/dessert_walnut_cake.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/desserts/dessert_walnut_cake.jpg',
+    },
+    labDetails: {
+      labCode: 'SWEETS / 03',
+      origin: {
+        en: 'Organic Farms & California Walnuts',
+        ar: 'مزارع عضوية وجوز كاليفورنيا المحمص',
+        zh: '有机胡萝卜 · 加州特级核桃',
+      },
+    },
     tastingNotes: {
       en: ['Warm Cinnamon Nutmeg', 'Crunchy Walnuts', 'Silky Mascarpone'],
       ar: ['قرفة وجوزة الطيب الدافئة', 'قرمشة الجوز المحمص', 'نعومة جبن الماسكاربوني'],
@@ -679,6 +1084,18 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     calories: 340,
     temperature: 'Both',
     image: '/assets/desserts/dessert_basque_cheesecake.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/desserts/dessert_basque_cheesecake.jpg',
+    },
+    labDetails: {
+      labCode: 'SWEETS / 04',
+      origin: {
+        en: 'Uji Matcha & European Cream Cheese',
+        ar: 'ماتشا أوجي مع جبنة كريمية أوروبية',
+        zh: '京都宇治 · 进口奶油芝士',
+      },
+    },
     tastingNotes: {
       en: ['Smoky Caramel Top', 'Rich Molten Matcha Custard', 'Creamy Umami Tang'],
       ar: ['كراميل مدخن لذيذ', 'قلب ماتشا سائل وغني', 'حموضة جبن كريمية متوازنة'],
@@ -715,6 +1132,31 @@ const RAW_MENU_ITEMS: MenuItem[] = [
     caffeineLevel: 'High',
     temperature: 'Hot',
     image: '/assets/products/menu_hot_chawan.jpg',
+    media: {
+      type: 'animated-image',
+      src: '/assets/products/menu_hot_chawan.jpg',
+    },
+    labDetails: {
+      labCode: 'CEREMONIAL RESERVE / 01',
+      origin: {
+        en: 'Wazuka, Kyoto Prefecture (Single Cultivar)',
+        ar: 'وازوكا، محافظة كيوتو (سلالة فردية نادرة)',
+        zh: '京都府和束町 (单一品种佐绿)',
+        ja: '和束町 さみどり',
+      },
+      servingTemp: '75°C',
+      teaBase: {
+        en: '100% Hand-Picked Samidori Cultivar',
+        ar: 'سلالة ساميدوري ١٠٠٪ مقطوفة يدوياً',
+        zh: '100% 手摘佐绿单一树种',
+      },
+      brewingStyle: {
+        en: 'Traditional Chado Thick Foam in Raku Chawan',
+        ar: 'طقس الشادو التقليدي في وعاء راكو تشاوان',
+        zh: '乐烧茶碗 · 传统茶道浓沫薄茶',
+      },
+      seasonal: true,
+    },
     tastingNotes: {
       en: ['Silken Jade Microfoam', 'Pure Pistachio Sweetness', 'Zero Astringency'],
       ar: ['رغوة ياقوتية ناعمة جداً', 'حلاوة تشبه الفستق الحلبي', 'انعدام تام للمرارة'],
@@ -731,4 +1173,12 @@ const RAW_MENU_ITEMS: MenuItem[] = [
 export const MENU_ITEMS: MenuItem[] = RAW_MENU_ITEMS.map((item) => ({
   ...item,
   image: getAssetUrl(item.image),
+  media: item.media
+    ? {
+        ...item.media,
+        src: getAssetUrl(item.media.src),
+        poster: item.media.poster ? getAssetUrl(item.media.poster) : undefined,
+        mobileSrc: item.media.mobileSrc ? getAssetUrl(item.media.mobileSrc) : undefined,
+      }
+    : undefined,
 }));

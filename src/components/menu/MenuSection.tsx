@@ -3,7 +3,7 @@ import { MENU_CATEGORIES, MENU_ITEMS } from '../../data/menu';
 import type { MenuItem } from '../../types/menu';
 import { TeaIndexControlDeck } from './TeaIndexControlDeck';
 import { MenuItemCard } from './MenuItemCard';
-import { ProductDetailModal } from './ProductDetailModal';
+import { DrinkExperienceModal } from '../experience/DrinkExperienceModal';
 import { useLanguage } from '../../i18n/context';
 import { Sparkles } from 'lucide-react';
 import { RevealOnView } from '../ui/RevealOnView';
@@ -126,8 +126,8 @@ export const MenuSection: React.FC = () => {
         )}
       </div>
 
-      {/* Product Detail Modal */}
-      <ProductDetailModal
+      {/* Interactive Cinematic Drink Reveal Experience */}
+      <DrinkExperienceModal
         item={selectedItem}
         onClose={() => setSelectedItem(null)}
       />

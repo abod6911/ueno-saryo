@@ -169,3 +169,54 @@
   writing-mode: vertical-rl;
   text-orientation: mixed;
 }
+
+/* Cinematic Drink Experience Animations */
+@keyframes drinkBreathe {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes drinkProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-12px) scale(1.08);
+    opacity: 0.45;
+  }
+}
+
+.animate-drink-breathe {
+  animation: drinkBreathe 14s ease-in-out infinite alternate;
+}
+
+.animate-drink-progress {
+  animation: drinkProgress 5s linear infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drink-breathe,
+  .animate-drink-progress,
+  .animate-float-slow {
+    animation: none !important;
+    transform: none !important;
+  }
+}

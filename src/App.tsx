@@ -14,7 +14,7 @@ import { DessertShowcase } from './components/desserts/DessertShowcase';
 import { GalleryGrid } from './components/gallery/GalleryGrid';
 import { ReviewsSection } from './components/reviews/ReviewsSection';
 import { VisitSection } from './components/visit/VisitSection';
-import { ProductDetailModal } from './components/menu/ProductDetailModal';
+import { DrinkExperienceModal } from './components/experience/DrinkExperienceModal';
 import { MENU_ITEMS } from './data/menu';
 import type { MenuItem } from './types/menu';
 
@@ -102,8 +102,8 @@ const MainExperience: React.FC = () => {
       {/* Sticky Mobile Action Dock */}
       <MobileActionDock onOpenMenu={handleOpenMenuSection} />
 
-      {/* Shared Product Detail Modal */}
-      <ProductDetailModal
+      {/* Global Interactive Drink Reveal Experience */}
+      <DrinkExperienceModal
         item={selectedProduct}
         onClose={() => setSelectedProduct(null)}
       />
