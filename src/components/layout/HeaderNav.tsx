@@ -118,7 +118,41 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onOpenMobileMenu, onOpenMe
         </nav>
 
         {/* Right: Actions & 3-Language Selector */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* Social Icons (Instagram & TikTok) */}
+          <div className="hidden lg:flex items-center gap-1.5">
+            {BUSINESS_DATA.instagramUrl && (
+              <a
+                href={BUSINESS_DATA.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram (@ueno_saryo)"
+                title="Instagram: @ueno_saryo"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#29482a] hover:border-[#939458]/40 border border-white/15 flex items-center justify-center text-white transition-all duration-200 active:scale-95 cursor-pointer shadow-sm group"
+              >
+                <svg className="w-3.5 h-3.5 stroke-current fill-none group-hover:scale-110 transition-transform" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+              </a>
+            )}
+            {BUSINESS_DATA.tiktokUrl && (
+              <a
+                href={BUSINESS_DATA.tiktokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok (@uenosaryotea)"
+                title="TikTok: @uenosaryotea"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#29482a] hover:border-[#939458]/40 border border-white/15 flex items-center justify-center text-white transition-all duration-200 active:scale-95 cursor-pointer shadow-sm group"
+              >
+                <svg className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.47 6.27 6.27 0 0 0 1.94-4.47V8.58a8.27 8.27 0 0 0 4.83 1.56V6.69z"/>
+                </svg>
+              </a>
+            )}
+          </div>
+
           {/* Universal Language Selector */}
           <LanguageSelector variant="desktop" />
 

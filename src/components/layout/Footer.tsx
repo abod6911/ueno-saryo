@@ -208,8 +208,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
 
         {/* Bottom Bar: Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#f8f7f1]/50">
-          <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} Ueno Saryo (مختبرات الشاي · 茶道研究所). {t.footer.rights}</span>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span>© {new Date().getFullYear()}</span>
+            <span className="font-headline font-semibold text-white/80">UENO SARYO</span>
+            <span className="text-white/40">·</span>
+            <span>
+              {locale === 'ar'
+                ? 'مختبرات الشاي'
+                : locale === 'zh-CN'
+                ? '茶道研究所'
+                : 'Tea Experience'}
+            </span>
+            <span className="text-white/40">·</span>
+            <span>{t.footer.rights}</span>
           </div>
           <div className="text-[11px] font-mono tracking-wider text-[#939458]">
             AR RAWDAH · JEDDAH · SAUDI ARABIA
