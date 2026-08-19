@@ -1,0 +1,55 @@
+rules:
+  - id: hardcoded-secrets-detection
+    languages: [javascript, typescript, json, yaml]
+    severity: ERROR
+    message: "Potential hardcoded secret or API credential detected."
+    metadata:
+      cwe: "CWE-798"
+      owasp: "A07:2021-Identification and Authentication Failures"
+    patterns:
+      - pattern-regex: '(?i)(?:api_key|apikey|secret|private_key|auth_token|bearer)\s*[:=]\s*["\'][A-Za-z0-9_\-]{20,}["\']'
+
+  - id: dangerous-inner-html-xss
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: "Direct use of dangerouslySetInnerHTML or innerHTML without sanitization can lead to Cross-Site Scripting (XSS)."
+    metadata:
+      cwe: "CWE-79"
+      owasp: "A03:2021-Injection"
+    patterns:
+      - pattern-either:
+          - pattern: $ELEM.innerHTML = $VAL
+          - pattern: dangerouslySetInnerHTML={{ __html: $VAL }}
+
+  - id: unvalidated-window-open-or-location
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: "Unvalidated open redirect or URL navigation."
+    metadata:
+      cwe: "CWE-601"
+    patterns:
+      - pattern-either:
+          - pattern: window.location.href = $URL
+          - pattern: window.open($URL, ...)
+
+  - id: insecure-eval-execution
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: "Use of eval() or Function constructor allows arbitrary code execution."
+    metadata:
+      cwe: "CWE-95"
+      owasp: "A03:2021-Injection"
+    patterns:
+      - pattern-either:
+          - pattern: eval(...)
+          - pattern: new Function(...)
+          - pattern: setTimeout($STR, ...)
+
+  - id: insecure-target-blank-links
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: "Anchor tag with target='_blank' must include rel='noopener noreferrer' to prevent reverse tabnabbing."
+    metadata:
+      cwe: "CWE-1022"
+    patterns:
+      - pattern: <a href=$HREF target="_blank" ... />
