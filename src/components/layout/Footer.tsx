@@ -1,9 +1,11 @@
 import React from 'react';
 import { useLanguage } from '../../i18n/context';
 import { BUSINESS_DATA } from '../../data/business';
-import { MapPin, Phone, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, ArrowUp, Sparkles, Navigation } from 'lucide-react';
 import { MatchaContour } from '../ui/MatchaContour';
 import { LanguageSelector } from '../ui/LanguageSelector';
+import { JapaneseSeal } from '../ui/JapaneseSeal';
+import { RevealOnView } from '../ui/RevealOnView';
 
 interface FooterProps {
   onOpenMenu: () => void;
@@ -26,7 +28,62 @@ export const Footer: React.FC<FooterProps> = ({ onOpenMenu }) => {
         茶道
       </div>
 
-      <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 pt-14 pb-24 sm:pb-16 relative z-10">
+      <div className="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-12 pt-8 pb-24 sm:pb-16 relative z-10">
+        {/* Closing Filmic Brand Frame */}
+        <RevealOnView variant="signature-rise" delay={0} className="w-full mb-16 sm:mb-20">
+          <div className="w-full bg-gradient-to-b from-[#19321d]/80 to-[#122416] rounded-[24px] sm:rounded-[32px] p-8 sm:p-12 lg:p-16 border border-white/12 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
+            {/* Ambient Radial Accent */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#29482a]/30 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto">
+              <div className="flex items-center gap-2 mb-4">
+                <JapaneseSeal char="道" size={24} variant="square" />
+                <span className="font-japanese text-xs sm:text-sm text-[#939458] tracking-widest font-medium">
+                  茶道研究所 · 一期一会
+                </span>
+              </div>
+
+              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-normal leading-[1.2] mb-4">
+                {locale === 'ar'
+                  ? 'لحظة واحدة · كوب شاي لا يُنسى'
+                  : locale === 'zh-CN'
+                  ? '一期一会 · 细品一杯难忘之茶'
+                  : 'One Moment · One Unforgettable Cup'}
+              </h2>
+
+              <p className="text-xs sm:text-base text-[#f8f7f1]/75 leading-relaxed font-sans mb-8 max-w-lg">
+                {locale === 'ar'
+                  ? 'مرحباً بكم في ملاذ الشاي بالروضة، جدة. ندعوكم لاكتشاف أندر أوراق الشاي الياباني المقطوفة بعناية والمحضرة بأعلى معايير الدقة.'
+                  : locale === 'zh-CN'
+                  ? '欢迎莅临吉达 Ar Rawdah 区茶道圣所，体验由日本手造茶具与严选原叶沏煮的当代茶道工法。'
+                  : 'Welcome to our sanctuary in Ar Rawdah, Jeddah. Discover ceremonial Japanese teas crafted with timeless precision.'}
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={onOpenMenu}
+                  className="min-h-[48px] px-6 sm:px-8 rounded-full bg-[#f0ede1] hover:bg-white text-[#122416] text-xs sm:text-sm font-bold flex items-center gap-2 transition-all active:scale-95 shadow-md cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-[#29482a]" />
+                  <span>{t.nav.menu}</span>
+                </button>
+
+                <a
+                  href={BUSINESS_DATA.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[48px] px-6 sm:px-8 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium flex items-center gap-2 border border-white/15 transition-all active:scale-95 cursor-pointer"
+                >
+                  <Navigation className="w-4 h-4 text-[#939458]" />
+                  <span>{t.visit.getDirectionsBtn}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </RevealOnView>
+
+        {/* 4-Column Navigation & Contact Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-white/10">
           {/* Col 1: Brand & Bio */}
           <div className="flex flex-col items-start gap-4">
