@@ -136,7 +136,7 @@ export const en = {
     heading: 'What Guests Are Saying',
     subheading: 'Real verified impressions from tea lovers visiting our Ar Rawdah location.',
     ratingTitle: '4.2 Out of 5 Stars',
-    reviewsCount: 'Based on 180+ verified Google Reviews',
+    reviewsCount: 'Based on 560+ verified Google Reviews',
     googleBtn: 'Read Reviews on Google',
   },
   visit: {

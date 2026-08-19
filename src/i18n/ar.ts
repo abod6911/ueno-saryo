@@ -136,7 +136,7 @@ export const ar = {
     heading: 'ما يقوله ضيوفنا',
     subheading: 'انطباعات موثقة من عشاق الشاي الذين عاشوا تجربة مختبرات الشاي في جدة.',
     ratingTitle: '٤.٢ من ٥ نجوم',
-    reviewsCount: 'استناداً إلى أكثر من ١٨٠ تقييماً موثقاً على Google',
+    reviewsCount: 'استناداً إلى أكثر من ٥٦٠ تقييماً موثقاً على Google',
     googleBtn: 'شاهد التقييمات على Google',
   },
   visit: {

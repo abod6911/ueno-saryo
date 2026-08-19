@@ -136,7 +136,7 @@ export const zhCN = {
     heading: '品鉴者的真实心声',
     subheading: '来自亲临吉达 Ar Rawdah 门店客人的真实 Google 评价。',
     ratingTitle: 'Google 评分 4.2 / 5.0 星',
-    reviewsCount: '基于 180+ 条经 Google 验证的客人好评',
+    reviewsCount: '基于 560+ 条经 Google 验证的客人好评',
     googleBtn: '在 Google 地图上查看全部评价',
   },
   visit: {

@@ -52,7 +52,7 @@ export const BUSINESS_DATA: BusinessInfo = {
   ],
   rating: {
     score: 4.2,
-    reviewCount: 184,
+    reviewCount: 561,
     source: 'Google Maps Verified Reviews',
   },
 };
